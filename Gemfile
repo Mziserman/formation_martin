@@ -52,6 +52,9 @@ group :development do
   gem 'rubycritic', require: false
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
+
+  # local mail
+  gem 'letter_opener_web', '~> 1.0'
 end
 
 group :test do
