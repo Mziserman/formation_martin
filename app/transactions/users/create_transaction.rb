@@ -18,8 +18,8 @@ class Users::CreateTransaction
   end
 
   def send_welcome_email(input)
-    UserMailer.with(user: input[:user]).welcome_email.deliver
-    Success(input[:user])
+    UserMailer.with(user: input).welcome_email.deliver
+    Success(input)
   rescue StandardError => e
     Failure(e)
   end
