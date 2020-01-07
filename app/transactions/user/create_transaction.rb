@@ -11,9 +11,9 @@ class User::CreateTransaction
   def create(input)
     input[:user] = User.new(input[:sign_up_params])
     if input[:user].save
-      Success(input)
+      Success(input[:user])
     else
-      Failure(input)
+      Failure(input[:user])
     end
   end
 
