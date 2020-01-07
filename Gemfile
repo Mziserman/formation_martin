@@ -46,6 +46,7 @@ gem 'json'
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'pry-byebug'
+  gem 'rspec-rails', '4.0.0.beta2'
 end
 
 group :development do
@@ -69,14 +70,11 @@ group :test do
   # Easy installation and use of web drivers to run system tests with browsers
   gem 'webdrivers'
 
-  gem 'factory_bot'
+  gem 'factory_bot_rails'
   gem 'faker'
   gem 'fuubar'
   gem 'shoulda-matchers'
   gem 'webmock'
-  %w[rspec-core rspec-expectations rspec-mocks rspec-rails rspec-support].each do |lib|
-    gem lib, git: "https://github.com/rspec/#{lib}.git", branch: 'master'
-  end
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
