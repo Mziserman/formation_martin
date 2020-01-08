@@ -41,6 +41,9 @@ gem 'authtrail'
 # transaction handler from dry gem suite
 gem 'dry-transaction'
 
+# backoffice
+gem 'activeadmin'
+
 gem 'json'
 
 group :development, :test do
