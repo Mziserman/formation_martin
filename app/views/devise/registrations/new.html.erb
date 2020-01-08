@@ -2,28 +2,25 @@
 
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
 
-    <% error_class = error_class_if_needed(resource, :email) %>
     <%= f.label :email, class: 'col-sm-3 col-form-label'%><br />
     <%= f.email_field :email,
       autofocus: true,
       autocomplete: 'email',
-      class: "form-control #{error_class}",
+      class: classes_for_field(resource, :email),
       placeholder: 'email@mail.ail' %>
     <%= errors_for_field(resource, :email) %>
 
-    <% error_class = error_class_if_needed(resource, :first_name) %>
     <%= f.label :first_name, 'Prénom', class: 'col-sm-3 col-form-label'%><br />
     <%= f.text_field :first_name,
       autocomplete: 'given-name',
-      class: "form-control #{error_class}",
+      class: classes_for_field(resource, :first_name),
       placeholder: 'Martin' %>
     <%= errors_for_field(resource, :first_name) %>
 
-    <% error_class = error_class_if_needed(resource, :last_name) %>
     <%= f.label :last_name, 'Nom de famille', class: 'col-sm-3 col-form-label'%><br />
     <%= f.text_field :last_name,
       autocomplete: 'family-name',
-      class: "form-control #{error_class}",
+      class: classes_for_field(resource, :last_name),
       placeholder: 'Ziserman' %>
     <%= errors_for_field(resource, :last_name) %>
 
@@ -31,7 +28,7 @@
     <%= f.label :birthdate, 'Date de naissance', class: 'col-sm-3 col-form-label'%><br />
     <%= f.date_field :birthdate,
       autocomplete: 'bday',
-      class: "form-control #{error_class}" %>
+      class: classes_for_field(resource, :birthdate) %>
     <%= errors_for_field(resource, :birthdate) %>
 
     <% error_class = error_class_if_needed(resource, :password) %>
@@ -41,7 +38,7 @@
     <% end %><br />
     <%= f.password_field :password,
       autocomplete: 'new-password',
-      class: "form-control #{error_class}",
+      class: classes_for_field(resource, :password),
       placeholder: '********' %>
     <%= errors_for_field(resource, :password) %>
 
@@ -49,7 +46,7 @@
     <%= f.label :password_confirmation, 'Confirmation du mot de passe', class: 'col-sm-3 col-form-label'%><br />
     <%= f.password_field :password_confirmation,
       autocomplete: 'new-password',
-      class: "form-control #{error_class}",
+      class: classes_for_field(resource, :password_confirmation),
       placeholder: '********' %>
     <%= errors_for_field(resource, :password_confirmation) %>
 
