@@ -30,7 +30,8 @@
 yarn-debug.log*
 .yarn-integrity
 
-
+bin/*
 *.DS_STORE
 
-
+# Ignore application configuration
+/config/application.yml
