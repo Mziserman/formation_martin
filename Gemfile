@@ -73,9 +73,9 @@ group :test do
   gem 'factory_bot_rails'
   gem 'faker'
   gem 'fuubar'
+  gem 'rails-controller-testing'
   gem 'shoulda-matchers'
   gem 'webmock'
-  gem 'rails-controller-testing'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem

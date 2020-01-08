@@ -1,58 +1,58 @@
 <h2>Inscription</h2>
 
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-  <%= render "devise/shared/error_messages", resource: resource %>
 
-  <div class="form-group">
+    <% error_class = error_class_if_needed(resource, :email) %>
     <%= f.label :email, class: 'col-sm-3 col-form-label'%><br />
     <%= f.email_field :email,
       autofocus: true,
       autocomplete: 'email',
-      class: 'form-control',
+      class: "form-control #{error_class}",
       placeholder: 'email@mail.ail' %>
-  </div>
+    <%= errors_for_field(resource, :email) %>
 
-  <div class="form-group">
+    <% error_class = error_class_if_needed(resource, :first_name) %>
     <%= f.label :first_name, 'Prénom', class: 'col-sm-3 col-form-label'%><br />
     <%= f.text_field :first_name,
       autocomplete: 'given-name',
-      class: 'form-control',
+      class: "form-control #{error_class}",
       placeholder: 'Martin' %>
-  </div>
+    <%= errors_for_field(resource, :first_name) %>
 
-  <div class="form-group">
+    <% error_class = error_class_if_needed(resource, :last_name) %>
     <%= f.label :last_name, 'Nom de famille', class: 'col-sm-3 col-form-label'%><br />
     <%= f.text_field :last_name,
       autocomplete: 'family-name',
-      class: 'form-control',
+      class: "form-control #{error_class}",
       placeholder: 'Ziserman' %>
-  </div>
+    <%= errors_for_field(resource, :last_name) %>
 
-  <div class="form-group">
+    <% error_class = error_class_if_needed(resource, :birthdate) %>
     <%= f.label :birthdate, 'Date de naissance', class: 'col-sm-3 col-form-label'%><br />
     <%= f.date_field :birthdate,
       autocomplete: 'bday',
-      class: 'form-control' %>
-  </div>
+      class: "form-control #{error_class}" %>
+    <%= errors_for_field(resource, :birthdate) %>
 
-  <div class="form-group">
+    <% error_class = error_class_if_needed(resource, :password) %>
     <%= f.label :password, 'Mot de passe',  class: 'col-sm-3 col-form-label'%>
     <% if @minimum_password_length %>
     <em>(<%= @minimum_password_length %> characters minimum)</em>
     <% end %><br />
     <%= f.password_field :password,
       autocomplete: 'new-password',
-      class: 'form-control',
+      class: "form-control #{error_class}",
       placeholder: '********' %>
-  </div>
+    <%= errors_for_field(resource, :password) %>
 
-  <div class="form-group">
+    <% error_class = error_class_if_needed(resource, :password_confirmation) %>
     <%= f.label :password_confirmation, 'Confirmation du mot de passe', class: 'col-sm-3 col-form-label'%><br />
     <%= f.password_field :password_confirmation,
       autocomplete: 'new-password',
-      class: 'form-control',
+      class: "form-control #{error_class}",
       placeholder: '********' %>
-  </div>
+    <%= errors_for_field(resource, :password_confirmation) %>
+
 
   <span class="actions float-right">
     <%= f.submit "Inscription", class: 'btn btn-primary' %>
