@@ -11,7 +11,7 @@
   </div>
 
   <div class="form-group">
-    <%= f.label :password, class: 'col-sm-2 col-form-label'%>
+    <%= f.label :password, 'Mot de passe', class: 'col-sm-2 col-form-label'%>
     <% if @minimum_password_length %>
     <em>(<%= @minimum_password_length %> characters minimum)</em>
     <% end %><br />
@@ -24,7 +24,7 @@
   <% if devise_mapping.rememberable? %>
     <span class="form-check">
       <%= f.check_box :remember_me, class: 'form-check-input' %>
-      <%= f.label :remember_me, class: 'form-check-label' %>
+      <%= f.label :remember_me, 'Se souvenir de moi (more cookies please)', class: 'form-check-label' %>
     </span>
   <% end %>
 
