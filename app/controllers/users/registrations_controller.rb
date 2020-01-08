@@ -10,8 +10,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
       end
 
       transaction.failure do |user|
-        user.password = ''
-        user.password_confirmation = ''
+        clean_up_passwords(user)
         render :new, locals: { resource: user }
       end
     end
