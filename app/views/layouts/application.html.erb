@@ -13,10 +13,19 @@
   <body>
     <%= render 'layouts/shared/nav' %>
 
-    <p class="notice"><%= notice %></p>
-    <p class="alert"><%= alert %></p>
-
     <div class='container'>
+      <% if flash %>
+        <% flash.each do |type, alert| %>
+
+          <div class="alert alert-dismissible alert-<%= type_to_bootstrap(type) %>">
+            <button type="button" class="close" data-dismiss="alert">&times;</button>
+            <p class="mb-0"><%= alert %></p>
+          </div>
+
+        <% end %>
+      <% end %>
+
+
       <%= yield %>
     </div>
   </body>
