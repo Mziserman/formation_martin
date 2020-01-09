@@ -1,0 +1,9 @@
+<%= semantic_form_for [:admin, @admin_user] do |f| %>
+  <% if @admin_user.persisted? %>
+    <%= f.inputs :password %>
+    <%= f.button :commit %>
+  <% else %>
+    <%= f.inputs :email, :password %>
+    <%= f.button :commit %>
+  <% end %>
+<% end %>
