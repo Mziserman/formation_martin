@@ -6,13 +6,14 @@ RSpec.describe Users::CreateTransaction do
   end
   context 'with valid attributes' do
     let(:attributes) { attributes_for(:user) }
+    let(:mail) { ActionMailer::Base.deliveries.last }
+    let(:user) { subject.success }
 
     it 'succeeds' do
       expect(subject.success?).to be true
     end
 
     it 'creates a user with the attributes' do
-      user = subject.success
       attributes.each do |method, value|
         expect(user.send(method)).to eql value
       end
@@ -21,11 +22,36 @@ RSpec.describe Users::CreateTransaction do
     it 'sends a welcome mail' do
       expect { subject }.to change { ActionMailer::Base.deliveries.count }.by(1)
     end
+
+    it 'renders the subject' do
+      subject
+      expect(mail.subject).to eq('Welcome to My Awesome Site')
+    end
+
+    it 'renders the receiver email' do
+      subject
+      expect(mail.to).to eq([user.email])
+    end
+
+    it 'renders the sender email' do
+      subject
+      expect(mail.from).to eq(['martin@capsens.eu'])
+    end
+
+    it 'assigns @name' do
+      subject
+      expect(mail.body.encoded).to match(user.first_name)
+    end
+
+    it 'assigns @confirmation_url' do
+      subject
+      expect(mail.body.encoded)
+        .to match('/users/sign_in')
+    end
   end
 
   context 'without first_name' do
     let(:attributes) { attributes_for(:user).except(:first_name) }
-
 
     it 'fails' do
       expect(subject.failure?).to be true
