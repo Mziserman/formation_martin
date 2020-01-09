@@ -181,7 +181,7 @@ RSpec.describe Admin::AdminUsersController, type: :controller do
       expect(assigns(:admin_user)).to eq(admin_user)
     end
     it 'should render the form elements' do
-      expect(page).to have_field('Password')
+      expect(page).to have_field('Password', with: nil)
       # expect(page).to have_field('Password', with: '') not working (expected
       # to find visible field "Password" that is not disabled with value ""
       # but there were no matches. Also found "", which matched the selector
@@ -211,17 +211,6 @@ RSpec.describe Admin::AdminUsersController, type: :controller do
 
       #   expect(admin_user.password).to eq(valid_attributes[:password])
       #   expect(admin_user.email).to eq(previous_mail)
-      # end
-    end
-    context 'with invalid params' do
-      # it 'returns http success' do
-      #   put :update, params: { id: admin_user.id, admin_user: invalid_attributes }
-      #   expect(response).to have_http_status(:success)
-      # end
-      # it 'does not change admin_user' do
-      #   expect do
-      #     put :update, params: { id: admin_user.id, admin_user: invalid_attributes }
-      #   end.not_to change({ admin_user.reload.first_name })
       # end
     end
   end
