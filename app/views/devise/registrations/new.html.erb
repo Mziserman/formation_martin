@@ -1,42 +1,59 @@
-<h2>Sign up</h2>
+<h2>Inscription</h2>
 
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-  <%= render "devise/shared/error_messages", resource: resource %>
 
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-  </div>
+    <%= f.label :email, class: 'col-sm-3 col-form-label'%><br />
+    <%= f.email_field :email,
+      autofocus: true,
+      autocomplete: 'email',
+      class: classes_for_field(resource, :email),
+      placeholder: 'email@mail.ail' %>
+    <%= errors_for_field(resource, :email) %>
 
-  <div class="field">
-    <%= f.label :first_name %><br />
-    <%= f.text_field :first_name, autocomplete: "first_name" %>
-  </div>
-  <div class="field">
-    <%= f.label :last_name %><br />
-    <%= f.text_field :last_name, autocomplete: "last_name" %>
-  </div>
-  <div class="field">
-    <%= f.label :birthdate %><br />
-    <%= f.date_field :birthdate, autocomplete: "email" %>
-  </div>
+    <%= f.label :first_name, 'Prénom', class: 'col-sm-3 col-form-label'%><br />
+    <%= f.text_field :first_name,
+      autocomplete: 'given-name',
+      class: classes_for_field(resource, :first_name),
+      placeholder: 'Martin' %>
+    <%= errors_for_field(resource, :first_name) %>
 
-  <div class="field">
-    <%= f.label :password %>
+    <%= f.label :last_name, 'Nom de famille', class: 'col-sm-3 col-form-label'%><br />
+    <%= f.text_field :last_name,
+      autocomplete: 'family-name',
+      class: classes_for_field(resource, :last_name),
+      placeholder: 'Ziserman' %>
+    <%= errors_for_field(resource, :last_name) %>
+
+    <%= f.label :birthdate, 'Date de naissance', class: 'col-sm-3 col-form-label'%><br />
+    <%= f.date_field :birthdate,
+      autocomplete: 'bday',
+      class: classes_for_field(resource, :birthdate) %>
+    <%= errors_for_field(resource, :birthdate) %>
+
+    <%= f.label :password, 'Mot de passe',  class: 'col-sm-3 col-form-label'%>
     <% if @minimum_password_length %>
     <em>(<%= @minimum_password_length %> characters minimum)</em>
     <% end %><br />
-    <%= f.password_field :password, autocomplete: "new-password" %>
-  </div>
+    <%= f.password_field :password,
+      autocomplete: 'new-password',
+      class: classes_for_field(resource, :password),
+      placeholder: '********' %>
+    <%= errors_for_field(resource, :password) %>
 
-  <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
-  </div>
+    <%= f.label :password_confirmation, 'Confirmation du mot de passe', class: 'col-sm-3 col-form-label'%><br />
+    <%= f.password_field :password_confirmation,
+      autocomplete: 'new-password',
+      class: classes_for_field(resource, :password_confirmation),
+      placeholder: '********' %>
+    <%= errors_for_field(resource, :password_confirmation) %>
 
-  <div class="actions">
-    <%= f.submit "Sign up" %>
-  </div>
+
+  <span class="actions float-right">
+    <%= f.submit "Inscription", class: 'btn btn-primary' %>
+  </span>
+  <span>
+    <%= render "devise/shared/links" %>
+  </span>
 <% end %>
 
-<%= render "devise/shared/links" %>
+

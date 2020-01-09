@@ -4,7 +4,7 @@ class Users::CreateTransaction
   include Dry::Transaction
 
   step :create
-  step :send_welcome_email
+  tee :send_welcome_email
 
   private
 
@@ -18,9 +18,6 @@ class Users::CreateTransaction
   end
 
   def send_welcome_email(input)
-    UserMailer.with(user: input[:user]).welcome_email.deliver
-    Success(input[:user])
-  rescue StandardError => e
-    Failure(e)
+    UserMailer.with(user: input).welcome_email.deliver
   end
 end
