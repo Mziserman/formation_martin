@@ -10,8 +10,7 @@ describe Users::SessionsController, type: :controller do
     end
 
     it 'increments current_user sign_in_count on login' do
-      subject
-      expect(user.reload.sign_in_count).to eq 1
+      expect { subject }.to(change { user.reload.sign_in_count }.by(1))
     end
   end
 
@@ -24,8 +23,7 @@ describe Users::SessionsController, type: :controller do
     end
 
     it 'increments current_user sign_in_count on login' do
-      subject
-      expect(user.reload.sign_in_count).to eq 0
+      expect { subject }.not_to(change { user.reload.sign_in_count })
     end
   end
 end
