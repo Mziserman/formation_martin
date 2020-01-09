@@ -1,11 +1,11 @@
 # frozen_string_literal: true
 
 RSpec.describe Users::CreateTransaction do
+  subject do
+    Users::CreateTransaction.new.call(sign_up_params: attributes)
+  end
   context 'with valid attributes' do
     let(:attributes) { attributes_for(:user) }
-    subject do
-      Users::CreateTransaction.new.call(sign_up_params: attributes)
-    end
 
     it 'succeeds' do
       expect(subject.success?).to be true
@@ -25,9 +25,7 @@ RSpec.describe Users::CreateTransaction do
 
   context 'without first_name' do
     let(:attributes) { attributes_for(:user).except(:first_name) }
-    subject do
-      Users::CreateTransaction.new.call(sign_up_params: attributes)
-    end
+
 
     it 'fails' do
       expect(subject.failure?).to be true
@@ -40,9 +38,6 @@ RSpec.describe Users::CreateTransaction do
 
   context 'without last_name' do
     let(:attributes) { attributes_for(:user).except(:last_name) }
-    subject do
-      Users::CreateTransaction.new.call(sign_up_params: attributes)
-    end
 
     it 'fails' do
       expect(subject.failure?).to be true
@@ -55,9 +50,6 @@ RSpec.describe Users::CreateTransaction do
 
   context 'without first_name' do
     let(:attributes) { attributes_for(:user).except(:first_name) }
-    subject do
-      Users::CreateTransaction.new.call(sign_up_params: attributes)
-    end
 
     it 'fails' do
       expect(subject.failure?).to be true
@@ -70,9 +62,6 @@ RSpec.describe Users::CreateTransaction do
 
   context 'without email' do
     let(:attributes) { attributes_for(:user).except(:email) }
-    subject do
-      Users::CreateTransaction.new.call(sign_up_params: attributes)
-    end
 
     it 'fails' do
       expect(subject.failure?).to be true
@@ -85,9 +74,6 @@ RSpec.describe Users::CreateTransaction do
 
   context 'without password' do
     let(:attributes) { attributes_for(:user).except(:password) }
-    subject do
-      Users::CreateTransaction.new.call(sign_up_params: attributes)
-    end
 
     it 'fails' do
       expect(subject.failure?).to be true
@@ -103,10 +89,6 @@ RSpec.describe Users::CreateTransaction do
       attributes_for(:user).tap do |user|
         user[:password_confirmation] = user[:password] + 'en_fait_non'
       end
-    end
-
-    subject do
-      Users::CreateTransaction.new.call(sign_up_params: attributes)
     end
 
     it 'fails' do
