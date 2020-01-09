@@ -6,7 +6,7 @@ ActiveAdmin.register AdminUser do
     id_column
     column :email
     column :current_sign_in_at
-    column :sign_in_count
+    column :successfull_login_activities_count
     column :created_at
     actions
   end
@@ -15,14 +15,14 @@ ActiveAdmin.register AdminUser do
     attributes_table do
       row :email
       row :current_sign_in_at
-      row :sign_in_count
+      row :successfull_login_activities_count
       row :created_at
     end
     active_admin_comments
   end
 
   filter :email
-  filter :current_sign_in_at
+  filter :successfull_login_activities_count
   filter :created_at
 
   form partial: 'form'
