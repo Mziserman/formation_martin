@@ -16,6 +16,22 @@ RSpec.describe Admin::AdminUsersController, type: :controller do
     valid_attributes.except(:email)
   end
 
+  let!(:three_connection_admin) do
+    create(
+      :admin_user,
+      :with_successful_logins,
+      successful_login_count: 3
+    )
+  end
+
+  let!(:single_connection_admin) do
+    create(
+      :admin_user,
+      :with_successful_logins,
+      successful_login_count: 1
+    )
+  end
+
   describe 'GET index' do
     subject { get :index }
     it 'returns http success' do
@@ -64,22 +80,6 @@ RSpec.describe Admin::AdminUsersController, type: :controller do
       )
       expect(filters_sidebar).to have_css(
         'input[name="q[successfull_login_activities_count_equals]"]'
-      )
-    end
-
-    let!(:three_connection_admin) do
-      create(
-        :admin_user,
-        :with_successful_logins,
-        successful_login_count: 3
-      )
-    end
-
-    let!(:single_connection_admin) do
-      create(
-        :admin_user,
-        :with_successful_logins,
-        successful_login_count: 1
       )
     end
 
