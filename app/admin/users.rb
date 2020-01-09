@@ -3,42 +3,41 @@ ActiveAdmin.register User do
                 :first_name,
                 :last_name,
                 :birthdate
-
-  # ID
-  # Email
-  # Nom
-  # Prénom
-  # Date de création
-  # Date de derniere edition
-  # Nombre de connexion
-  # Derniere connexion
-  # Adresse IP
-
   index do
     selectable_column
     id_column
     column :email
     column :first_name
     column :last_name
-    column :current_sign_in_at
-    column :last_ip_address
+    column :last_connected_at
+    column :current_ip
     column :sign_in_count
     column :created_at
     column :updated_at
     actions
   end
 
-  filter :email
-  filter :current_sign_in_at
-  filter :sign_in_count
-  filter :created_at
+  # Email
+  # Nom
+  # Prenom
+  # Date de création
+  # Derniere connexion
+  # Nombre de connexion
 
-  form do |f|
-    f.inputs do
-      f.input :email
-      f.input :password
-      f.input :password_confirmation
-    end
-    f.actions
-  end
+  filter :email
+  filter :first_name
+  filter :last_name
+  filter :successfull_login_activities_count
+  filter :created_at
+  filter :last_connected_at, label: 'By Date Completed', as: :date_range
+
+
+  # form do |f|
+  #   f.inputs do
+  #     f.input :email
+  #     f.input :password
+  #     f.input :password_confirmation
+  #   end
+  #   f.actions
+  # end
 end
