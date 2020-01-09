@@ -181,7 +181,7 @@ RSpec.describe Admin::AdminUsersController, type: :controller do
       expect(assigns(:admin_user)).to eq(admin_user)
     end
     it 'should render the form elements' do
-      expect(page).to have_field('Password', with: nil)
+      expect(page).to have_field('Password')
       # expect(page).to have_field('Password', with: '') not working (expected
       # to find visible field "Password" that is not disabled with value ""
       # but there were no matches. Also found "", which matched the selector
@@ -215,7 +215,7 @@ RSpec.describe Admin::AdminUsersController, type: :controller do
     end
   end
 
-  describe "GET show" do
+  describe 'GET show' do
     before do
       get :show, params: { id: admin_user.id }
     end
@@ -225,19 +225,19 @@ RSpec.describe Admin::AdminUsersController, type: :controller do
     it 'assigns the admin_user' do
       expect(assigns(:admin_user)).to eq(admin_user)
     end
-    it "should render the form elements" do
+    it 'should render the form elements' do
       expect(page).to have_content(admin_user.email)
     end
   end
 
-  describe "DELETE #destroy" do
-    it "destroys the requested select_option" do
-      expect {
+  describe 'DELETE #destroy' do
+    it 'destroys the requested select_option' do
+      expect do
         delete :destroy, params: { id: admin_user.id }
-      }.to change(AdminUser, :count).by(-1)
+      end.to change(AdminUser, :count).by(-1)
     end
 
-    it "redirects to the field" do
+    it 'redirects to the field' do
       delete :destroy, params: { id: admin_user.id }
       expect(response).to redirect_to(admin_admin_users_url)
     end
