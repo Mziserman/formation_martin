@@ -50,7 +50,7 @@ ActiveAdmin.register User do
   form do |f|
     f.inputs do
       f.input :email
-      f.input :first_name
+      f.input :first_name, label: 'Prénom'
       f.input :last_name
       f.input :password
     end
