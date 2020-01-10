@@ -43,12 +43,6 @@ ActiveRecord::Schema.define(version: 2020_01_10_103603) do
     t.index ["reset_password_token"], name: "index_admin_users_on_reset_password_token", unique: true
   end
 
-  create_table "images", force: :cascade do |t|
-    t.text "image_date"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-  end
-
   create_table "login_activities", force: :cascade do |t|
     t.string "scope"
     t.string "strategy"
@@ -72,11 +66,24 @@ ActiveRecord::Schema.define(version: 2020_01_10_103603) do
     t.index ["user_type", "user_id"], name: "index_login_activities_on_user_type_and_user_id"
   end
 
+  create_table "photos", force: :cascade do |t|
+    t.text "image_data"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "project_ownerships", force: :cascade do |t|
+    t.bigint "project_id"
+    t.bigint "user_id"
+    t.index ["project_id"], name: "index_project_ownerships_on_project_id"
+    t.index ["user_id"], name: "index_project_ownerships_on_user_id"
+  end
+
   create_table "projects", force: :cascade do |t|
     t.string "name"
     t.string "small_blurb"
     t.text "long_blurb"
-    t.float "amount_wanted"
+    t.integer "amount_wanted_in_cents"
     t.integer "thumbnail_id"
     t.integer "landscape_id"
     t.datetime "created_at", precision: 6, null: false
