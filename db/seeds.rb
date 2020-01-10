@@ -21,7 +21,7 @@ if Rails.env.development?
   categories = ['it', 'finance', 'green', 'startup', 'gadget']
 
   projects = 1.upto(3).map do |index|
-    project = Project.create!(
+    project = Project.new(
       name: "project#{index}",
       amount_wanted_in_cents: (index * 100_000_000),
       small_blurb: 'please',
