@@ -30,9 +30,20 @@ ActiveAdmin.register User do
       row :reset_password_sent_at
       row :reset_password_token
       row :remember_created_at
+
+      row :login_as do
+        link_to user.name, login_as_admin_user_path(user), target: '_blank'
+      end
     end
     active_admin_comments
   end
+
+  member_action :login_as, :method => :get do
+    user = User.find(params[:id])
+    bypass_sign_in user
+    redirect_to root_path
+  end
+
 
   filter :email
   filter :first_name
