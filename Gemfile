@@ -44,6 +44,11 @@ gem 'dry-transaction'
 # backoffice
 gem 'activeadmin'
 
+# categories
+gem 'acts-as-taggable-on', '~> 6.0'
+
+gem 'shrine', '~> 3.0'
+
 gem 'json'
 
 group :development, :test do
