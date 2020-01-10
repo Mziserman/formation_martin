@@ -17,6 +17,23 @@ ActiveAdmin.register User do
     actions
   end
 
+  show do
+    attributes_table do
+      row :email
+      row :first_name
+      row :last_name
+      row :last_connected_at
+      row :current_ip
+      row :sign_in_count
+      row :created_at
+      row :updated_at
+      row :reset_password_sent_at
+      row :reset_password_token
+      row :remember_created_at
+    end
+    active_admin_comments
+  end
+
   filter :email
   filter :first_name
   filter :last_name
