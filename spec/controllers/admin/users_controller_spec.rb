@@ -181,17 +181,13 @@ RSpec.describe Admin::UsersController, type: :controller do
     end
     it 'should render the form elements' do
       expect(page).to have_field('Email')
-      # expect(page).to have_field('Password', with: '') not working (expected
-      # to find visible field "Password" that is not disabled with value ""
-      # but there were no matches. Also found "", which matched the selector
-      # but not all filters. Expected value to be "" but was nil)
     end
   end
 
   describe 'PUT update' do
     context 'with valid params' do
       subject do
-        patch :update, params: { id: user.id, user: valid_attributes }
+        put :update, params: { id: user.id, user: valid_attributes }
       end
       it 'assigns the user' do
         subject
@@ -206,10 +202,8 @@ RSpec.describe Admin::UsersController, type: :controller do
       # Testé en vrai, ca marche, mais j'arrive pas a faire marcher le test
       # it 'should update the user' do
       #   subject
-      #   user.reload
 
-      #   expect(user.password).to eq(valid_attributes[:password])
-      #   expect(user.email).to eq(previous_mail)
+      #   expect(user.reload.password).to eq(valid_attributes[:password])
       # end
     end
   end
