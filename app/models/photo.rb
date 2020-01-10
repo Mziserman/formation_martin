@@ -7,6 +7,6 @@ class Photo < ApplicationRecord
   has_many :as_landscape_projects, class_name: 'Project', foreign_key: :landscape_id
 
   def projects
-    Project.where(as_thumbnail_project_ids + as_landscape_project_ids)
+    Project.where(id: (as_thumbnail_project_ids + as_landscape_project_ids))
   end
 end

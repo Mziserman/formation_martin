@@ -32,6 +32,7 @@ yarn-debug.log*
 
 bin/*
 *.DS_STORE
+public/uploads
 
 # Ignore application configuration
 /config/application.yml
