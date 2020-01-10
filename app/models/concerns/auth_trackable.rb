@@ -28,5 +28,9 @@ module AuthTrackable
     def current_sign_in_at
       last_login_activity&.created_at
     end
+
+    def current_ip
+      last_login_activity&.ip
+    end
   end
 end

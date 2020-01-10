@@ -17,27 +17,10 @@ ActiveAdmin.register User do
     actions
   end
 
-  # Email
-  # Nom
-  # Prenom
-  # Date de création
-  # Derniere connexion
-  # Nombre de connexion
-
   filter :email
   filter :first_name
   filter :last_name
   filter :successfull_login_activities_count
   filter :created_at
-  filter :last_connected_at, label: 'By Date Completed', as: :date_range
-
-
-  # form do |f|
-  #   f.inputs do
-  #     f.input :email
-  #     f.input :password
-  #     f.input :password_confirmation
-  #   end
-  #   f.actions
-  # end
+  filter :last_connected_at, label: 'Derniere connection'
 end
