@@ -1,7 +1,10 @@
+# frozen_string_literal: true
+
 ActiveAdmin.register User do
   permit_params :email,
                 :first_name,
                 :last_name,
+                :password,
                 :birthdate
   index do
     selectable_column
@@ -38,7 +41,7 @@ ActiveAdmin.register User do
     active_admin_comments
   end
 
-  member_action :login_as, :method => :get do
+  member_action :login_as, method: :get do
     user = User.find(params[:id])
     bypass_sign_in user
     redirect_to root_path
