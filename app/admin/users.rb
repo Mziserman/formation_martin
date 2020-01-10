@@ -47,10 +47,30 @@ ActiveAdmin.register User do
     redirect_to root_path
   end
 
+  form do |f|
+    f.inputs do
+      f.input :email
+      f.input :first_name
+      f.input :last_name
+      f.input :password
+    end
+    f.submit
+  end
+
   filter :email
   filter :first_name, label: 'Prénom'
   filter :last_name, label: 'Nom de famille'
   filter :successfull_login_activities_count, label: 'Nombre de connections'
   filter :created_at, label: 'Date de création'
   filter :last_connected_at, label: 'Derniere connection'
+
+  controller do
+    def update
+      if permitted_params[:user][:password].blank?
+        params[:user].delete(:password)
+      end
+
+      super
+    end
+  end
 end
