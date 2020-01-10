@@ -5,8 +5,6 @@ class Project < ApplicationRecord
 
   validates :name,
             :amount_wanted_in_cents,
-            :small_blurb,
-            :long_blurb,
             presence: true
 
   belongs_to :thumbnail, class_name: 'Photo', optional: true

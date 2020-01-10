@@ -11,6 +11,4 @@ RSpec.describe Project, type: :model do
 
   it { should validate_presence_of(:name) }
   it { should validate_presence_of(:amount_wanted_in_cents) }
-  it { should validate_presence_of(:small_blurb) }
-  it { should validate_presence_of(:long_blurb) }
 end
