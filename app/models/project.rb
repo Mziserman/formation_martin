@@ -8,7 +8,9 @@ class Project < ApplicationRecord
             presence: true
 
   belongs_to :thumbnail, class_name: 'Photo', optional: true
+  accepts_nested_attributes_for :thumbnail
   belongs_to :landscape, class_name: 'Photo', optional: true
+  accepts_nested_attributes_for :landscape
 
   has_many :project_ownerships
   has_many :owners, through: :project_ownerships, source: :user
