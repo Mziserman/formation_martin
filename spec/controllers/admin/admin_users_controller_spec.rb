@@ -162,7 +162,6 @@ RSpec.describe Admin::AdminUsersController, type: :controller do
         admin_user = AdminUser.last
 
         expect(admin_user.email).to eq(valid_attributes[:email])
-        expect(admin_user.password).to eq(valid_attributes[:passord])
       end
     end
 
