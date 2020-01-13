@@ -32,10 +32,14 @@ ActiveAdmin.register Project do
       row :amount_wanted_in_cents
       row :categories
       row :thumbnail do |project|
-        image_tag(project.thumbnail.url, height: 250) if project.thumbnail.present?
+        if project.thumbnail.present?
+          image_tag(project.thumbnail.url, height: 250)
+        end
       end
       row :landscape do |project|
-        image_tag(project.landscape.url, height: 250) if project.landscape.present?
+        if project.landscape.present?
+          image_tag(project.landscape.url, height: 250)
+        end
       end
       row :created_at
       row :updated_at
