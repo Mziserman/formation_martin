@@ -102,6 +102,8 @@ ActiveRecord::Schema.define(version: 2020_01_13_160118) do
     t.string "name"
     t.text "thumbnail"
     t.integer "threshold_in_cents"
+    t.boolean "limited", default: false
+    t.integer "stock"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["project_id"], name: "index_rewards_on_project_id"

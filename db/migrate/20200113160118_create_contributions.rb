@@ -6,6 +6,8 @@ class CreateContributions < ActiveRecord::Migration[6.0]
       t.string :name
       t.text :thumbnail
       t.integer :threshold_in_cents
+      t.boolean :limited, default: false
+      t.integer :stock
 
       t.timestamps null: false
     end
