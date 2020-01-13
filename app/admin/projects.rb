@@ -7,24 +7,50 @@ ActiveAdmin.register Project do
                 :amount_wanted_in_cents,
                 :category_list,
                 :thumbnail,
-                :landscape
-                # thumbnail_attributes: %i[id image _destroy],
-                # landscape_attributes: %i[id image _destroy]
+                :landscape,
+                :thumbnail_data,
+                :landscape_data
 
-  # form do |f|
-  #   f.inputs do
-  #     f.has_many :thumbnail, heading: 'Thumbnail',
-  #                            allow_destroy: true,
-  #                            new_record: !f.object.thumbnail.present? do |a|
-  #       a.input :image, as: :hidden
-  #       if a.object.image.present?
-  #         a.input :image, as: :file, hint: image_tag(a.object.image.url)
-  #       else
-  #         a.input :image, as: :file, hint: content_tag(:span, 'no cover page yet')
-  #       end
-  #     end
-  #   end
+  controller do
+    def update(options = {}, &block)
+      if permitted_params[:project][:thumbnail_data].blank?
+        params[:project][:thumbnail_data] = nil
+      end
+      if permitted_params[:project][:landscape_data].blank?
+        params[:project][:landscape_data] = nil
+      end
 
-  #   f.actions
-  # end
+      super
+    end
+  end
+
+  form do |f|
+    inputs do
+      f.input :name
+      f.input :amount_wanted_in_cents
+      f.input :small_blurb
+      f.input :long_blurb
+      f.input :categories
+
+      if f.object.thumbnail.present?
+        f.input :thumbnail, as: :file, hint: image_tag(f.object.thumbnail.url)
+        f.button Project.human_attribute_name(:remove_thumbnail),
+                 class: 'remove_thumbnail'
+      else
+        f.input :thumbnail, as: :file, hint: content_tag(:span, 'no cover page yet')
+      end
+      f.input :thumbnail_data, as: :hidden
+
+      if f.object.landscape.present?
+        f.input :landscape, as: :file, hint: image_tag(f.object.landscape.url)
+        f.button Project.human_attribute_name(:remove_landscape),
+                 class: 'remove_landscape'
+      else
+        f.input :landscape, as: :file, hint: content_tag(:span, 'no cover page yet')
+      end
+      f.input :landscape_data, as: :hidden
+    end
+
+    f.actions
+  end
 end
