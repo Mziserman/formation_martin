@@ -4,5 +4,15 @@ FactoryBot.define do
 
     project
     user
+
+    trait :with_reward do
+      transient do
+        reward { create :reward }
+      end
+
+      after(:create) do |contribution, evaluator|
+        contribution.update(reward: evaluator.reward)
+      end
+    end
   end
 end

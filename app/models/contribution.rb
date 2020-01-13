@@ -5,8 +5,5 @@ class Contribution < ApplicationRecord
 
   belongs_to :user
   belongs_to :project
-
-  def rewards
-    project.rewards.where('threshold_in_cents <= ?', amount_donated_in_cents)
-  end
+  belongs_to :reward, optional: true
 end
