@@ -1,0 +1,11 @@
+fr:
+  attributes:
+    first_name: 'Prénom'
+    last_name: 'Nom de famille'
+    last_connected_at: 'Dernière connection'
+    sign_in_count: 'Nombre de connections'
+    password: 'Mot de passe'
+    password_confirmation: 'Confirmation du mot de passe'
+    successfull_login_activities_count: 'Nombre de connections'
+    created_at: 'Date de création'
+    updated_at: 'Date de modification'

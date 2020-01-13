@@ -7,7 +7,7 @@ ActiveAdmin.register AdminUser do
     selectable_column
     id_column
     column :email
-    column :current_sign_in_at
+    column :last_connected_at
     column :successfull_login_activities_count
     column :created_at
     actions
@@ -16,7 +16,7 @@ ActiveAdmin.register AdminUser do
   show do
     attributes_table do
       row :email
-      row :current_sign_in_at
+      row :last_connected_at
       row :successfull_login_activities_count
       row :created_at
     end

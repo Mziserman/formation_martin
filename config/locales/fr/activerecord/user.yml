@@ -1,0 +1,7 @@
+fr:
+  activerecord:
+    models:
+      user: 'Utilisateur'
+    attributes:
+      user:
+        current_ip: 'IP'

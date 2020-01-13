@@ -33,7 +33,9 @@ RSpec.describe Admin::AdminUsersController, type: :controller do
   end
 
   describe 'GET index' do
-    subject { get :index }
+    subject { get :index, params: params }
+    let(:params) { {} }
+
     it 'returns http success' do
       subject
       expect(response).to have_http_status(:success)
@@ -62,45 +64,57 @@ RSpec.describe Admin::AdminUsersController, type: :controller do
       expect(filters_sidebar).to have_css('input[name="q[email_contains]"]')
     end
 
-    it 'filter Email works' do
-      matching_admin_user = create :admin_user, email: 'ABCDEFG@gmail.com'
-      non_matching_admin_user = create :admin_user, email: 'HIJKLMN@gmail.com'
-
-      get :index, params: { q: { email_contains: 'BCDEF' } }
-
-      expect(assigns(:admin_users)).to include(matching_admin_user)
-      expect(assigns(:admin_users)).not_to include(non_matching_admin_user)
-    end
-
     it 'filter sign in count exists' do
       subject
       expect(filters_sidebar).to have_css(
         'label[for="q_successfull_login_activities_count"]',
-        text: 'Successfull login activities count'
+        text: 'Nombre de connections'
       )
       expect(filters_sidebar).to have_css(
         'input[name="q[successfull_login_activities_count_equals]"]'
       )
     end
 
-    it 'filter sign in count eq works' do
-      get :index, params: { q: { successfull_login_activities_count_equals: 3 } }
+    context 'with filter' do
+      let(:params) { { q: { email_contains: 'BCDEF' } } }
+      it 'filter Email works' do
+        matching_admin_user = create :admin_user, email: 'ABCDEFG@gmail.com'
+        non_matching_admin_user = create :admin_user, email: 'HIJKLMN@gmail.com'
 
-      expect(assigns(:admin_users)).to include(three_connection_admin)
-      expect(assigns(:admin_users)).not_to include(single_connection_admin)
+        subject
+
+        expect(assigns(:admin_users)).to include(matching_admin_user)
+        expect(assigns(:admin_users)).not_to include(non_matching_admin_user)
+      end
     end
 
-    it 'filter sign in count gt works' do
-      get :index, params: { q: { successfull_login_activities_count_greater_than: 2 } }
+    context 'with filter' do
+      let(:params) { { q: { successfull_login_activities_count_equals: 3 } } }
+      it 'filter sign in count eq works' do
+        subject
 
-      expect(assigns(:admin_users)).to include(three_connection_admin)
-      expect(assigns(:admin_users)).not_to include(single_connection_admin)
+        expect(assigns(:admin_users)).to include(three_connection_admin)
+        expect(assigns(:admin_users)).not_to include(single_connection_admin)
+      end
     end
-    it 'filter sign in count lt works' do
-      get :index, params: { q: { successfull_login_activities_count_less_than: 2 } }
 
-      expect(assigns(:admin_users)).to include(single_connection_admin)
-      expect(assigns(:admin_users)).not_to include(three_connection_admin)
+    context 'with filter' do
+      let(:params) { { q: { successfull_login_activities_count_greater_than: 2 } } }
+      it 'filter sign in count gt works' do
+        subject
+
+        expect(assigns(:admin_users)).to include(three_connection_admin)
+        expect(assigns(:admin_users)).not_to include(single_connection_admin)
+      end
+    end
+    context 'with filter' do
+      let(:params) { { q: { successfull_login_activities_count_less_than: 2 } } }
+      it 'filter sign in count lt works' do
+        subject
+
+        expect(assigns(:admin_users)).to include(single_connection_admin)
+        expect(assigns(:admin_users)).not_to include(three_connection_admin)
+      end
     end
   end
 
@@ -117,13 +131,14 @@ RSpec.describe Admin::AdminUsersController, type: :controller do
     it 'should render the form elements' do
       subject
       expect(page).to have_field('Email')
-      expect(page).to have_field('Password')
+      expect(page).to have_field('Mot de passe')
     end
   end
 
   describe 'POST create' do
+    subject { post :create, params: params }
+    let(:params) { { admin_user: valid_attributes } }
     context 'with valid params' do
-      subject { post :create, params: { admin_user: valid_attributes } }
       it 'creates a new AdminUser' do
         expect do
           subject
@@ -152,19 +167,20 @@ RSpec.describe Admin::AdminUsersController, type: :controller do
     end
 
     context 'with invalid params' do
+      let(:params) { { admin_user: invalid_attributes } }
       it 'invalid_attributes return http success' do
-        post :create, params: { admin_user: invalid_attributes }
+        subject
         expect(response).to have_http_status(:success)
       end
 
       it 'assigns a newly created but unsaved admin_user as @admin_user' do
-        post :create, params: { admin_user: invalid_attributes }
+        subject
         expect(assigns(:admin_user)).to be_a_new(AdminUser)
       end
 
       it 'invalid_attributes do not create a AdminUser' do
         expect do
-          post :create, params: { admin_user: invalid_attributes }
+          subject
         end.not_to change(AdminUser, :count)
       end
     end
@@ -181,9 +197,9 @@ RSpec.describe Admin::AdminUsersController, type: :controller do
       expect(assigns(:admin_user)).to eq(admin_user)
     end
     it 'should render the form elements' do
-      expect(page).to have_field('Password')
-      # expect(page).to have_field('Password', with: '') not working (expected
-      # to find visible field "Password" that is not disabled with value ""
+      expect(page).to have_field('Mot de passe')
+      # expect(page).to have_field('Mot de passe', with: '') not working (expected
+      # to find visible field "Mot de passe" that is not disabled with value ""
       # but there were no matches. Also found "", which matched the selector
       # but not all filters. Expected value to be "" but was nil)
     end
@@ -231,14 +247,13 @@ RSpec.describe Admin::AdminUsersController, type: :controller do
   end
 
   describe 'DELETE #destroy' do
+    subject { delete :destroy, params: { id: admin_user.id } }
     it 'destroys the requested select_option' do
-      expect do
-        delete :destroy, params: { id: admin_user.id }
-      end.to change(AdminUser, :count).by(-1)
+      expect { subject }.to change(AdminUser, :count).by(-1)
     end
 
     it 'redirects to the field' do
-      delete :destroy, params: { id: admin_user.id }
+      subject
       expect(response).to redirect_to(admin_admin_users_url)
     end
   end
