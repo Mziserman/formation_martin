@@ -24,6 +24,25 @@ ActiveAdmin.register Project do
     end
   end
 
+  show do
+    attributes_table do
+      row :name
+      row :small_blurb
+      row :long_blurb
+      row :amount_wanted_in_cents
+      row :categories
+      row :thumbnail do |project|
+        image_tag(project.thumbnail.url, height: 250) if project.thumbnail.present?
+      end
+      row :landscape do |project|
+        image_tag(project.landscape.url, height: 250) if project.landscape.present?
+      end
+      row :created_at
+      row :updated_at
+    end
+    active_admin_comments
+  end
+
   form do |f|
     inputs do
       f.input :name
