@@ -17,5 +17,21 @@ FactoryBot.define do
         end
       end
     end
+
+    trait :with_projects do
+      transient do
+        projects do
+          1.upto(3).map do |_|
+            create :project
+          end
+        end
+      end
+
+      after(:create) do |user, evaluator|
+        evaluator.projects.each do |project|
+          user.project_ownerships.create project: project
+        end
+      end
+    end
   end
 end

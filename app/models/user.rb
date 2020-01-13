@@ -9,16 +9,10 @@ class User < ApplicationRecord
 
   validates :first_name, :last_name, :birthdate, presence: true
 
+  has_many :project_ownerships
+  has_many :projects, through: :project_ownerships
+
   def name
     "#{first_name} #{last_name}"
   end
-
-  # ransacker :sign_in_count do
-  #   Arel.sql("(
-  #     SELECT COUNT(id)
-  #     FROM login_activities
-  #     WHERE login_activities.user_id = users.id
-  #     AND login_activities.user_type = User
-  #   )")
-  # end
 end
