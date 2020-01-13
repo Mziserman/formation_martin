@@ -28,15 +28,4 @@ ActiveAdmin.register AdminUser do
   filter :created_at
 
   form partial: 'form'
-
-  # controller do
-  #   def update(options = {}, &block)
-  #     super do |success, failure|
-  #       block&.call(success, failure)
-
-  #       binding.pry
-
-  #     end
-  #   end
-  # end
 end
