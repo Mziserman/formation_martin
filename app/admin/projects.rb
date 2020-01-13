@@ -62,7 +62,7 @@ ActiveAdmin.register Project do
       else
         f.input :thumbnail, as: :file, hint: content_tag(:span, 'no cover page yet')
       end
-      f.input :thumbnail_data, as: :hidden
+      f.input :thumbnail_data, as: :hidden, value: f.object.cached_thumbnail_data
 
       if f.object.landscape.present?
         f.input :landscape, as: :file, hint: image_tag(f.object.landscape.url)
@@ -71,7 +71,7 @@ ActiveAdmin.register Project do
       else
         f.input :landscape, as: :file, hint: content_tag(:span, 'no cover page yet')
       end
-      f.input :landscape_data, as: :hidden
+      f.input :landscape_data, as: :hidden, value: f.object.cached_landscape_data
     end
 
     f.actions
