@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_01_10_103603) do
+ActiveRecord::Schema.define(version: 2020_01_13_105340) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -66,12 +66,6 @@ ActiveRecord::Schema.define(version: 2020_01_10_103603) do
     t.index ["user_type", "user_id"], name: "index_login_activities_on_user_type_and_user_id"
   end
 
-  create_table "photos", force: :cascade do |t|
-    t.text "image_data"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-  end
-
   create_table "project_ownerships", force: :cascade do |t|
     t.bigint "project_id"
     t.bigint "user_id"
@@ -84,12 +78,10 @@ ActiveRecord::Schema.define(version: 2020_01_10_103603) do
     t.string "small_blurb"
     t.text "long_blurb"
     t.integer "amount_wanted_in_cents"
-    t.integer "thumbnail_id"
-    t.integer "landscape_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["landscape_id"], name: "index_projects_on_landscape_id"
-    t.index ["thumbnail_id"], name: "index_projects_on_thumbnail_id"
+    t.text "thumbnail_data"
+    t.text "landscape_data"
   end
 
   create_table "taggings", id: :serial, force: :cascade do |t|

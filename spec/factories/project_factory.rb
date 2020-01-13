@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 FactoryBot.define do
   factory :project do
     name { Faker::Company.name }
@@ -18,6 +20,19 @@ FactoryBot.define do
         evaluator.owners.each do |owner|
           project.project_ownerships.create user: owner
         end
+      end
+    end
+
+    trait :with_categories do
+      transient do
+        categories { %w[it company tech] }
+      end
+
+      after(:create) do |project, evaluator|
+        evaluator.categories.each do |category|
+          project.category_list.add(category)
+        end
+        project.save
       end
     end
   end

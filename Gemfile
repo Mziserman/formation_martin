@@ -55,6 +55,8 @@ group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'pry-byebug'
   gem 'rspec-rails', '4.0.0.beta3'
+  gem 'factory_bot_rails'
+  gem 'faker'
 end
 
 group :development do
@@ -78,8 +80,6 @@ group :test do
   # Easy installation and use of web drivers to run system tests with browsers
   gem 'webdrivers'
 
-  gem 'factory_bot_rails'
-  gem 'faker'
   gem 'fuubar'
   gem 'rails-controller-testing'
   gem 'shoulda-matchers'

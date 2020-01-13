@@ -1,6 +1,9 @@
 # frozen_string_literal: true
 
 class Project < ApplicationRecord
+  include ImageUploader::Attachment(:thumbnail)
+  include ImageUploader::Attachment(:landscape)
+
   acts_as_taggable_on :categories
 
   validates :name,
