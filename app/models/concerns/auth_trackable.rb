@@ -10,18 +10,27 @@ module AuthTrackable
       login_activities.where(success: true)
     end
 
-    def update_successfull_login_activities_count
+    def update_successfull_login_activities_count_and_last_connected_at
       update(
-        successfull_login_activities_count: successfull_login_activities.count
+        successfull_login_activities_count: successfull_login_activities.count,
+        last_connected_at: last_login_activity.created_at
       )
     end
 
     alias_attribute :sign_in_count, :successfull_login_activities_count
 
-    def current_sign_in_at
+    def last_login_activity
       successfull_login_activities
         .order(created_at: :asc)
-        .limit(1).first&.created_at
+        .limit(1).first
+    end
+
+    def current_sign_in_at
+      last_login_activity&.created_at
+    end
+
+    def current_ip
+      last_login_activity&.ip
     end
   end
 end

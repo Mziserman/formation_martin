@@ -9,6 +9,10 @@ class User < ApplicationRecord
 
   validates :first_name, :last_name, :birthdate, presence: true
 
+  def name
+    "#{first_name} #{last_name}"
+  end
+
   # ransacker :sign_in_count do
   #   Arel.sql("(
   #     SELECT COUNT(id)
