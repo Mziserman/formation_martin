@@ -5,6 +5,9 @@ RSpec.describe Project, type: :model do
 
   it { should have_many(:project_ownerships) }
   it { should have_many(:owners).class_name('User') }
+  it { should have_many(:rewards) }
+  it { should have_many(:contributions) }
+  it { should have_many(:donators).class_name('User').source(:user) }
 
   it { should validate_presence_of(:name) }
   it { should validate_presence_of(:amount_wanted_in_cents) }

@@ -12,6 +12,9 @@ class User < ApplicationRecord
   has_many :project_ownerships
   has_many :projects, through: :project_ownerships
 
+  has_many :contributions
+  has_many :donator_projects, through: :contributions, source: :project
+
   def name
     "#{first_name} #{last_name}"
   end
