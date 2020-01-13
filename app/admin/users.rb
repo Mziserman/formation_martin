@@ -10,26 +10,26 @@ ActiveAdmin.register User do
     selectable_column
     id_column
     column :email
-    column 'Prénom', &:first_name
-    column 'Nom de famille', &:last_name
-    column 'Derniere connection', &:last_connected_at
-    column 'IP', &:current_ip
-    column 'Nombre de connections', &:sign_in_count
-    column 'Date de création', &:created_at
-    column 'Date de modification', &:updated_at
+    column :first_name
+    column :last_name
+    column :last_connected_at
+    column :current_ip
+    column :sign_in_count
+    column :created_at
+    column :updated_at
     actions
   end
 
   show do
     attributes_table do
       row :email
-      row 'Prénom', &:first_name
-      row 'Nom de famille', &:last_name
-      row 'Derniere connection', &:last_connected_at
-      row 'IP', &:current_ip
-      row 'Nombre de connections', &:sign_in_count
-      row 'Date de création', &:created_at
-      row 'Date de modification', &:updated_at
+      row :first_name
+      row :last_name
+      row :last_connected_at
+      row :current_ip
+      row :sign_in_count
+      row :created_at
+      row :updated_at
       row :reset_password_sent_at
       row :reset_password_token
       row :remember_created_at
@@ -50,19 +50,19 @@ ActiveAdmin.register User do
   form do |f|
     f.inputs do
       f.input :email
-      f.input :first_name, label: 'Prénom'
-      f.input :last_name, label: 'Nom de famille'
-      f.input :password, label: 'Prénom'
+      f.input :first_name
+      f.input :last_name
+      f.input :password
     end
     f.submit
   end
 
   filter :email
-  filter :first_name, label: 'Prénom'
-  filter :last_name, label: 'Nom de famille'
-  filter :successfull_login_activities_count, label: 'Nombre de connections'
-  filter :created_at, label: 'Date de création'
-  filter :last_connected_at, label: 'Derniere connection'
+  filter :first_name
+  filter :last_name
+  filter :successfull_login_activities_count
+  filter :created_at
+  filter :last_connected_at
 
   controller do
     def update

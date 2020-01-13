@@ -33,7 +33,9 @@ RSpec.describe Admin::UsersController, type: :controller do
   end
 
   describe 'GET index' do
-    subject { get :index }
+    let(:params) { {} }
+    subject { get :index, params: params }
+
     it 'returns http success' do
       subject
       expect(response).to have_http_status(:success)
@@ -62,16 +64,6 @@ RSpec.describe Admin::UsersController, type: :controller do
       expect(filters_sidebar).to have_css('input[name="q[email_contains]"]')
     end
 
-    it 'filter Email works' do
-      matching_user = create :user, email: 'ABCDEFG@gmail.com'
-      non_matching_user = create :user, email: 'HIJKLMN@gmail.com'
-
-      get :index, params: { q: { email_contains: 'BCDEF' } }
-
-      expect(assigns(:users)).to include(matching_user)
-      expect(assigns(:users)).not_to include(non_matching_user)
-    end
-
     it 'filter sign in count exists' do
       subject
       expect(filters_sidebar).to have_css(
@@ -83,24 +75,50 @@ RSpec.describe Admin::UsersController, type: :controller do
       )
     end
 
-    it 'filter sign in count eq works' do
-      get :index, params: { q: { successfull_login_activities_count_equals: 3 } }
+    context 'with email filter' do
+      let(:params) { { q: { email_contains: 'BCDEF' } } }
 
-      expect(assigns(:users)).to include(three_connection_user)
-      expect(assigns(:users)).not_to include(single_connection_user)
+      it 'filter Email works' do
+        matching_user = create :user, email: 'ABCDEFG@gmail.com'
+        non_matching_user = create :user, email: 'HIJKLMN@gmail.com'
+
+        subject
+
+        expect(assigns(:users)).to include(matching_user)
+        expect(assigns(:users)).not_to include(non_matching_user)
+      end
     end
 
-    it 'filter sign in count gt works' do
-      get :index, params: { q: { successfull_login_activities_count_greater_than: 2 } }
+    context 'with filter sign in count eq' do
+      let(:params) { { q: { successfull_login_activities_count_equals: 3 } } }
+      it 'filter sign in count eq works' do
 
-      expect(assigns(:users)).to include(three_connection_user)
-      expect(assigns(:users)).not_to include(single_connection_user)
+        subject
+
+        expect(assigns(:users)).to include(three_connection_user)
+        expect(assigns(:users)).not_to include(single_connection_user)
+      end
     end
-    it 'filter sign in count lt works' do
-      get :index, params: { q: { successfull_login_activities_count_less_than: 2 } }
 
-      expect(assigns(:users)).to include(single_connection_user)
-      expect(assigns(:users)).not_to include(three_connection_user)
+    context 'with filter sign in count gte' do
+      let(:params) { { q: { successfull_login_activities_count_greater_than: 2 } } }
+      it 'filter sign in count gt works' do
+
+        subject
+
+        expect(assigns(:users)).to include(three_connection_user)
+        expect(assigns(:users)).not_to include(single_connection_user)
+      end
+    end
+    context 'with filter sign in count lt' do
+      let(:params) { { q: { successfull_login_activities_count_less_than: 2 } } }
+      it 'filter sign in count lt works' do
+
+        subject
+
+        expect(assigns(:users)).to include(single_connection_user)
+        expect(assigns(:users)).not_to include(three_connection_user)
+      end
     end
   end
 
@@ -121,8 +139,10 @@ RSpec.describe Admin::UsersController, type: :controller do
   end
 
   describe 'POST create' do
+    let(:params) { { user: valid_attributes } }
+    subject { post :create, params: params }
+
     context 'with valid params' do
-      subject { post :create, params: { user: valid_attributes } }
       it 'creates a new User' do
         expect do
           subject
@@ -151,20 +171,19 @@ RSpec.describe Admin::UsersController, type: :controller do
     end
 
     context 'with invalid params' do
+      let(:params) { { user: invalid_attributes } }
       it 'invalid_attributes return http success' do
-        post :create, params: { user: invalid_attributes }
+        subject
         expect(response).to have_http_status(:success)
       end
 
       it 'assigns a newly created but unsaved user as @user' do
-        post :create, params: { user: invalid_attributes }
+        subject
         expect(assigns(:user)).to be_a_new(User)
       end
 
       it 'invalid_attributes do not create a User' do
-        expect do
-          post :create, params: { user: invalid_attributes }
-        end.not_to change(User, :count)
+        expect { subject }.not_to change(User, :count)
       end
     end
   end
@@ -224,14 +243,15 @@ RSpec.describe Admin::UsersController, type: :controller do
   end
 
   describe 'DELETE #destroy' do
+    subject do
+      delete :destroy, params: { id: user.id }
+    end
     it 'destroys the requested select_option' do
-      expect do
-        delete :destroy, params: { id: user.id }
-      end.to change(User, :count).by(-1)
+      expect { subject }.to change(User, :count).by(-1)
     end
 
     it 'redirects to the field' do
-      delete :destroy, params: { id: user.id }
+      subject
       expect(response).to redirect_to(admin_users_url)
     end
   end
