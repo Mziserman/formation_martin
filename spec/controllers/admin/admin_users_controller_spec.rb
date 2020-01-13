@@ -76,7 +76,7 @@ RSpec.describe Admin::AdminUsersController, type: :controller do
       subject
       expect(filters_sidebar).to have_css(
         'label[for="q_successfull_login_activities_count"]',
-        text: 'Successfull login activities count'
+        text: 'Nombre de connections'
       )
       expect(filters_sidebar).to have_css(
         'input[name="q[successfull_login_activities_count_equals]"]'
@@ -117,7 +117,7 @@ RSpec.describe Admin::AdminUsersController, type: :controller do
     it 'should render the form elements' do
       subject
       expect(page).to have_field('Email')
-      expect(page).to have_field('Password')
+      expect(page).to have_field('Mot de passe')
     end
   end
 
@@ -181,9 +181,9 @@ RSpec.describe Admin::AdminUsersController, type: :controller do
       expect(assigns(:admin_user)).to eq(admin_user)
     end
     it 'should render the form elements' do
-      expect(page).to have_field('Password')
-      # expect(page).to have_field('Password', with: '') not working (expected
-      # to find visible field "Password" that is not disabled with value ""
+      expect(page).to have_field('Mot de passe')
+      # expect(page).to have_field('Mot de passe', with: '') not working (expected
+      # to find visible field "Mot de passe" that is not disabled with value ""
       # but there were no matches. Also found "", which matched the selector
       # but not all filters. Expected value to be "" but was nil)
     end
