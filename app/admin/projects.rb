@@ -42,6 +42,29 @@ ActiveAdmin.register Project do
       end
     end
 
+    panel 'Contreparties' do
+      table_for project.rewards do
+        column :name
+        column :threshold do |reward|
+          currency_print(reward.threshold)
+        end
+        column :stock do |reward|
+          if reward.limited?
+            reward.stock - reward.contributions_count
+          else
+            'Non limité'
+          end
+        end
+        column :actions do |reward|
+          a 'edit', href: edit_admin_reward_path(reward)
+          a 'delete', href: admin_reward_path(reward),
+                      rel: 'nofollow',
+                      'data-method' => :delete,
+                      'data-confirm' => 'Voulez-vous vraiment supprimer ceci ?'
+        end
+      end
+    end
+
     attributes_table do
       row :name
       row :small_blurb
