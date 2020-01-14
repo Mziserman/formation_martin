@@ -6,6 +6,6 @@ module PrinterHelper
   end
 
   def percent_print(ratio)
-    number_to_percentage(ratio, delimiter: ' ')
+    number_to_percentage(ratio * 100, delimiter: ' ', precision: 2)
   end
 end

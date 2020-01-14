@@ -46,7 +46,9 @@ ActiveAdmin.register Project do
       row :name
       row :small_blurb
       row :long_blurb
-      row :amount_wanted_in_cents
+      row :amount_wanted_in_cents do |contribution|
+        currency_print(contribution.amount_wanted_in_cents)
+      end
       row :categories
       row :thumbnail do |project|
         if project.thumbnail.present?
