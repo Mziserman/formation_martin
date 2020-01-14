@@ -17,6 +17,26 @@ class Project < ApplicationRecord
   has_many :project_ownerships
   has_many :owners, through: :project_ownerships, source: :user
 
+  aasm do
+    state :draft, initial: true
+    state :upcoming
+    state :ongoing
+    state :success
+    state :failure
+
+    event :start_publication do
+      transitions from: :draft, to: :upcoming
+    end
+
+    event :finish_publication do
+      transitions from: %i[draft upcoming], to: :ongoing
+    end
+
+    event :conclude do
+      transitions from: :ongoing, to: [:success, :failure]
+    end
+  end
+
   def total_collected
     contributions.sum(:amount)
   end
