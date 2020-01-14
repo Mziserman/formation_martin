@@ -7,7 +7,8 @@ RSpec.describe User, type: :model do
   it { should have_many(:project_ownerships) }
   it { should have_many(:projects) }
   it { should have_many(:contributions) }
-  it { should have_many(:donator_projects).class_name('Project') }
+  it { should have_many(:rewards) }
+  it { should have_many(:contributor_projects).class_name('Project') }
 
   it { should validate_presence_of(:email) }
   it { should validate_presence_of(:password) }

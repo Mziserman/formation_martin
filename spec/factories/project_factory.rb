@@ -23,6 +23,22 @@ FactoryBot.define do
       end
     end
 
+    trait :with_contributions do
+      transient do
+        contributions do
+          1.upto(3).map do |_|
+            attributes_for(:contribution)
+          end
+        end
+      end
+
+      after(:create) do |project, evaluator|
+        evaluator.contributions.each do |contribution|
+          project.contributions.create contribution
+        end
+      end
+    end
+
     trait :with_categories do
       transient do
         categories { %w[it company tech] }

@@ -5,4 +5,5 @@ RSpec.describe Reward, type: :model do
 
   it { should belong_to(:project) }
   it { should have_many(:contributions) }
+  it { should have_many(:users) }
 end
