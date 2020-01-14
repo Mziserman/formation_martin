@@ -7,7 +7,7 @@ class Project < ApplicationRecord
   acts_as_taggable_on :categories
 
   validates :name,
-            :amount_wanted_in_cents,
+            :amount_wanted,
             presence: true
 
   has_many :rewards
@@ -18,17 +18,23 @@ class Project < ApplicationRecord
   has_many :owners, through: :project_ownerships, source: :user
 
   def total_collected
-    contributions.sum(:amount_donated_in_cents)
+    contributions.sum(:amount_donated)
   end
 
   def max_contribution
     contributions
-      .order(amount_donated_in_cents: :desc)
+      .order(amount_donated: :desc)
+      .limit(1).first
+  end
+
+  def min_contribution
+    contributions
+      .order(amount_donated: :asc)
       .limit(1).first
   end
 
   def amount_donated_by_users
-    contributions.group(:user).sum(:amount_donated_in_cents)
+    contributions.group(:user).sum(:amount_donated)
   end
 
   def max_contribution_user_couple
@@ -47,23 +53,17 @@ class Project < ApplicationRecord
     min_contribution_user_couple[0]
   end
 
-  def min_contribution
-    contributions
-      .order(amount_donated_in_cents: :asc)
-      .limit(1).first
-  end
-
   def amount_contributed_from(user)
-    contributions.where(user_id: user.id).sum(:amount_donated_in_cents)
+    contributions.where(user_id: user.id).sum(:amount_donated)
   end
 
   def completion
-    total_collected.to_f / amount_wanted_in_cents
+    total_collected.to_f / amount_wanted
   end
 
-  def available_rewards(amount)
+  def available_rewards(amount = Float::INFINITY)
     rewards
       .where('limited = false OR contributions_count < stock')
-      .where('threshold_in_cents <= ?', amount)
+      .where('threshold <= ?', amount)
   end
 end

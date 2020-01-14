@@ -33,7 +33,7 @@ RSpec.describe Admin::ProjectsController, type: :controller do
     it 'should render the expected columns' do
       subject
       expect(page).to have_content(active_admin_date_format(project.created_at))
-      expect(page).to have_content(project.amount_wanted_in_cents)
+      expect(page).to have_content(project.amount_wanted)
     end
 
     let(:filters_sidebar) { page.find('#filters_sidebar_section') }
@@ -105,7 +105,7 @@ RSpec.describe Admin::ProjectsController, type: :controller do
         project = Project.last
 
         expect(project.name).to eq(valid_attributes[:name])
-        expect(project.amount_wanted_in_cents).to eq(valid_attributes[:amount_wanted_in_cents])
+        expect(project.amount_wanted).to eq(valid_attributes[:amount_wanted])
       end
     end
 
@@ -156,13 +156,6 @@ RSpec.describe Admin::ProjectsController, type: :controller do
         expect(response).to have_http_status(:redirect)
         expect(response).to redirect_to(admin_project_url(project))
       end
-
-      # Testé en vrai, ca marche, mais j'arrive pas a faire marcher le test
-      # it 'should update the project' do
-      #   subject
-
-      #   expect(project.reload.password).to eq(valid_attributes[:password])
-      # end
     end
   end
 

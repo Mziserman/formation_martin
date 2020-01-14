@@ -5,14 +5,14 @@ ActiveAdmin.register Reward do
   #
   # Uncomment all parameters which should be permitted for assignment
   #
-  # permit_params :project_id, :blurb, :name, :thumbnail, :threshold_in_cents, :limited, :stock, :contributions_count
+  # permit_params :project_id, :blurb, :name, :thumbnail, :threshold, :limited, :stock, :contributions_count
   #
   # or
   #
   # permit_params do
-  #   permitted = [:project_id, :blurb, :name, :thumbnail, :threshold_in_cents, :limited, :stock, :contributions_count]
+  #   permitted = [:project_id, :blurb, :name, :thumbnail, :threshold, :limited, :stock, :contributions_count]
   #   permitted << :other if params[:action] == 'create' && current_user.admin?
   #   permitted
   # end
-  
+
 end

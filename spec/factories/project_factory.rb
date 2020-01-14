@@ -3,7 +3,7 @@
 FactoryBot.define do
   factory :project do
     name { Faker::Company.name }
-    amount_wanted_in_cents { rand(100_000..100_000_000) }
+    amount_wanted { rand(100_000..100_000_000) }
     small_blurb { Faker::Lorem.sentence }
     long_blurb  { Faker::Lorem.paragraph }
 
@@ -28,7 +28,7 @@ FactoryBot.define do
         rewards do
           1.upto(3).map do |_|
             attributes_for(:reward).tap do |reward|
-              reward[:threshold_in_cents] = nil
+              reward[:threshold] = nil
             end
           end
         end
@@ -38,9 +38,9 @@ FactoryBot.define do
         thresholds_definer = [0.01, 0.05, 0.1, 0.15, 0.2, 0.3, 0.5]
         evaluator.rewards.each_with_index do |reward, index|
           r = reward.tap do |reward_hsh|
-            if reward_hsh[:threshold_in_cents].nil?
+            if reward_hsh[:threshold].nil?
               reward_hsh[:stock] = rand(1..100) if reward_hsh[:limited]
-              reward_hsh[:threshold_in_cents] = project.amount_wanted_in_cents *
+              reward_hsh[:threshold] = project.amount_wanted *
                                                 thresholds_definer[index]
             end
           end

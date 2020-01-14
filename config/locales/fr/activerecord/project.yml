@@ -11,4 +11,4 @@ fr:
         remove_thumbnail: "Retirer l'image de profile"
         landscape: 'Image de couverture'
         remove_landscape: "Retirer l'image de couverture"
-        amount_wanted_in_cents: 'Argent demandé'
+        amount_wanted: 'Argent demandé'

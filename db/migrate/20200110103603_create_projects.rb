@@ -4,7 +4,7 @@ class CreateProjects < ActiveRecord::Migration[6.0]
       t.string :name
       t.string :small_blurb
       t.text :long_blurb
-      t.integer :amount_wanted_in_cents
+      t.integer :amount_wanted
       t.integer :thumbnail_id, index: true, null: true
       t.integer :landscape_id, index: true, null: true
 

@@ -5,7 +5,7 @@ class CreateContributions < ActiveRecord::Migration[6.0]
       t.text :blurb
       t.string :name
       t.text :thumbnail
-      t.integer :threshold_in_cents
+      t.integer :threshold
       t.boolean :limited, default: false
       t.integer :stock
 
@@ -17,7 +17,7 @@ class CreateContributions < ActiveRecord::Migration[6.0]
       t.references :project
       t.references :reward, null: true
       t.references :contribution_type
-      t.integer :amount_donated_in_cents
+      t.integer :amount_donated
 
       t.timestamps null: false
     end

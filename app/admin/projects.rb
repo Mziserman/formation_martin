@@ -4,7 +4,7 @@ ActiveAdmin.register Project do
   permit_params :name,
                 :small_blurb,
                 :long_blurb,
-                :amount_wanted_in_cents,
+                :amount_wanted,
                 :category_list,
                 :thumbnail,
                 :landscape,
@@ -33,7 +33,7 @@ ActiveAdmin.register Project do
           link_to contribution.user.name, admin_user_path(contribution.user)
         end
         column 'Donation' do |contribution|
-          currency_print(contribution.amount_donated_in_cents)
+          currency_print(contribution.amount_donated)
         end
         column 'Contrepartie' do |contribution|
           contribution.reward&.name
@@ -46,8 +46,8 @@ ActiveAdmin.register Project do
       row :name
       row :small_blurb
       row :long_blurb
-      row :amount_wanted_in_cents do |contribution|
-        currency_print(contribution.amount_wanted_in_cents)
+      row :amount_wanted do |contribution|
+        currency_print(contribution.amount_wanted)
       end
       row :categories
       row :thumbnail do |project|
@@ -68,7 +68,7 @@ ActiveAdmin.register Project do
   form do |f|
     inputs do
       f.input :name
-      f.input :amount_wanted_in_cents
+      f.input :amount_wanted
       f.input :small_blurb
       f.input :long_blurb
       f.input :categories
