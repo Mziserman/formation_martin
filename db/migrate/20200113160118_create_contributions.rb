@@ -17,7 +17,7 @@ class CreateContributions < ActiveRecord::Migration[6.0]
       t.references :project
       t.references :reward, null: true
       t.references :contribution_type
-      t.integer :amount_donated
+      t.integer :amount
 
       t.timestamps null: false
     end

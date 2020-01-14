@@ -33,7 +33,7 @@ ActiveAdmin.register Project do
           link_to contribution.user.name, admin_user_path(contribution.user)
         end
         column 'Donation' do |contribution|
-          currency_print(contribution.amount_donated)
+          currency_print(contribution.amount)
         end
         column 'Contrepartie' do |contribution|
           contribution.reward&.name

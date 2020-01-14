@@ -47,7 +47,7 @@ ActiveRecord::Schema.define(version: 2020_01_14_142121) do
     t.bigint "user_id"
     t.bigint "project_id"
     t.bigint "reward_id"
-    t.integer "amount_donated"
+    t.integer "amount"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["project_id"], name: "index_contributions_on_project_id"

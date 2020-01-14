@@ -1,8 +1,8 @@
 <div>
 
   <p>total contributions : <%= currency_print(project.total_collected) %></p>
-  <p>max contribution : <%= currency_print(project.max_contribution&.amount_donated) %></p>
-  <p>min contribution : <%= currency_print(project.min_contribution&.amount_donated) %></p>
+  <p>max contribution : <%= currency_print(project.max_contribution&.amount) %></p>
+  <p>min contribution : <%= currency_print(project.min_contribution&.amount) %></p>
 
   <p>progression : <%= currency_print(project.total_collected) %> / <%= currency_print(project.amount_wanted) %></p>
   <p>progression : <%= percent_print(project.completion) %></p>

@@ -1,6 +1,6 @@
 FactoryBot.define do
   factory :contribution do
-    amount_donated { rand(100..100_000_000) }
+    amount { rand(100..100_000_000) }
 
     project
     user

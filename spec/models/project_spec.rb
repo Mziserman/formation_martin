@@ -22,7 +22,7 @@ RSpec.describe Project, type: :model do
       {
         contributions: [
           {
-            amount_donated: 100_000,
+            amount: 100_000,
             user: create(:user)
           }
         ]
@@ -42,15 +42,15 @@ RSpec.describe Project, type: :model do
       {
         contributions: [
           {
-            amount_donated: 100_000,
+            amount: 100_000,
             user: create(:user)
           },
           {
-            amount_donated: 200_000,
+            amount: 200_000,
             user: create(:user)
           },
           {
-            amount_donated: 300_000,
+            amount: 300_000,
             user: create(:user)
           }
         ]
@@ -66,16 +66,16 @@ RSpec.describe Project, type: :model do
     end
 
     it 'min contribution is 100 000 cents' do
-      expect(subject.min_contribution.amount_donated).to eq 100_000
+      expect(subject.min_contribution.amount).to eq 100_000
     end
 
     it 'max contribution is 300 000 cents' do
-      expect(subject.max_contribution.amount_donated).to eq 300_000
+      expect(subject.max_contribution.amount).to eq 300_000
     end
 
     it 'completion make sense' do
       expect(subject.completion).to eq(
-        subject.contributions.sum(:amount_donated) / subject.amount_wanted.to_f
+        subject.contributions.sum(:amount) / subject.amount_wanted.to_f
       )
     end
   end
@@ -87,15 +87,15 @@ RSpec.describe Project, type: :model do
       {
         contributions: [
           {
-            amount_donated: 100_000,
+            amount: 100_000,
             user: user
           },
           {
-            amount_donated: 200_000,
+            amount: 200_000,
             user: user
           },
           {
-            amount_donated: 300_000,
+            amount: 300_000,
             user: user
           }
         ]
@@ -111,11 +111,11 @@ RSpec.describe Project, type: :model do
     end
 
     it 'min contribution is 100 000 cents' do
-      expect(subject.min_contribution.amount_donated).to eq 100_000
+      expect(subject.min_contribution.amount).to eq 100_000
     end
 
     it 'max contribution is 300 000 cents' do
-      expect(subject.max_contribution.amount_donated).to eq 300_000
+      expect(subject.max_contribution.amount).to eq 300_000
     end
 
     it 'amount donated from user is the sum of its donations' do
@@ -131,27 +131,27 @@ RSpec.describe Project, type: :model do
       {
         contributions: [
           {
-            amount_donated: 100_000,
+            amount: 100_000,
             user: big_donor
           },
           {
-            amount_donated: 200_000,
+            amount: 200_000,
             user: big_donor
           },
           {
-            amount_donated: 300_000,
+            amount: 300_000,
             user: big_donor
           },
           {
-            amount_donated: 100,
+            amount: 100,
             user: small_donor
           },
           {
-            amount_donated: 200,
+            amount: 200,
             user: small_donor
           },
           {
-            amount_donated: 300,
+            amount: 300,
             user: small_donor
           }
         ]
@@ -175,11 +175,11 @@ RSpec.describe Project, type: :model do
     end
 
     it 'min contribution is 100 cents' do
-      expect(subject.min_contribution.amount_donated).to eq 100
+      expect(subject.min_contribution.amount).to eq 100
     end
 
     it 'max contribution is 300 000 cents' do
-      expect(subject.max_contribution.amount_donated).to eq 300_000
+      expect(subject.max_contribution.amount).to eq 300_000
     end
 
     it 'amount contributed from big donor is 600 000' do
