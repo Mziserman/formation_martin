@@ -6,6 +6,9 @@ class Project < ApplicationRecord
 
   include AASM
 
+  include Contribuable
+  include ProjectFieldChecker
+
   acts_as_taggable_on :categories
 
   validates :name,
@@ -27,64 +30,33 @@ class Project < ApplicationRecord
     state :failure
 
     event :start_publication do
-      transitions from: :draft, to: :upcoming
+      transitions from: :draft, to: :upcoming, guard: %i[
+        title_presence?
+        small_blurb_presence?
+        long_blurb_presence?
+        thumbnail_presence?
+        landscape_presence?
+      ]
       # Le projet doit avoir, un titre, les deux descriptions, et les 2 images de renseigné.
     end
 
     event :finish_publication do
-      transitions from: :upcoming, to: :ongoing
+      transitions from: :upcoming, to: :ongoing, guard: %i[
+        categories_presence?
+        rewards_presence?
+      ]
       # Le projet doit avoir une catégorie et des rewards
     end
 
     event :succeed do
-      transitions from: :ongoing, to: :success
+      transitions from: :ongoing, to: :success, guard: :completed?
       # Le success ne peut se faire que si le projet depasse les 100% de contributions
     end
 
     event :fail do
-      transitions from: :ongoing, to: :failure
+      transitions from: :ongoing, to: :failure, guard: :not_completed?
       # Failure ne peut se faire que si le projet est inferieur 100% de contribution
     end
-  end
-
-  def total_collected
-    contributions.sum(:amount)
-  end
-
-  def max_contribution
-    contributions
-      .order(amount: :desc)
-      .limit(1).first
-  end
-
-  def min_contribution
-    contributions
-      .order(amount: :asc)
-      .limit(1).first
-  end
-
-  def amount_by_users
-    contributions.group(:user).sum(:amount)
-  end
-
-  def max_contribution_user_couple
-    amount_by_users.max_by { |_user, amount| amount }
-  end
-
-  def max_contributor
-    max_contribution_user_couple[0]
-  end
-
-  def min_contribution_user_couple
-    amount_by_users.min_by { |_user, amount| amount }
-  end
-
-  def min_contributor
-    min_contribution_user_couple[0]
-  end
-
-  def amount_contributed_from(user)
-    contributions.where(user_id: user.id).sum(:amount)
   end
 
   def completion
