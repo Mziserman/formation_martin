@@ -7,18 +7,17 @@ ActiveAdmin.register Project do
                 :amount_wanted_in_cents,
                 :category_list,
                 :thumbnail,
-                :landscape,
-                :thumbnail_data,
-                :landscape_data
+                :landscape
 
   controller do
     def update(options = {}, &block)
-      if permitted_params[:project][:thumbnail_data].blank?
-        params[:project][:thumbnail_data] = nil
-      end
-      if permitted_params[:project][:landscape_data].blank?
-        params[:project][:landscape_data] = nil
-      end
+      # if permitted_params[:project][:thumbnail].blank?
+      #   params[:project][:thumbnail] = nil
+      # end
+      # if permitted_params[:project][:landscape].blank?
+      #   params[:project][:landscape] = ''
+      # end
+      # binding.pry
 
       super
     end
@@ -55,6 +54,10 @@ ActiveAdmin.register Project do
       f.input :long_blurb
       f.input :categories
 
+      f.input :thumbnail,
+              as: :hidden,
+              input_html: { value: f.object.cached_thumbnail_data }
+
       if f.object.thumbnail.present?
         f.input :thumbnail, as: :file, hint: image_tag(f.object.thumbnail.url)
         f.button Project.human_attribute_name(:remove_thumbnail),
@@ -62,8 +65,10 @@ ActiveAdmin.register Project do
       else
         f.input :thumbnail, as: :file, hint: content_tag(:span, 'no cover page yet')
       end
-      f.input :thumbnail_data, as: :hidden, value: f.object.cached_thumbnail_data
 
+      f.input :landscape,
+              as: :hidden,
+              input_html: { value: f.object.cached_landscape_data }
       if f.object.landscape.present?
         f.input :landscape, as: :file, hint: image_tag(f.object.landscape.url)
         f.button Project.human_attribute_name(:remove_landscape),
@@ -71,7 +76,6 @@ ActiveAdmin.register Project do
       else
         f.input :landscape, as: :file, hint: content_tag(:span, 'no cover page yet')
       end
-      f.input :landscape_data, as: :hidden, value: f.object.cached_landscape_data
     end
 
     f.actions
