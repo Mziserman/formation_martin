@@ -5,5 +5,5 @@ class Contribution < ApplicationRecord
 
   belongs_to :user
   belongs_to :project
-  belongs_to :reward, optional: true
+  belongs_to :reward, optional: true, counter_cache: true
 end

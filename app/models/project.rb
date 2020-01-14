@@ -60,4 +60,10 @@ class Project < ApplicationRecord
   def completion
     total_collected.to_f / amount_wanted_in_cents
   end
+
+  def available_rewards(amount)
+    rewards
+      .where('limited = false OR contributions_count < stock')
+      .where('threshold_in_cents <= ?', amount)
+  end
 end

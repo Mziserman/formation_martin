@@ -5,5 +5,12 @@ FactoryBot.define do
     threshold_in_cents { rand(100..100_000_000) }
 
     project
+
+    limited { [true, false].sample }
+    stock { nil }
+
+    after(:create) do |reward|
+      reward.stock = rand(1..100) if reward.limited
+    end
   end
 end

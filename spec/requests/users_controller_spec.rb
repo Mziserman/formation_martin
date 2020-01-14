@@ -11,7 +11,7 @@ RSpec.describe Admin::UsersController, type: :request do
 
       it 'logs as user' do
         subject
-        expect(@controller.current_user).to eq user
+        expect(@controller.current_user.id).to eq user.id
       end
     end
   end

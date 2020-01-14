@@ -23,6 +23,33 @@ FactoryBot.define do
       end
     end
 
+    trait :with_rewards do
+      transient do
+        rewards do
+          1.upto(3).map do |_|
+            attributes_for(:reward).tap do |reward|
+              reward[:threshold_in_cents] = nil
+            end
+          end
+        end
+      end
+
+      after(:create) do |project, evaluator|
+        thresholds_definer = [0.01, 0.05, 0.1, 0.15, 0.2, 0.3, 0.5]
+        evaluator.rewards.each_with_index do |reward, index|
+          r = reward.tap do |reward_hsh|
+            if reward_hsh[:threshold_in_cents].nil?
+              reward_hsh[:stock] = rand(1..100) if reward_hsh[:limited]
+              reward_hsh[:threshold_in_cents] = project.amount_wanted_in_cents *
+                                                thresholds_definer[index]
+            end
+          end
+
+          project.rewards.create r
+        end
+      end
+    end
+
     trait :with_contributions do
       transient do
         contributions do

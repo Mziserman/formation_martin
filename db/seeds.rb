@@ -14,6 +14,7 @@ if Rails.env.development?
       :project,
       :with_owners,
       :with_categories,
+      :with_rewards,
       owners: users.sample(rand(1..3)),
       categories: categories.sample(rand(1..3))
     )
