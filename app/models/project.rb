@@ -37,7 +37,6 @@ class Project < ApplicationRecord
         thumbnail_presence?
         landscape_presence?
       ]
-      # Le projet doit avoir, un titre, les deux descriptions, et les 2 images de renseigné.
     end
 
     event :finish_publication do
@@ -45,17 +44,14 @@ class Project < ApplicationRecord
         categories_presence?
         rewards_presence?
       ]
-      # Le projet doit avoir une catégorie et des rewards
     end
 
     event :succeed do
       transitions from: :ongoing, to: :success, guard: :completed?
-      # Le success ne peut se faire que si le projet depasse les 100% de contributions
     end
 
     event :fail do
       transitions from: :ongoing, to: :failure, guard: :not_completed?
-      # Failure ne peut se faire que si le projet est inferieur 100% de contribution
     end
   end
 
