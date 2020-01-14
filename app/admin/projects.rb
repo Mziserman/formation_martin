@@ -27,6 +27,21 @@ ActiveAdmin.register Project do
   show do
     render 'show', project: project
 
+    panel 'Donations' do
+      table_for project.contributions do
+        column 'Nom du donateur' do |contribution|
+          link_to contribution.user.name, admin_user_path(contribution.user)
+        end
+        column 'Donation' do |contribution|
+          currency_print(contribution.amount_donated_in_cents)
+        end
+        column 'Contrepartie' do |contribution|
+          contribution.reward&.name
+        end
+        column :created_at
+      end
+    end
+
     attributes_table do
       row :name
       row :small_blurb
