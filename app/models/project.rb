@@ -4,6 +4,8 @@ class Project < ApplicationRecord
   include ImageUploader::Attachment(:thumbnail)
   include ImageUploader::Attachment(:landscape)
 
+  include AASM
+
   acts_as_taggable_on :categories
 
   validates :name,
@@ -26,14 +28,22 @@ class Project < ApplicationRecord
 
     event :start_publication do
       transitions from: :draft, to: :upcoming
+      # Le projet doit avoir, un titre, les deux descriptions, et les 2 images de renseigné.
     end
 
     event :finish_publication do
-      transitions from: %i[draft upcoming], to: :ongoing
+      transitions from: :upcoming, to: :ongoing
+      # Le projet doit avoir une catégorie et des rewards
     end
 
-    event :conclude do
-      transitions from: :ongoing, to: [:success, :failure]
+    event :succeed do
+      transitions from: :ongoing, to: :success
+      # Le success ne peut se faire que si le projet depasse les 100% de contributions
+    end
+
+    event :fail do
+      transitions from: :ongoing, to: :failure
+      # Failure ne peut se faire que si le projet est inferieur 100% de contribution
     end
   end
 
