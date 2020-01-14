@@ -79,4 +79,115 @@ RSpec.describe Project, type: :model do
       )
     end
   end
+
+  context 'with three contributions from the same user' do
+    let(:traits) { [:with_contributions] }
+    let(:user) { create :user }
+    let(:params) do
+      {
+        contributions: [
+          {
+            amount_donated_in_cents: 100_000,
+            user: user
+          },
+          {
+            amount_donated_in_cents: 200_000,
+            user: user
+          },
+          {
+            amount_donated_in_cents: 300_000,
+            user: user
+          }
+        ]
+      }
+    end
+
+    it 'total collected is 600 000 cents' do
+      expect(subject.total_collected).to eq 600_000
+    end
+
+    it 'min and max contributor are the same' do
+      expect(subject.max_contributor).to eq subject.min_contributor
+    end
+
+    it 'min contribution is 100 000 cents' do
+      expect(subject.min_contribution.amount_donated_in_cents).to eq 100_000
+    end
+
+    it 'max contribution is 300 000 cents' do
+      expect(subject.max_contribution.amount_donated_in_cents).to eq 300_000
+    end
+
+    it 'amount donated from user is the sum of its donations' do
+      expect(subject.amount_contributed_from(user)).to eq 600_000
+    end
+  end
+
+  context 'with a big and a small donor' do
+    let(:traits) { [:with_contributions] }
+    let(:big_donor) { create :user }
+    let(:small_donor) { create :user }
+    let(:params) do
+      {
+        contributions: [
+          {
+            amount_donated_in_cents: 100_000,
+            user: big_donor
+          },
+          {
+            amount_donated_in_cents: 200_000,
+            user: big_donor
+          },
+          {
+            amount_donated_in_cents: 300_000,
+            user: big_donor
+          },
+          {
+            amount_donated_in_cents: 100,
+            user: small_donor
+          },
+          {
+            amount_donated_in_cents: 200,
+            user: small_donor
+          },
+          {
+            amount_donated_in_cents: 300,
+            user: small_donor
+          }
+        ]
+      }
+    end
+
+    it 'total collected is 600 000 cents' do
+      expect(subject.total_collected).to eq 600_600
+    end
+
+    it 'min and max contributor are not the same' do
+      expect(subject.max_contributor).to_not eq subject.min_contributor
+    end
+
+    it 'max contributor is big_donor' do
+      expect(subject.max_contributor).to eq big_donor
+    end
+
+    it 'min contributor is small_donor' do
+      expect(subject.min_contributor).to eq small_donor
+    end
+
+    it 'min contribution is 100 cents' do
+      expect(subject.min_contribution.amount_donated_in_cents).to eq 100
+    end
+
+    it 'max contribution is 300 000 cents' do
+      expect(subject.max_contribution.amount_donated_in_cents).to eq 300_000
+    end
+
+    it 'amount contributed from big donor is 600 000' do
+      expect(subject.amount_contributed_from(big_donor)).to eq 600_000
+    end
+
+    it 'amount contributed from small donor is 600' do
+      expect(subject.amount_contributed_from(small_donor)).to eq 600
+    end
+  end
 end

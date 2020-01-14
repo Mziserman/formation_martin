@@ -25,6 +25,8 @@ ActiveAdmin.register Project do
   end
 
   show do
+    render 'show', project: project
+
     attributes_table do
       row :name
       row :small_blurb
@@ -44,7 +46,6 @@ ActiveAdmin.register Project do
       row :created_at
       row :updated_at
     end
-    active_admin_comments
   end
 
   form do |f|

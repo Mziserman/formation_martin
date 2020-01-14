@@ -18,7 +18,7 @@ class Project < ApplicationRecord
   has_many :owners, through: :project_ownerships, source: :user
 
   def total_collected
-    contributions.pluck(:amount_donated_in_cents).sum
+    contributions.sum(:amount_donated_in_cents)
   end
 
   def max_contribution
@@ -27,8 +27,24 @@ class Project < ApplicationRecord
       .limit(1).first
   end
 
+  def amount_donated_by_users
+    contributions.group(:user).sum(:amount_donated_in_cents)
+  end
+
+  def max_contribution_user_couple
+    amount_donated_by_users.max_by { |_, v| v }
+  end
+
   def max_contributor
-    max_contribution&.user
+    max_contribution_user_couple[0]
+  end
+
+  def min_contribution_user_couple
+    amount_donated_by_users.min_by { |_, v| v }
+  end
+
+  def min_contributor
+    min_contribution_user_couple[0]
   end
 
   def min_contribution
@@ -37,8 +53,8 @@ class Project < ApplicationRecord
       .limit(1).first
   end
 
-  def min_contributor
-    min_contribution&.user
+  def amount_contributed_from(user)
+    contributions.where(user_id: user.id).sum(:amount_donated_in_cents)
   end
 
   def completion

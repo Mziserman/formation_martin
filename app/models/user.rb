@@ -19,4 +19,8 @@ class User < ApplicationRecord
   def name
     "#{first_name} #{last_name}"
   end
+
+  def amount_contributed_to(project)
+    contributions.where(project_id: project.id).sum(amount_donated_in_cents)
+  end
 end
