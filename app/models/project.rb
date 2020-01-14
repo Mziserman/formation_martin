@@ -18,7 +18,7 @@ class Project < ApplicationRecord
   has_many :owners, through: :project_ownerships, source: :user
 
   def total_collected
-    contributions.pluck(:amount_donated_in_cents).sum
+    contributions.sum(:amount_donated_in_cents)
   end
 
   def max_contribution
