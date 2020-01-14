@@ -103,7 +103,7 @@ ActiveRecord::Schema.define(version: 2020_01_14_142121) do
     t.text "thumbnail"
     t.integer "threshold"
     t.boolean "limited", default: false
-    t.integer "stock"
+    t.integer "total_stock", default: 0
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.integer "contributions_count", default: 0

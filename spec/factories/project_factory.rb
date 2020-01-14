@@ -39,9 +39,9 @@ FactoryBot.define do
         evaluator.rewards.each_with_index do |reward, index|
           r = reward.tap do |reward_hsh|
             if reward_hsh[:threshold].nil?
-              reward_hsh[:stock] = rand(1..100) if reward_hsh[:limited]
+              reward_hsh[:total_stock] = rand(1..100) if reward_hsh[:limited]
               reward_hsh[:threshold] = project.amount_wanted *
-                                                thresholds_definer[index]
+                                       thresholds_definer[index]
             end
           end
 

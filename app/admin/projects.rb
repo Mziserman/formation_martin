@@ -48,9 +48,9 @@ ActiveAdmin.register Project do
         column :threshold do |reward|
           currency_print(reward.threshold)
         end
-        column :stock do |reward|
+        column :total_stock do |reward|
           if reward.limited?
-            reward.stock - reward.contributions_count
+            reward.total_stock - reward.contributions_count
           else
             'Non limité'
           end
