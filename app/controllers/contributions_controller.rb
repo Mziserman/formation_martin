@@ -2,9 +2,7 @@
 
 class ContributionsController < ApplicationController
   before_action :set_project
-  before_action :set_record, only: :show
   before_action :authorize_user!, only: %i[new create]
-  before_action :set_records, only: :index
 
   def new
     @contribution = Contribution.new
@@ -30,10 +28,6 @@ class ContributionsController < ApplicationController
     end
   end
 
-  def show; end
-
-  def index; end
-
   private
 
   def permitted_params
@@ -48,6 +42,4 @@ class ContributionsController < ApplicationController
   def set_project
     @project = Project.find(params[:project_id])
   end
-
-  def set_records; end
 end
