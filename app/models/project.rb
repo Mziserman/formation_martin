@@ -56,6 +56,10 @@ class Project < ApplicationRecord
     end
   end
 
+  def self.visible_by_users
+    where(aasm_state: %i[upcoming ongoing success])
+  end
+
   def completion
     total_collected.to_f / amount_wanted
   end
