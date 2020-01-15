@@ -1,3 +1,7 @@
-<% @records.each do |project| %>
-  <%= render 'card', project: project %>
-<% end %>
+<div class='row'>
+  <% @records.each do |project| %>
+    <div class='col-sm-6 mb-3'>
+      <%= render 'card', project: project %>
+    </div>
+  <% end %>
+</div>
