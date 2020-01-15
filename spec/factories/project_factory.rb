@@ -7,6 +7,14 @@ FactoryBot.define do
     small_blurb { Faker::Lorem.sentence }
     long_blurb  { Faker::Lorem.paragraph }
 
+    trait :with_thumbnail do
+      thumbnail { File.new("#{Rails.root}/spec/support/files/image.png") }
+    end
+
+    trait :with_landscape do
+      landscape { File.new("#{Rails.root}/spec/support/files/image.png") }
+    end
+
     trait :with_owners do
       transient do
         owners do
@@ -35,13 +43,12 @@ FactoryBot.define do
       end
 
       after(:create) do |project, evaluator|
-        thresholds_definer = [0.01, 0.05, 0.1, 0.15, 0.2, 0.3, 0.5]
+        thresholds = [0.01, 0.05, 0.1, 0.15, 0.2, 0.3, 0.5]
         evaluator.rewards.each_with_index do |reward, index|
           r = reward.tap do |reward_hsh|
+            reward_hsh[:stock] = rand(1..100) if reward_hsh[:limited]
             if reward_hsh[:threshold].nil?
-              reward_hsh[:stock] = rand(1..100) if reward_hsh[:limited]
-              reward_hsh[:threshold] = project.amount_wanted *
-                                                thresholds_definer[index]
+              reward_hsh[:threshold] = project.amount_wanted * thresholds[index]
             end
           end
 

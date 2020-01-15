@@ -4,8 +4,8 @@ module ProjectFieldChecker
   extend ActiveSupport::Concern
 
   included do
-    def title_presence?
-      title.present?
+    def name_presence?
+      name.present?
     end
 
     def small_blurb_presence?

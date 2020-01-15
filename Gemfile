@@ -53,6 +53,9 @@ gem 'shrine', '~> 3.0'
 # Finite state machine
 gem 'aasm'
 
+gem 'pry', '~> 0.12.2'
+gem 'pry-rails'
+
 gem 'json'
 
 group :development, :test do

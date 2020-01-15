@@ -5,6 +5,7 @@ class Project < ApplicationRecord
   include ImageUploader::Attachment(:landscape)
 
   include AASM
+  include ActiveAdminAasm
 
   include Contribuable
   include ProjectFieldChecker
@@ -31,7 +32,7 @@ class Project < ApplicationRecord
 
     event :start_publication do
       transitions from: :draft, to: :upcoming, guard: %i[
-        title_presence?
+        name_presence?
         small_blurb_presence?
         long_blurb_presence?
         thumbnail_presence?
@@ -59,7 +60,7 @@ class Project < ApplicationRecord
     total_collected.to_f / amount_wanted
   end
 
-  def available_rewards(amount = Float::INFINITY)
+  def available_rewards(amount)
     rewards
       .where('limited = false OR contributions_count < stock')
       .where('threshold <= ?', amount)

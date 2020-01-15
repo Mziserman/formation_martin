@@ -9,7 +9,7 @@ RSpec.describe Admin::ProjectsController, type: :controller do
   let!(:project) { create :project }
 
   let(:valid_attributes) do
-    attributes_for :project
+    attributes_for(:project).except(%i[landscape thumbnail])
   end
 
   let(:invalid_attributes) do

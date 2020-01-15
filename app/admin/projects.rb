@@ -9,7 +9,10 @@ ActiveAdmin.register Project do
                 :thumbnail,
                 :landscape,
                 :thumbnail_data,
-                :landscape_data
+                :landscape_data,
+                :active_admin_requested_event
+
+  filter :aasm_state, as: :check_boxes, collection: proc { Project.aasm.states.map &:name }
 
   controller do
     def update(options = {}, &block)
@@ -67,6 +70,7 @@ ActiveAdmin.register Project do
 
     attributes_table do
       row :name
+      row :aasm_state
       row :small_blurb
       row :long_blurb
       row :amount_wanted do |contribution|
@@ -113,8 +117,22 @@ ActiveAdmin.register Project do
         f.input :landscape, as: :file, hint: content_tag(:span, 'no cover page yet')
       end
       f.input :landscape_data, as: :hidden
+
+      f.input :aasm_state, input_html: { disabled: true }, label: 'Current state'
+      f.input :active_admin_requested_event, label: 'Change state', as: :select, collection: f.object.aasm.events(permitted: true).map(&:name)
     end
 
     f.actions
+  end
+
+  after_save do |project|
+    event = params[:project][:active_admin_requested_event]
+    if event.present?
+      # whitelist to ensure we don't run an arbitrary method
+      safe_event = (project.aasm.events(permitted: true).map(&:name) & [event.to_sym]).first
+      raise "Forbidden event #{event} requested on instance #{project.id}" unless safe_event
+      # launch the event with bang
+      project.send("#{safe_event}!")
+    end
   end
 end

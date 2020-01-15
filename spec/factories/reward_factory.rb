@@ -12,5 +12,9 @@ FactoryBot.define do
     after(:create) do |reward|
       reward.stock = rand(1..100) if reward.limited
     end
+
+    trait :with_contributions do
+      # raise :todo
+    end
   end
 end
