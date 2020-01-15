@@ -12,7 +12,10 @@ ActiveAdmin.register Project do
                 :landscape_data,
                 :active_admin_requested_event
 
+  filter :name
   filter :aasm_state, as: :check_boxes, collection: proc { Project.aasm.states.map &:name }
+  filter :amount_wanted
+  filter :created_at
 
   controller do
     def update(options = {}, &block)
