@@ -56,11 +56,11 @@ ActiveAdmin.register Project do
           end
         end
         column :actions do |reward|
-          a 'edit', href: edit_admin_reward_path(reward)
-          a 'delete', href: admin_reward_path(reward),
-                      rel: 'nofollow',
-                      'data-method' => :delete,
-                      'data-confirm' => 'Voulez-vous vraiment supprimer ceci ?'
+          span link_to 'edit', edit_admin_reward_path(reward)
+          span link_to 'delete', admin_reward_path(reward),
+                       rel: 'nofollow',
+                       'data-method' => :delete,
+                       'data-confirm' => 'Voulez-vous vraiment supprimer ceci ?'
         end
       end
     end
