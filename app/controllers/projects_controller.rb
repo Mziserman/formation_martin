@@ -24,6 +24,6 @@ class ProjectsController < ApplicationController
   end
 
   def authorize_admin!
-    redirect_to :root if !current_admin_user && @record.draft?
+    super if @record.draft?
   end
 end
