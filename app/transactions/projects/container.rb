@@ -4,16 +4,24 @@ class Projects::Container
   extend Dry::Container::Mixin
 
   namespace 'projects' do
+    register 'set_params' do
+      ActiveAdmin::SetParams.new
+    end
+
     register 'create' do
-      Projects::Operations::Create.new
+      Create.new
     end
 
     register 'update' do
-      Projects::Operations::Update.new
+      Update.new
     end
 
     register 'handle_aasm_event' do
-      Projects::Operations::HandleAasmEvent.new
+      ActiveAdmin::HandleAasmEvent.new
+    end
+
+    register 'clean_shrine_params' do
+      ActiveAdmin::CleanShrineParams.new
     end
   end
 end

@@ -2,12 +2,12 @@
 
 RSpec.describe Users::CreateTransaction do
   subject do
-    Users::CreateTransaction.new.call(sign_up_params: attributes)
+    Users::CreateTransaction.new.call(params: attributes, model: User)
   end
   context 'with valid attributes' do
     let(:attributes) { attributes_for(:user) }
     let(:mail) { ActionMailer::Base.deliveries.last }
-    let(:user) { subject.success }
+    let(:user) { subject.success[:resource] }
 
     it 'succeeds' do
       expect(subject.success?).to be true

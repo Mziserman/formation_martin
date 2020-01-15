@@ -97,7 +97,7 @@ RSpec.describe Admin::ProjectsController, type: :controller do
       it 'redirects to the created project' do
         subject
         expect(response).to have_http_status(:redirect)
-        expect(response).to redirect_to(admin_project_url(Project.last))
+        expect(response).to redirect_to(admin_project_path(Project.last))
       end
 
       it 'should create the project' do
@@ -154,7 +154,7 @@ RSpec.describe Admin::ProjectsController, type: :controller do
       it 'returns http redirect' do
         subject
         expect(response).to have_http_status(:redirect)
-        expect(response).to redirect_to(admin_project_url(project))
+        expect(response).to redirect_to(admin_project_path(project))
       end
     end
   end

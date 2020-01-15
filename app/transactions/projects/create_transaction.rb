@@ -3,6 +3,7 @@
 class Projects::CreateTransaction
   include Dry::Transaction(container: Projects::Container)
 
+  step :set_params, with: 'projects.set_params'
+  step :clean_shrine_params, with: 'projects.clean_shrine_params'
   step :create, with: 'projects.create'
-  step :handle_aasm_event, with: 'projects.handle_aasm_event'
 end

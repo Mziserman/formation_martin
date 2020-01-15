@@ -2,9 +2,14 @@
 
 require 'dry/transaction/operation'
 
-class Projects::Operations::Create
+class Update
   include Dry::Transaction::Operation
 
   def call(input)
+    if input[:resource].update(input[:params])
+      Success(input)
+    else
+      Failure(input)
+    end
   end
 end
