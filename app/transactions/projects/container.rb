@@ -21,7 +21,7 @@ class Projects::Container
     end
 
     register 'clean_shrine_params' do
-      ActiveAdmin::CleanShrineParams.new
+      ActiveAdmin::Projects::CleanShrineParams.new
     end
   end
 end

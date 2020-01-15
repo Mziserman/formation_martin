@@ -2,7 +2,7 @@
 
 require 'dry/transaction/operation'
 
-class ActiveAdmin::CleanShrineParams
+class ActiveAdmin::Projects::CleanShrineParams
   include Dry::Transaction::Operation
 
   def call(input)
