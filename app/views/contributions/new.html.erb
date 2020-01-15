@@ -1,0 +1,26 @@
+<h2>Faire une contribution</h2>
+
+<%= form_for @contribution, url: project_contributions_path(@project), method: :post do |f| %>
+
+  <%= f.label :amount, class: 'col-sm-3 col-form-label' %><br />
+  <%= f.number_field :amount,
+    autofocus: true,
+    autocomplete: 'amount',
+    class: classes_for_field(@contribution, :amount),
+    placeholder: '999999' %>
+  <%= errors_for_field(@contribution, :amount) %>
+
+  <%= f.label :reward, class: 'col-sm-3 col-form-label' %>
+  <%= f.select(
+        :reward_id,
+        options_for_select(
+          @project.rewards.map { |reward| [reward.name, reward.id] }
+        ),
+        { include_blank: true },
+        { class: classes_for_field(@contribution, :amount) }
+      ) %>
+
+  <span class="actions float-right">
+    <%= f.submit "Donner", class: 'btn btn-primary' %>
+  </span>
+<% end %>

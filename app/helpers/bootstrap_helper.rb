@@ -5,7 +5,8 @@ module BootstrapHelper
     HashWithIndifferentAccess.new(
       info: 'info',
       notice: 'info',
-      alert: 'danger'
+      alert: 'danger',
+      success: 'success'
     )[type] || 'info'
   end
 
