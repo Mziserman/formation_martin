@@ -1,7 +1,7 @@
 
   <div class="card border">
     <div class="card-header">
-      <a href='<%= project_path(project) %>'><%= project.name %></a>
+      <%= link_to project.name, project_path(project) %>
     </div>
     <div class="card-body">
       <h4 class="card-title">Completion : <%= percent_print(project.completion) %></h4>
