@@ -21,6 +21,6 @@ class User < ApplicationRecord
   end
 
   def amount_contributed_to(project)
-    contributions.where(project_id: project.id).sum(amount)
+    contributions.where(project_id: project.id).sum(:amount)
   end
 end
