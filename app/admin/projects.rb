@@ -49,11 +49,7 @@ ActiveAdmin.register Project do
           currency_print(reward.threshold)
         end
         column :total_stock do |reward|
-          if reward.limited?
-            reward.total_stock - reward.contributions_count
-          else
-            'Non limité'
-          end
+          reward.stock == Float::INFINITY ? 'Non limité' : reward.stock
         end
         column :actions do |reward|
           span link_to 'edit', edit_admin_reward_path(reward)
