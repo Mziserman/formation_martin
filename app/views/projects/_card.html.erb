@@ -4,7 +4,6 @@
       <a href='<%= project_path(project) %>'><%= project.name %></a>
     </div>
     <div class="card-body">
-      <h4 class="card-title">Completion : <%= percent_print(project.completion) %></h4>
       <%= render 'completion', project: project %>
     </div>
   </div>

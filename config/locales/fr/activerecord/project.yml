@@ -12,3 +12,10 @@ fr:
         landscape: 'Image de couverture'
         remove_landscape: "Retirer l'image de couverture"
         amount_wanted: 'Argent demandé'
+        state: 'Status'
+        states:
+          draft: 'Brouillon'
+          upcoming: 'En cours de publication'
+          ongoing: 'En cours'
+          success: 'Terminé (réussi)'
+          failure: 'Terminé (échoué)'
