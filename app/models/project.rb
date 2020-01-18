@@ -23,6 +23,46 @@ class Project < ApplicationRecord
   has_many :project_ownerships
   has_many :owners, through: :project_ownerships, source: :user
 
+  validates_presence_of :small_blurb,
+                        :long_blurb,
+                        :thumbnail,
+                        :landscape, if: -> { aasm_state == 'upcoming' }
+
+  validates_presence_of :small_blurb,
+                        :long_blurb,
+                        :thumbnail,
+                        :landscape,
+                        :categories,
+                        :rewards, if: -> { aasm_state == 'ongoing' }
+
+  validates_presence_of :small_blurb,
+                        :long_blurb,
+                        :thumbnail,
+                        :landscape,
+                        :categories,
+                        :rewards, if: -> { aasm_state == 'succeed' }
+
+  validates_presence_of :small_blurb,
+                        :long_blurb,
+                        :thumbnail,
+                        :landscape,
+                        :categories,
+                        :rewards, if: -> { aasm_state == 'fail' }
+
+  validate :project_must_be_completed, if: -> { aasm_state == 'succeed' }
+
+  def project_must_be_completed
+    if amount_wanted.present? && total_collected < amount_wanted
+      errors.add(:amount_wanted, "can't be lower than amount collected")
+    end
+  end
+
+  def project_must_not_be_completed
+    if amount_wanted.present? && total_collected >= amount_wanted
+      errors.add(:amount_wanted, "can't be higher than amount collected")
+    end
+  end
+
   aasm do
     state :draft, initial: true
     state :upcoming
