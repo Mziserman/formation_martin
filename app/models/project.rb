@@ -50,6 +50,7 @@ class Project < ApplicationRecord
                         :rewards, if: -> { aasm_state == 'fail' }
 
   validate :project_must_be_completed, if: -> { aasm_state == 'succeed' }
+  validate :project_must_not_be_completed, if: -> { aasm_state == 'fail' }
 
   def project_must_be_completed
     if amount_wanted.present? && total_collected < amount_wanted
