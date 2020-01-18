@@ -6,7 +6,9 @@ class ActiveAdmin::SetParams
   include Dry::Transaction::Operation
 
   def call(input)
-    input[:params] = input[:params][input[:param_key]]
+    if input[:params].key?(input[:param_key])
+      input[:params] = input[:params][input[:param_key]]
+    end
     Success(input)
   end
 end
