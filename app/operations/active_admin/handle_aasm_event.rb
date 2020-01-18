@@ -14,7 +14,7 @@ class ActiveAdmin::HandleAasmEvent
     ).first
 
     if !safe_event
-      raise "Forbidden event #{event} requested on instance #{input[:resource].id}"
+      return Failure(input)
     end
 
     result = input[:resource].send("#{safe_event}!")
