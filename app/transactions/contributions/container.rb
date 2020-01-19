@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class Projects::Container
+class Contributions::Container
   extend Dry::Container::Mixin
 
   namespace 'contributions' do
