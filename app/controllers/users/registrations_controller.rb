@@ -3,15 +3,15 @@
 class Users::RegistrationsController < Devise::RegistrationsController
   def create
     user_transaction = Users::CreateTransaction.new
-    user_transaction.call(sign_up_params: sign_up_params) do |transaction|
-      transaction.success do |user|
-        sign_in(user)
+    user_transaction.call(params: sign_up_params, model: User) do |transaction|
+      transaction.success do |output|
+        sign_in(output[:resource])
         redirect_to root_path
       end
 
-      transaction.failure do |user|
-        clean_up_passwords(user)
-        render :new, locals: { resource: user }
+      transaction.failure do |output|
+        clean_up_passwords(output[:resource])
+        render :new, locals: { resource: output[:resource] }
       end
     end
   end

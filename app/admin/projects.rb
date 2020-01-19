@@ -10,7 +10,8 @@ ActiveAdmin.register Project do
                 :landscape,
                 :thumbnail_data,
                 :landscape_data,
-                :active_admin_requested_event
+                :active_admin_requested_event,
+                category_list: []
 
   filter :name
   filter :aasm_state, as: :check_boxes, collection: proc { Project.aasm.states.map &:name }
@@ -18,15 +19,52 @@ ActiveAdmin.register Project do
   filter :created_at
 
   controller do
-    def update(options = {}, &block)
-      if permitted_params[:project][:thumbnail_data].blank?
-        params[:project][:thumbnail_data] = nil
-      end
-      if permitted_params[:project][:landscape_data].blank?
-        params[:project][:landscape_data] = nil
-      end
+    def update(_options = {})
+      Projects::UpdateTransaction.new.call(
+        resource: resource,
+        params: permitted_params,
+        param_key: :project,
+        current_user: current_user,
+        current_admin_user: current_admin_user
+      ) do |transaction|
+        transaction.success do |output|
+          @resource = output[:resource]
+          @project = @resource
 
-      super
+          redirect_to admin_project_path(output[:resource])
+        end
+
+        transaction.failure do |output|
+          @resource = output[:resource]
+          @project = @resource
+
+          render 'edit', resource: resource
+        end
+      end
+    end
+
+    def create(_options = {})
+      Projects::CreateTransaction.new.call(
+        params: permitted_params,
+        model: Project,
+        param_key: :project,
+        current_user: current_user,
+        current_admin_user: current_admin_user
+      ) do |transaction|
+        transaction.success do |output|
+          @resource = output[:resource]
+          @project = @resource
+
+          redirect_to admin_project_path(output[:resource])
+        end
+
+        transaction.failure do |output|
+          @resource = output[:resource]
+          @project = @resource
+
+          render 'new', resource: output[:resource]
+        end
+      end
     end
   end
 
@@ -101,7 +139,7 @@ ActiveAdmin.register Project do
       f.input :amount_wanted
       f.input :small_blurb
       f.input :long_blurb
-      f.input :categories
+      f.input :category_list, input_html: { value: f.object.category_list.to_s }
 
       if f.object.thumbnail.present?
         f.input :thumbnail, as: :file, hint: image_tag(f.object.thumbnail.url)
@@ -126,16 +164,5 @@ ActiveAdmin.register Project do
     end
 
     f.actions
-  end
-
-  after_save do |project|
-    event = params[:project][:active_admin_requested_event]
-    if event.present?
-      # whitelist to ensure we don't run an arbitrary method
-      safe_event = (project.aasm.events(permitted: true).map(&:name) & [event.to_sym]).first
-      raise "Forbidden event #{event} requested on instance #{project.id}" unless safe_event
-      # launch the event with bang
-      project.send("#{safe_event}!")
-    end
   end
 end
