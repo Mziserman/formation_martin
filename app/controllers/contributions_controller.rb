@@ -17,7 +17,7 @@ class ContributionsController < ApplicationController
       current_user: current_user,
       current_admin_user: current_admin_user
     ) do |result|
-      result.success do |output|
+      result.success do |_output|
         flash[:success] = 'Merci pour votre donation !'
         redirect_to project_path(@project)
       end
