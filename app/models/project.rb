@@ -16,11 +16,11 @@ class Project < ApplicationRecord
             :amount_wanted,
             presence: true
 
-  has_many :rewards
-  has_many :contributions
+  has_many :rewards, dependent: :nullify
+  has_many :contributions, dependent: :nullify
   has_many :contributors, through: :contributions, source: :user
 
-  has_many :project_ownerships
+  has_many :project_ownerships, dependent: :destroy
   has_many :owners, through: :project_ownerships, source: :user
 
   validates_presence_of :small_blurb,
