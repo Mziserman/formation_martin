@@ -92,19 +92,15 @@ ActiveAdmin.register Project do
         column :threshold do |reward|
           currency_print(reward.threshold)
         end
-        column :stock do |reward|
-          if reward.limited?
-            reward.stock - reward.contributions_count
-          else
-            'Non limité'
-          end
+        column :total_stock do |reward|
+          reward.stock == Float::INFINITY ? 'Non limité' : reward.stock
         end
         column :actions do |reward|
-          a 'edit', href: edit_admin_reward_path(reward)
-          a 'delete', href: admin_reward_path(reward),
-                      rel: 'nofollow',
-                      'data-method' => :delete,
-                      'data-confirm' => 'Voulez-vous vraiment supprimer ceci ?'
+          span link_to 'edit', edit_admin_reward_path(reward)
+          span link_to 'delete', admin_reward_path(reward),
+                       rel: 'nofollow',
+                       'data-method' => :delete,
+                       'data-confirm' => 'Voulez-vous vraiment supprimer ceci ?'
         end
       end
     end

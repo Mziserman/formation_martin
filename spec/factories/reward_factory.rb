@@ -7,10 +7,10 @@ FactoryBot.define do
     project
 
     limited { [true, false].sample }
-    stock { nil }
+    total_stock { nil }
 
     after(:create) do |reward|
-      reward.stock = rand(1..100) if reward.limited
+      reward.total_stock = rand(1..100) if reward.limited
     end
 
     trait :with_contributions do

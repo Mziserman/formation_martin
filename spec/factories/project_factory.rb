@@ -46,7 +46,7 @@ FactoryBot.define do
         thresholds = [0.01, 0.05, 0.1, 0.15, 0.2, 0.3, 0.5]
         evaluator.rewards.each_with_index do |reward, index|
           r = reward.tap do |reward_hsh|
-            reward_hsh[:stock] = rand(1..100) if reward_hsh[:limited]
+            reward_hsh[:total_stock] = rand(1..100) if reward_hsh[:limited]
             if reward_hsh[:threshold].nil?
               reward_hsh[:threshold] = project.amount_wanted * thresholds[index]
             end

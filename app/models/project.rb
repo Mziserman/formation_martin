@@ -107,7 +107,7 @@ class Project < ApplicationRecord
 
   def available_rewards(amount)
     rewards
-      .where('limited = false OR contributions_count < stock')
+      .where('limited = false OR contributions_count < total_stock')
       .where('threshold <= ?', amount)
   end
 end

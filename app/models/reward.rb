@@ -5,4 +5,10 @@ class Reward < ApplicationRecord
 
   has_many :contributions, dependent: :nullify
   has_many :users, through: :contributions
+
+  def stock
+    return Float::INFINITY unless limited?
+
+    total_stock - contributions_count
+  end
 end
