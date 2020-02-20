@@ -141,6 +141,10 @@ ActiveAdmin.register Project do
       f.input :long_blurb
       f.input :category_list, input_html: { value: f.object.category_list.to_s }
 
+      f.input :thumbnail,
+              as: :hidden,
+              input_html: { value: f.object.cached_thumbnail_data }
+
       if f.object.thumbnail.present?
         f.input :thumbnail, as: :file, hint: image_tag(f.object.thumbnail.url)
         f.button Project.human_attribute_name(:remove_thumbnail),
@@ -148,8 +152,10 @@ ActiveAdmin.register Project do
       else
         f.input :thumbnail, as: :file, hint: content_tag(:span, 'no cover page yet')
       end
-      f.input :thumbnail_data, as: :hidden
 
+      f.input :landscape,
+              as: :hidden,
+              input_html: { value: f.object.cached_landscape_data }
       if f.object.landscape.present?
         f.input :landscape, as: :file, hint: image_tag(f.object.landscape.url)
         f.button Project.human_attribute_name(:remove_landscape),
