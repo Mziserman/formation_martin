@@ -53,8 +53,7 @@ gem 'shrine', '~> 3.0'
 # Finite state machine
 gem 'aasm'
 
-gem 'pry', '~> 0.12.2'
-gem 'pry-rails'
+gem 'mangopay'
 
 gem 'json'
 
@@ -63,6 +62,8 @@ group :development, :test do
   gem 'pry-byebug'
   gem 'rspec-rails', '4.0.0.beta3'
   gem 'factory_bot_rails'
+  gem 'pry', '~> 0.12.2'
+  gem 'pry-rails'
   gem 'faker'
 end
 
