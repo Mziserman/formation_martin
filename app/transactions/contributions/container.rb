@@ -4,10 +4,6 @@ class Contributions::Container
   extend Dry::Container::Mixin
 
   namespace 'contributions' do
-    register 'set_params' do
-      ActiveAdmin::SetParams.new
-    end
-
     register 'create' do
       Create.new
     end

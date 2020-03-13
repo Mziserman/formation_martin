@@ -22,8 +22,7 @@ ActiveAdmin.register Project do
     def update(_options = {})
       Projects::UpdateTransaction.new.call(
         resource: resource,
-        params: permitted_params,
-        param_key: :project,
+        params: permitted_params[:project],
         current_user: current_user,
         current_admin_user: current_admin_user
       ) do |transaction|
@@ -45,9 +44,8 @@ ActiveAdmin.register Project do
 
     def create(_options = {})
       Projects::CreateTransaction.new.call(
-        params: permitted_params,
+        params: permitted_params[:project],
         model: Project,
-        param_key: :project,
         current_user: current_user,
         current_admin_user: current_admin_user
       ) do |transaction|
