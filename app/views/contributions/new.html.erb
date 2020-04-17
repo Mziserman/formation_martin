@@ -7,7 +7,8 @@
     autofocus: true,
     autocomplete: 'amount',
     class: classes_for_field(@contribution, :amount),
-    placeholder: '999999' %>
+    placeholder: '999999',
+    step: "0.01" %>
   <%= errors_for_field(@contribution, :amount) %>
 
   <%= f.label :reward, class: 'col-sm-3 col-form-label' %>
