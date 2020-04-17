@@ -9,13 +9,15 @@ class ContributionsController < ApplicationController
   end
 
   def create
+    params = permitted_params.tap do |params|
+      params[:user_id] = current_user.id
+      params[:project_id] = @project.id
+      params[:amount] = params[:amount].to_f * 100
+    end
     create_transaction = Contributions::CreateTransaction.new
     create_transaction.call(
-      params: permitted_params,
-      model: Contribution,
-      project: @project,
-      current_user: current_user,
-      current_admin_user: current_admin_user
+      params: params,
+      model: Contribution
     ) do |result|
       result.success do |_output|
         flash[:success] = 'Merci pour votre donation !'
