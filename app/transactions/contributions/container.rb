@@ -11,13 +11,5 @@ class Contributions::Container
     register 'update' do
       Update.new
     end
-
-    register 'add_current_user_to_params' do
-      AddCurrentUserToParams.new
-    end
-
-    register 'add_project_to_params' do
-      AddProjectToParams.new
-    end
   end
 end
