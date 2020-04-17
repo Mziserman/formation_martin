@@ -20,7 +20,7 @@ end
 
 describe ContributionsController, '#create', type: :controller do
   let(:project) { create :project }
-  let(:attributes) { attributes_for :contribution }
+  let(:attributes) { attributes_for(:contribution, amount: rand(100..100_000_000)) }
 
   subject do
     put :create, params: { project_id: project.id, contribution: attributes }

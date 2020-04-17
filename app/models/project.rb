@@ -105,9 +105,12 @@ class Project < ApplicationRecord
     total_collected.to_f / amount_wanted
   end
 
-  def available_rewards(amount)
+  def available_rewards
     rewards
       .where('limited = false OR contributions_count < total_stock')
-      .where('threshold <= ?', amount)
+  end
+
+  def threshold_available_rewards(amount)
+    available_rewards.where('threshold <= ?', amount)
   end
 end
