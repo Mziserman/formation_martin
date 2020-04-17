@@ -14,7 +14,7 @@
   <%= f.select(
         :reward_id,
         options_for_select(
-          @project.rewards.map { |reward| [reward.name, reward.id] }
+          @project.rewards.pluck(:name, :id)
         ),
         { include_blank: true },
         { class: classes_for_field(@contribution, :amount) }
