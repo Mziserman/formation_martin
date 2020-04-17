@@ -1,6 +1,6 @@
 function setShrineEvents(container, type) {
   let $remove_image_button = container.find(`.remove_${type}`);
-  let $image_data = container.find(`input#project_${type}`);
+  let $image_data = container.find(`input#project_${type}_data`);
   let $display = container.find(`#project_${type}_input.file.input.optional .inline-hints img`);
 
   $remove_image_button.click((e) => {
