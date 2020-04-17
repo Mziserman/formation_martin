@@ -22,9 +22,7 @@ ActiveAdmin.register Project do
     def update(_options = {})
       Projects::UpdateTransaction.new.call(
         resource: resource,
-        params: permitted_params[:project],
-        current_user: current_user,
-        current_admin_user: current_admin_user
+        params: permitted_params[:project]
       ) do |transaction|
         transaction.success do |output|
           @resource = output[:resource]
