@@ -88,12 +88,6 @@ RSpec.describe Admin::ProjectsController, type: :controller do
         end.to change(Project, :count).by(1)
       end
 
-      it 'assigns a newly created project as @project' do
-        subject
-        expect(assigns(:project)).to be_a(Project)
-        expect(assigns(:project)).to be_persisted
-      end
-
       it 'redirects to the created project' do
         subject
         expect(response).to have_http_status(:redirect)
@@ -118,7 +112,7 @@ RSpec.describe Admin::ProjectsController, type: :controller do
 
       it 'assigns a newly created but unsaved project as @project' do
         subject
-        expect(assigns(:project)).to be_a_new(Project)
+        expect(assigns(:resource)).to be_a_new(Project)
       end
 
       it 'invalid_attributes do not create a Project' do

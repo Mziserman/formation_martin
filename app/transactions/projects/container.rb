@@ -15,9 +15,5 @@ class Projects::Container
     register 'handle_aasm_event' do
       ActiveAdmin::HandleAasmEvent.new
     end
-
-    register 'clean_shrine_params' do
-      ActiveAdmin::Projects::CleanShrineParams.new
-    end
   end
 end
