@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
-class Projects::UpdateTransaction
+class Projects::SaveTransaction
   include Dry::Transaction(container: Projects::Container)
 
-  step :update, with: 'projects.update'
+  step :save, with: 'projects.save'
   step :handle_aasm_event, with: 'projects.handle_aasm_event'
 end

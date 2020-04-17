@@ -20,7 +20,8 @@ ActiveAdmin.register Project do
 
   controller do
     def update(_options = {})
-      Projects::UpdateTransaction.new.call(
+      resource.assign_attributes(permitted_params[:project])
+      Projects::SaveTransaction.new.call(
         resource: resource,
         params: permitted_params[:project]
       ) do |transaction|

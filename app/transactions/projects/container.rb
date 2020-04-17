@@ -8,8 +8,8 @@ class Projects::Container
       Create.new
     end
 
-    register 'update' do
-      Update.new
+    register 'save' do
+      Save.new
     end
 
     register 'handle_aasm_event' do

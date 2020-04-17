@@ -7,9 +7,5 @@ class Contributions::Container
     register 'create' do
       Create.new
     end
-
-    register 'update' do
-      Update.new
-    end
   end
 end

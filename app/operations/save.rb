@@ -2,11 +2,11 @@
 
 require 'dry/transaction/operation'
 
-class Update
+class Save
   include Dry::Transaction::Operation
 
   def call(input)
-    if input[:resource].update(input[:params])
+    if input[:resource].save
       Success(input)
     else
       Failure(input)
