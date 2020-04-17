@@ -25,17 +25,13 @@ ActiveAdmin.register Project do
         params: permitted_params[:project]
       ) do |transaction|
         transaction.success do |output|
-          @resource = output[:resource]
-          @project = @resource
-
           redirect_to admin_project_path(output[:resource])
         end
 
         transaction.failure do |output|
           @resource = output[:resource]
-          @project = @resource
 
-          render 'edit', resource: resource
+          render 'edit', resource: @resource
         end
       end
     end
@@ -46,17 +42,13 @@ ActiveAdmin.register Project do
         model: Project
       ) do |transaction|
         transaction.success do |output|
-          @resource = output[:resource]
-          @project = @resource
-
           redirect_to admin_project_path(output[:resource])
         end
 
         transaction.failure do |output|
           @resource = output[:resource]
-          @project = @resource
 
-          render 'new', resource: output[:resource]
+          render 'new', resource: @resource
         end
       end
     end
