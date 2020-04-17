@@ -43,9 +43,7 @@ ActiveAdmin.register Project do
     def create(_options = {})
       Projects::CreateTransaction.new.call(
         params: permitted_params[:project],
-        model: Project,
-        current_user: current_user,
-        current_admin_user: current_admin_user
+        model: Project
       ) do |transaction|
         transaction.success do |output|
           @resource = output[:resource]
