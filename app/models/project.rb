@@ -102,7 +102,7 @@ class Project < ApplicationRecord
   end
 
   def completion
-    total_collected.to_f / amount_wanted
+    (total_collected.to_f / amount_wanted).round(2)
   end
 
   def available_rewards
