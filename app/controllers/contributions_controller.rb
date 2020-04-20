@@ -3,7 +3,8 @@
 class ContributionsController < ApplicationController
   before_action :set_project
   before_action :set_contribution, only: :validate
-  before_action :authorize_user!, only: %i[new create validate]
+  before_action :authorize_user!, only: %i[new create]
+  before_action :authorize_contribution_user, only: :validate
 
   def new
     @contribution = Contribution.new
@@ -59,5 +60,9 @@ class ContributionsController < ApplicationController
 
   def set_contribution
     @contribution = Contribution.find(params[:contribution_id])
+  end
+
+  def authorize_contribution_user!
+    redirect_to root unless current_user == @contribution.user
   end
 end
