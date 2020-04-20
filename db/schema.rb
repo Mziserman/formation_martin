@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_04_20_150522) do
+ActiveRecord::Schema.define(version: 2020_04_20_154856) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -55,6 +55,7 @@ ActiveRecord::Schema.define(version: 2020_04_20_150522) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.integer "state", default: 0
+    t.string "mangopay_payin_id"
     t.index ["project_id"], name: "index_contributions_on_project_id"
     t.index ["reward_id"], name: "index_contributions_on_reward_id"
     t.index ["user_id"], name: "index_contributions_on_user_id"

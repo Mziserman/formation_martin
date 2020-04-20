@@ -24,6 +24,8 @@ Rails.application.routes.draw do
   root to: 'home#index'
   get 'dashboard', to: 'dashboard#index'
   resources :projects, only: %i[show index] do
-    resources :contributions, only: %i[new create]
+    resources :contributions, only: %i[new create] do
+      get :validate
+    end
   end
 end

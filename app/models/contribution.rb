@@ -53,7 +53,7 @@ class Contribution < ApplicationRecord
   end
 
   def create_mangopay_payin
-    MangoPay::PayIn::Card::Web.create(
+    mangopay_payin = MangoPay::PayIn::Card::Web.create(
       AuthorId: user.mangopay_id || user.mangopay['Id'],
       CreditedWalletId: project.mangopay_wallet_id || project.mangopay_wallet['Id'],
       CardType: 'CB_VISA_MASTERCARD',
@@ -66,11 +66,18 @@ class Contribution < ApplicationRecord
         Currency: 'EUR',
         Amount: 0
       },
-      ReturnURL: "#{ENV['ROOT_URL']}/projects/#{project.id}"
+      ReturnURL: "#{ENV['ROOT_URL']}/projects/#{project.id}/contributions/#{id}/validate"
     )
+
+    update(mangopay_payin_id: mangopay_payin['Id'])
+    mangopay_payin
   end
 
   def fetch_mangopay_payin
-    MangoPay::PayIn::Card::Web.fetch(mangopay_payin_id)
+    MangoPay::PayIn.fetch(mangopay_payin_id)
+  end
+
+  def fetch_and_update_state
+    update(state: mangopay_payin['Status'] == 'SUCCEEDED' ? 1 : 2)
   end
 end
