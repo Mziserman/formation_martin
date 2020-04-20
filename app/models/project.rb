@@ -113,4 +113,27 @@ class Project < ApplicationRecord
   def threshold_available_rewards(amount)
     available_rewards.where('threshold <= ?', amount)
   end
+
+  def mangopay_wallet
+    if mangopay_wallet_id.nil?
+      create_mangopay_wallet
+    else
+      fetch_mangopay_wallet
+    end
+  end
+
+  def create_mangopay_wallet
+    mangopay_wallet = MangoPay::Wallet.create(
+      Currency: 'EUR',
+      Description: name,
+      Owners: [owners.first.mangopay_id || owners.first.mangopay['Id']]
+    )
+
+    update(mangopay_wallet_id: mangopay_wallet['Id'])
+    mangopay_wallet
+  end
+
+  def fetch_mangopay_wallet
+    MangoPay::Wallet.fetch(mangopay_wallet_id)
+  end
 end
