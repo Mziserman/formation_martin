@@ -19,7 +19,7 @@ describe ContributionsController, '#new', type: :controller do
 end
 
 describe ContributionsController, '#create', type: :controller do
-  let(:project) { create :project }
+  let(:project) { create :project, :with_owners }
   let(:attributes) { attributes_for(:contribution, amount: rand(100..100_000_000)) }
 
   subject do
@@ -33,7 +33,9 @@ describe ContributionsController, '#create', type: :controller do
   context 'create logged with params' do
     login_user
     it 'creates a contribution' do
-      expect { subject }.to change(Contribution, :count).by(1)
+      VCR.use_cassette('create_mangopay_payin_card_web') do
+        expect { subject }.to change(Contribution, :count).by(1)
+      end
     end
   end
 end
