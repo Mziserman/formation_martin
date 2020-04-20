@@ -8,7 +8,7 @@ RSpec.describe Project, type: :model do
   let(:traits) { [] }
 
   it { should have_many(:project_ownerships) }
-  it { should have_many(:owners).class_name('User') }
+  it { should have_many(:owners).class_name('AdminUser') }
   it { should have_many(:rewards) }
   it { should have_many(:contributions) }
   it { should have_many(:contributors).class_name('User').source(:user) }

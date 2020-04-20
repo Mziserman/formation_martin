@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
 class ProjectOwnership < ApplicationRecord
-  belongs_to :user
+  belongs_to :admin_user
   belongs_to :project
 
-  validates :user_id, uniqueness: { scope: :project_id }
+  validates :admin_user_id, uniqueness: { scope: :project_id }
 end

@@ -4,8 +4,6 @@ RSpec.describe User, type: :model do
   subject { build :user }
 
   it { should have_many(:login_activities) }
-  it { should have_many(:project_ownerships) }
-  it { should have_many(:projects) }
   it { should have_many(:contributions) }
   it { should have_many(:rewards) }
   it { should have_many(:contributor_projects).class_name('Project') }

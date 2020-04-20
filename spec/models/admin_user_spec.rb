@@ -4,6 +4,8 @@ RSpec.describe AdminUser, type: :model do
   subject { build :admin_user }
 
   it { should have_many(:login_activities) }
+  it { should have_many(:project_ownerships) }
+  it { should have_many(:projects) }
 
   it { should validate_presence_of(:email) }
 

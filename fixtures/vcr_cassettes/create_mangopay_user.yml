@@ -1,0 +1,203 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://api.sandbox.mangopay.com/v2.01/oauth/token
+    body:
+      encoding: UTF-8
+      string: grant_type=client_credentials
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+      Authorization:
+      - Basic NTk0MzpzRTJ3VnFrb2lHa0hBOEVYYkw5OTFKS0x6eENRTTMyTnNjRVFoWmFYc1hvY2Q1eGJPZA==
+      Content-Type:
+      - application/x-www-form-urlencoded
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Mon, 20 Apr 2020 14:23:11 GMT
+      Content-Type:
+      - application/json;charset=UTF-8
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      Set-Cookie:
+      - __cfduid=dd169f390df3fafa4725a12b5681e532f1587392591; expires=Wed, 20-May-20
+        14:23:11 GMT; path=/; domain=.mangopay.com; HttpOnly; SameSite=Lax
+      Cache-Control:
+      - no-cache
+      Pragma:
+      - no-cache
+      Expires:
+      - "-1"
+      Cf-Cache-Status:
+      - DYNAMIC
+      Expect-Ct:
+      - max-age=604800, report-uri="https://report-uri.cloudflare.com/cdn-cgi/beacon/expect-ct"
+      Server:
+      - cloudflare
+      Cf-Ray:
+      - 586f8591f9decd83-CDG
+      Cf-Request-Id:
+      - '023991cf3e0000cd83df05e200000001'
+    body:
+      encoding: ASCII-8BIT
+      string: '{"access_token":"abc4aeea7ebe4740a02f3c880f4faf23","token_type":"bearer","expires_in":1199}'
+    http_version: null
+  recorded_at: Mon, 20 Apr 2020 14:23:11 GMT
+- request:
+    method: post
+    uri: https://api.sandbox.mangopay.com/v2.01/5943/users/natural
+    body:
+      encoding: UTF-8
+      string: '{"Email":"molly.sipes@gutmannbernier.net","FirstName":"Pierre","LastName":"Breton","Nationality":"FR","CountryOfResidence":"FR","Birthday":487634400}'
+    headers:
+      User-Agent:
+      - MANGOPAY V2 RubyBindings/3.0.33
+      Authorization:
+      - bearer abc4aeea7ebe4740a02f3c880f4faf23
+      Content-Type:
+      - application/json
+      X-Mangopay-Client-User-Agent:
+      - '{"bindings_version":"3.0.33","lang":"ruby","lang_version":"2.6.2 p47 (2019-03-13)","platform":"x86_64-darwin19","uname":"Darwin
+        pc64.home 19.0.0 Darwin Kernel Version 19.0.0: Wed Sep 25 20:18:50 PDT 2019;
+        root:xnu-6153.11.26~2/RELEASE_X86_64 x86_64"}'
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Mon, 20 Apr 2020 14:23:12 GMT
+      Content-Type:
+      - application/json; charset=utf-8
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      Set-Cookie:
+      - __cfduid=d3a4045607410851c24c6c2ecd61a51991587392592; expires=Wed, 20-May-20
+        14:23:12 GMT; path=/; domain=.mangopay.com; HttpOnly; SameSite=Lax
+      Cache-Control:
+      - no-cache
+      Pragma:
+      - no-cache
+      Expires:
+      - "-1"
+      X-Ratelimit:
+      - '1'
+      - '1'
+      - '3'
+      - '51'
+      X-Ratelimit-Remaining:
+      - '105549'
+      - '2299'
+      - '4499'
+      - '8797'
+      X-Ratelimit-Reset:
+      - '1587393480'
+      - '1587394380'
+      - '1587396180'
+      - '1587478920'
+      Cf-Cache-Status:
+      - DYNAMIC
+      Expect-Ct:
+      - max-age=604800, report-uri="https://report-uri.cloudflare.com/cdn-cgi/beacon/expect-ct"
+      Server:
+      - cloudflare
+      Cf-Ray:
+      - 586f85962a68cde3-CDG
+      Cf-Request-Id:
+      - '023991d1d80000cde346b93200000001'
+    body:
+      encoding: ASCII-8BIT
+      string: '{"Address":{"AddressLine1":null,"AddressLine2":null,"City":null,"Region":null,"PostalCode":null,"Country":null},"FirstName":"Pierre","LastName":"Breton","Birthday":487634400,"Nationality":"FR","CountryOfResidence":"FR","Occupation":null,"IncomeRange":null,"ProofOfIdentity":null,"ProofOfAddress":null,"Capacity":"NORMAL","PersonType":"NATURAL","Email":"molly.sipes@gutmannbernier.net","KYCLevel":"LIGHT","Id":"79059847","Tag":null,"CreationDate":1587392592}'
+    http_version: null
+  recorded_at: Mon, 20 Apr 2020 14:23:12 GMT
+- request:
+    method: post
+    uri: https://api.sandbox.mangopay.com/v2.01/5943/wallets
+    body:
+      encoding: UTF-8
+      string: '{"Currency":"EUR","Description":"Bonnet SA","Owners":["79059847"]}'
+    headers:
+      User-Agent:
+      - MANGOPAY V2 RubyBindings/3.0.33
+      Authorization:
+      - bearer abc4aeea7ebe4740a02f3c880f4faf23
+      Content-Type:
+      - application/json
+      X-Mangopay-Client-User-Agent:
+      - '{"bindings_version":"3.0.33","lang":"ruby","lang_version":"2.6.2 p47 (2019-03-13)","platform":"x86_64-darwin19","uname":"Darwin
+        pc64.home 19.0.0 Darwin Kernel Version 19.0.0: Wed Sep 25 20:18:50 PDT 2019;
+        root:xnu-6153.11.26~2/RELEASE_X86_64 x86_64"}'
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Mon, 20 Apr 2020 14:23:13 GMT
+      Content-Type:
+      - application/json; charset=utf-8
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      Set-Cookie:
+      - __cfduid=d5a905b1a1e23c70731e58c9cb04592421587392592; expires=Wed, 20-May-20
+        14:23:12 GMT; path=/; domain=.mangopay.com; HttpOnly; SameSite=Lax
+      Cache-Control:
+      - no-cache
+      Pragma:
+      - no-cache
+      Expires:
+      - "-1"
+      X-Ratelimit:
+      - '2'
+      - '2'
+      - '4'
+      - '52'
+      X-Ratelimit-Remaining:
+      - '105548'
+      - '2298'
+      - '4498'
+      - '8796'
+      X-Ratelimit-Reset:
+      - '1587393480'
+      - '1587394380'
+      - '1587396180'
+      - '1587478920'
+      Cf-Cache-Status:
+      - DYNAMIC
+      Expect-Ct:
+      - max-age=604800, report-uri="https://report-uri.cloudflare.com/cdn-cgi/beacon/expect-ct"
+      Server:
+      - cloudflare
+      Cf-Ray:
+      - 586f859a2a860497-CDG
+      Cf-Request-Id:
+      - '023991d45800000497f412c200000001'
+    body:
+      encoding: ASCII-8BIT
+      string: '{"Description":"Bonnet SA","Owners":["79059847"],"Balance":{"Currency":"EUR","Amount":0},"Currency":"EUR","FundsType":"DEFAULT","Id":"79059849","Tag":null,"CreationDate":1587392593}'
+    http_version: null
+  recorded_at: Mon, 20 Apr 2020 14:23:13 GMT
+recorded_with: VCR 5.1.0

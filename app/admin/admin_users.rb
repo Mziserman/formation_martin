@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 ActiveAdmin.register AdminUser do
-  permit_params :email, :password
+  permit_params :email, :password, :first_name, :last_name, :birthdate
 
   index do
     selectable_column

@@ -19,14 +19,14 @@ FactoryBot.define do
       transient do
         owners do
           1.upto(3).map do |_|
-            create :user
+            create :admin_user
           end
         end
       end
 
       after(:create) do |project, evaluator|
         evaluator.owners.each do |owner|
-          project.project_ownerships.create user: owner
+          project.project_ownerships.create admin_user: owner
         end
       end
     end

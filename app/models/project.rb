@@ -21,7 +21,9 @@ class Project < ApplicationRecord
   has_many :contributors, through: :contributions, source: :user
 
   has_many :project_ownerships, dependent: :destroy
-  has_many :owners, through: :project_ownerships, source: :user
+  accepts_nested_attributes_for :project_ownerships
+
+  has_many :owners, through: :project_ownerships, source: :admin_user
 
   validates_presence_of :small_blurb,
                         :long_blurb,
