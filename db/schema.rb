@@ -11,6 +11,7 @@
 # It's strongly recommended that you check this file into your version control system.
 
 ActiveRecord::Schema.define(version: 2020_04_17_161844) do
+
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -103,7 +104,7 @@ ActiveRecord::Schema.define(version: 2020_04_17_161844) do
     t.text "thumbnail"
     t.bigint "threshold"
     t.boolean "limited", default: false
-    t.integer "stock"
+    t.integer "total_stock", default: 0
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.integer "contributions_count", default: 0
