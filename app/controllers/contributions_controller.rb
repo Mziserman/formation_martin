@@ -19,9 +19,9 @@ class ContributionsController < ApplicationController
       params: params,
       model: Contribution
     ) do |result|
-      result.success do |_output|
+      result.success do |output|
         flash[:success] = 'Merci pour votre donation !'
-        redirect_to project_path(@project)
+        redirect_to output[:mangopay_payin]['TemplateURL']
       end
       result.failure do |output|
         @contribution = output[:resource]
