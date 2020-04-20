@@ -7,7 +7,7 @@ RSpec.describe Contribution, type: :model do
 
   it { should belong_to(:user) }
   it { should belong_to(:project) }
-  it { should belong_to(:reward).optional.counter_cache(true) }
+  it { should belong_to(:reward).optional }
 
   context 'with amount contributed below reward threshold' do
     subject do

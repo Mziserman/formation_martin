@@ -5,23 +5,23 @@ module Contribuable
 
   included do
     def total_collected
-      contributions.sum(:amount)
+      contributions.accepted.sum(:amount)
     end
 
     def max_contribution
-      contributions
-        .order(amount: :desc)
-        .limit(1).first
+      contributions.accepted
+                   .order(amount: :desc)
+                   .limit(1).first
     end
 
     def min_contribution
-      contributions
-        .order(amount: :asc)
-        .limit(1).first
+      contributions.accepted
+                   .order(amount: :asc)
+                   .limit(1).first
     end
 
     def amount_by_users
-      contributions.group(:user).sum(:amount)
+      contributions.accepted.group(:user).sum(:amount)
     end
 
     def max_contribution_user_couple
@@ -41,7 +41,7 @@ module Contribuable
     end
 
     def amount_contributed_from(user)
-      contributions.where(user_id: user.id).sum(:amount)
+      contributions.accepted.where(user_id: user.id).sum(:amount)
     end
   end
 end

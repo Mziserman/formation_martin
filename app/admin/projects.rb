@@ -76,6 +76,7 @@ ActiveAdmin.register Project do
         column 'Contrepartie' do |contribution|
           contribution.reward&.name
         end
+        column 'Status', &:state
         column :created_at
       end
     end
@@ -104,8 +105,8 @@ ActiveAdmin.register Project do
       row :aasm_state
       row :small_blurb
       row :long_blurb
-      row :amount_wanted do |contribution|
-        currency_print(contribution.amount_wanted)
+      row :amount_wanted do |project|
+        currency_print(project.amount_wanted)
       end
       row :categories
       row :thumbnail do |project|
@@ -140,7 +141,6 @@ ActiveAdmin.register Project do
       else
         f.input :thumbnail, as: :file, hint: content_tag(:span, 'no cover page yet')
       end
-
 
       f.input :landscape,
               as: :hidden,

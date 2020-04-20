@@ -78,7 +78,8 @@ RSpec.describe Project, type: :model do
         contributions: [
           {
             amount: 999_999_999,
-            user: create(:user)
+            user: create(:user),
+            state: 1
           }
         ]
       }
@@ -128,7 +129,8 @@ RSpec.describe Project, type: :model do
         contributions: [
           {
             amount: 100_000,
-            user: create(:user)
+            user: create(:user),
+            state: 1
           }
         ]
       }
@@ -148,15 +150,18 @@ RSpec.describe Project, type: :model do
         contributions: [
           {
             amount: 100_000,
-            user: create(:user)
+            user: create(:user),
+            state: 1
           },
           {
             amount: 200_000,
-            user: create(:user)
+            user: create(:user),
+            state: 1
           },
           {
             amount: 300_000,
-            user: create(:user)
+            user: create(:user),
+            state: 1
           }
         ]
       }
@@ -193,15 +198,18 @@ RSpec.describe Project, type: :model do
         contributions: [
           {
             amount: 100_000,
-            user: user
+            user: user,
+            state: 1
           },
           {
             amount: 200_000,
-            user: user
+            user: user,
+            state: 1
           },
           {
             amount: 300_000,
-            user: user
+            user: user,
+            state: 1
           }
         ]
       }
@@ -237,27 +245,33 @@ RSpec.describe Project, type: :model do
         contributions: [
           {
             amount: 100_000,
-            user: big_donor
+            user: big_donor,
+            state: 1
           },
           {
             amount: 200_000,
-            user: big_donor
+            user: big_donor,
+            state: 1
           },
           {
             amount: 300_000,
-            user: big_donor
+            user: big_donor,
+            state: 1
           },
           {
             amount: 100,
-            user: small_donor
+            user: small_donor,
+            state: 1
           },
           {
             amount: 200,
-            user: small_donor
+            user: small_donor,
+            state: 1
           },
           {
             amount: 300,
-            user: small_donor
+            user: small_donor,
+            state: 1
           }
         ]
       }
