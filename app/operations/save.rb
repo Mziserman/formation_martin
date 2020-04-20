@@ -2,13 +2,14 @@
 
 require 'dry/transaction/operation'
 
-class AddCurrentUserToParams
+class Save
   include Dry::Transaction::Operation
 
   def call(input)
-    input[:params].tap do |params|
-      params[:user_id] = input[:current_user].id
+    if input[:resource].save
+      Success(input)
+    else
+      Failure(input)
     end
-    Success(input)
   end
 end

@@ -13,9 +13,7 @@ class ActiveAdmin::HandleAasmEvent
       input[:resource].aasm.events(permitted: true).map(&:name) & [event.to_sym]
     ).first
 
-    if !safe_event
-      return Failure(input)
-    end
+    return Failure(input) if !safe_event
 
     result = input[:resource].send("#{safe_event}!")
 

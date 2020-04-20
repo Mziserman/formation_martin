@@ -7,18 +7,23 @@
     autofocus: true,
     autocomplete: 'amount',
     class: classes_for_field(@contribution, :amount),
-    placeholder: '999999' %>
+    placeholder: '999999',
+    step: "0.01",
+    value: @contribution.amount ? @contribution.amount.to_f / 100 : nil %>
   <%= errors_for_field(@contribution, :amount) %>
 
   <%= f.label :reward, class: 'col-sm-3 col-form-label' %>
   <%= f.select(
         :reward_id,
         options_for_select(
-          @project.rewards.map { |reward| [reward.name, reward.id] }
+          @project.available_rewards.pluck(:name, :threshold, :id).map do |name, threshold, id|
+            ["#{name}, contribution minimum : #{currency_print(threshold)}", id]
+          end
         ),
         { include_blank: true },
-        { class: classes_for_field(@contribution, :amount) }
+        { class: classes_for_field(@contribution, :reward) }
       ) %>
+  <%= errors_for_field(@contribution, :reward) %>
 
   <span class="actions float-right">
     <%= f.submit "Donner", class: 'btn btn-primary' %>

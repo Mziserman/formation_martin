@@ -7,9 +7,9 @@ ActiveAdmin.register Project do
                 :amount_wanted,
                 :category_list,
                 :thumbnail,
+                :remove_thumbnail,
                 :landscape,
-                :thumbnail_data,
-                :landscape_data,
+                :remove_landscape,
                 :active_admin_requested_event,
                 category_list: []
 
@@ -20,49 +20,36 @@ ActiveAdmin.register Project do
 
   controller do
     def update(_options = {})
-      Projects::UpdateTransaction.new.call(
+      resource.assign_attributes(permitted_params[:project])
+      Projects::SaveTransaction.new.call(
         resource: resource,
-        params: permitted_params,
-        param_key: :project,
-        current_user: current_user,
-        current_admin_user: current_admin_user
+        params: permitted_params[:project]
       ) do |transaction|
         transaction.success do |output|
-          @resource = output[:resource]
-          @project = @resource
-
           redirect_to admin_project_path(output[:resource])
         end
 
         transaction.failure do |output|
           @resource = output[:resource]
-          @project = @resource
 
-          render 'edit', resource: resource
+          render 'edit', resource: @resource
         end
       end
     end
 
     def create(_options = {})
       Projects::CreateTransaction.new.call(
-        params: permitted_params,
-        model: Project,
-        param_key: :project,
-        current_user: current_user,
-        current_admin_user: current_admin_user
+        params: permitted_params[:project],
+        model: Project
       ) do |transaction|
         transaction.success do |output|
-          @resource = output[:resource]
-          @project = @resource
-
           redirect_to admin_project_path(output[:resource])
         end
 
         transaction.failure do |output|
           @resource = output[:resource]
-          @project = @resource
 
-          render 'new', resource: output[:resource]
+          render 'new', resource: @resource
         end
       end
     end
@@ -140,26 +127,23 @@ ActiveAdmin.register Project do
       f.input :thumbnail,
               as: :hidden,
               input_html: { value: f.object.cached_thumbnail_data }
-
       if f.object.thumbnail.present?
         f.input :thumbnail, as: :file, hint: image_tag(f.object.thumbnail.url)
-        f.button Project.human_attribute_name(:remove_thumbnail),
-                 class: 'remove_thumbnail'
+        f.input :remove_thumbnail, as: :boolean
       else
         f.input :thumbnail, as: :file, hint: content_tag(:span, 'no cover page yet')
       end
+
 
       f.input :landscape,
               as: :hidden,
               input_html: { value: f.object.cached_landscape_data }
       if f.object.landscape.present?
         f.input :landscape, as: :file, hint: image_tag(f.object.landscape.url)
-        f.button Project.human_attribute_name(:remove_landscape),
-                 class: 'remove_landscape'
+        f.input :remove_landscape, as: :boolean
       else
         f.input :landscape, as: :file, hint: content_tag(:span, 'no cover page yet')
       end
-      f.input :landscape_data, as: :hidden
 
       f.input :aasm_state, input_html: { disabled: true }, label: 'Current state'
       f.input :active_admin_requested_event, label: 'Change state', as: :select, collection: f.object.aasm.events(permitted: true).map(&:name)

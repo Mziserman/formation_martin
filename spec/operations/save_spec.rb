@@ -1,8 +1,9 @@
 # frozen_string_literal: true
 
-RSpec.describe Update do
+RSpec.describe Save do
   subject do
-    Update.new.call(params: params, resource: resource)
+    resource.assign_attributes(params)
+    Save.new.call(resource: resource)
   end
 
   context 'with valid params' do

@@ -2,7 +2,7 @@
   <div class="card border">
     <div class='card-header flex-row d-flex justify-content-between align-items-center'>
       <div>
-        <a href='<%= project_path(project) %>'><%= project.name %></a>
+        <%= link_to project.name, project_path(project) %>
       </div>
       <div>
         <%= render 'badge', state: project.aasm_state %>
