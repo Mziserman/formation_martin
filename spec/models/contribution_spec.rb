@@ -38,5 +38,13 @@ RSpec.describe Contribution, type: :model do
       end
       expect(contribution.mangopay_payin_id).to_not eq nil
     end
+
+    it 'validates mangopay_payin' do
+      VCR.use_cassette('validate_mangopay_payin') do
+        contribution.mangopay_payin
+        contribution.fetch_and_update_state
+      end
+      expect(contribution.state).to eq 'denied'
+    end
   end
 end
