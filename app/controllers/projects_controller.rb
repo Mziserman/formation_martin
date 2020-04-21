@@ -20,11 +20,12 @@ class ProjectsController < ApplicationController
   end
 
   def set_projects
-    @projects = if current_admin_user
-                  Project.all.ransack(params[:q]).result
-                else
-                  Project.visible_by_users.ransack(params[:q]).result
-                end
+    @q = if current_admin_user
+           Project.all.ransack(params[:q])
+         else
+           Project.visible_by_users.ransack(params[:q])
+         end
+    @projects = @q.result
   end
 
   def authorize_admin!

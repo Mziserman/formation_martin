@@ -1,4 +1,15 @@
 <div class='row'>
+  <%= search_form_for @q do |f| %>
+
+    # Search if the name field contains...
+    <%= f.label :name_or_small_blurb_or_long_blurb_or_owners_first_name_or_owners_last_name_cont %>
+    <%= f.search_field :name_or_small_blurb_or_long_blurb_or_owners_first_name_or_owners_last_name_cont %>
+
+    <%= f.submit %>
+  <% end %>
+
+</div>
+<div class='row'>
   <% @projects.each do |project| %>
     <div class='col-sm-6 mb-3'>
       <%= render 'card', project: project %>
