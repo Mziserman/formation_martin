@@ -21,9 +21,9 @@ class ProjectsController < ApplicationController
 
   def set_projects
     @projects = if current_admin_user
-                  Project.all
+                  Project.all.ransack(params[:q]).result
                 else
-                  Project.visible_by_users
+                  Project.visible_by_users.ransack(params[:q]).result
                 end
   end
 
