@@ -311,17 +311,48 @@ RSpec.describe Project, type: :model do
   end
 
   context 'basic' do
-    let(:project) { create :project }
-
     it "doesn't have mangopay_wallet_id" do
-      expect(project.mangopay_wallet_id).to eq nil
+      expect(subject.mangopay_wallet_id).to eq nil
     end
 
     it 'initializes mangopay_wallet' do
       VCR.use_cassette('create_mangopay_wallet') do
-        project.mangopay_wallet
+        subject.mangopay_wallet
       end
-      expect(project.mangopay_wallet_id).to_not eq nil
+      expect(subject.mangopay_wallet_id).to_not eq nil
+    end
+  end
+
+  context 'with one denied and one processing contribution' do
+    let(:traits) { [:with_contributions] }
+    let(:big_donor) { create :user }
+    let(:params) do
+      {
+        contributions: [
+          {
+            amount: 100_000,
+            user: big_donor,
+            state: 1
+          },
+          {
+            amount: 200_000,
+            user: big_donor,
+            state: 2
+          },
+          {
+            amount: 300_000,
+            user: big_donor,
+            state: 0
+          }
+        ]
+      }
+    end
+    it 'does not account denied or processing in totals' do
+      expect(subject.total_collected).to eq 100_000
+      expect(subject.amount_contributed_from(big_donor)).to eq 100_000
+      expect(subject.completion).to eq(
+        (100_000 / subject.amount_wanted.to_f).round(4)
+      )
     end
   end
 end
