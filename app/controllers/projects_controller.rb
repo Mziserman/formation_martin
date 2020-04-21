@@ -20,12 +20,20 @@ class ProjectsController < ApplicationController
   end
 
   def set_projects
+    categories_search = params.dig(:q, :categories)
     @q = if current_admin_user
-           Project.all.ransack(params[:q])
+           Project.includes(:contributions).all.ransack(params[:q]&.except(:categories))
          else
-           Project.visible_by_users.ransack(params[:q])
+           Project.includes(:contributions).visible_by_users.ransack(params[:q]&.except(:categories))
          end
-    @projects = @q.result
+
+    @projects = if categories_search.blank?
+                  @q.result(distinct: true)
+                else
+                  @q.result(distinct: true).tagged_with(
+                    categories_search
+                  )
+                end
   end
 
   def authorize_admin!

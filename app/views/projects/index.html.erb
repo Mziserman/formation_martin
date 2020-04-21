@@ -3,6 +3,13 @@
     <%= f.label :name_or_small_blurb_or_long_blurb_or_owners_first_name_or_owners_last_name_cont, 'Chercher un projet : ' %>
     <%= f.search_field :name_or_small_blurb_or_long_blurb_or_owners_first_name_or_owners_last_name_cont %>
 
+    <% ActsAsTaggableOn::Tag.find_each do |tag| %>
+      <br />
+      <label>
+        <%= check_box_tag('q[categories][]', tag.name, params.dig(:q, :categories)&.include?(tag.name)) %> <%= tag.name %>
+      </label>
+    <% end %>
+
     <%= f.submit %>
   <% end %>
 </div>
