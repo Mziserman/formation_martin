@@ -5,12 +5,12 @@ http_interactions:
     uri: https://api.sandbox.mangopay.com/v2.01/5943/users/natural
     body:
       encoding: UTF-8
-      string: '{"Email":"harley@lubowitzdicki.name","FirstName":"Anaïs","LastName":"Blanchard","Nationality":"FR","CountryOfResidence":"FR","Birthday":882745200}'
+      string: '{"Email":"bette@cummings.com","FirstName":"Mathis","LastName":"Moreau","Nationality":"FR","CountryOfResidence":"FR","Birthday":-782355600}'
     headers:
       User-Agent:
       - MANGOPAY V2 RubyBindings/3.0.33
       Authorization:
-      - bearer 54fcee3a8aee4172b625fb59e3daa42e
+      - bearer d335fec7316d4efb99902d8a38fb4c0a
       Content-Type:
       - application/json
       X-Mangopay-Client-User-Agent:
@@ -27,7 +27,7 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Tue, 21 Apr 2020 08:11:54 GMT
+      - Tue, 21 Apr 2020 08:56:06 GMT
       Content-Type:
       - application/json; charset=utf-8
       Transfer-Encoding:
@@ -35,8 +35,8 @@ http_interactions:
       Connection:
       - keep-alive
       Set-Cookie:
-      - __cfduid=d74067a18dab5a1a026009660a46b1d361587456714; expires=Thu, 21-May-20
-        08:11:54 GMT; path=/; domain=.mangopay.com; HttpOnly; SameSite=Lax
+      - __cfduid=d5cc1c60348470958e2f0340b351ad2d11587459366; expires=Thu, 21-May-20
+        08:56:06 GMT; path=/; domain=.mangopay.com; HttpOnly; SameSite=Lax
       Cache-Control:
       - no-cache
       Pragma:
@@ -44,20 +44,20 @@ http_interactions:
       Expires:
       - "-1"
       X-Ratelimit:
-      - '12'
-      - '14'
-      - '14'
-      - '141'
+      - '155'
+      - '16'
+      - '16'
+      - '29'
       X-Ratelimit-Remaining:
-      - '105459'
-      - '2288'
-      - '4486'
-      - '8786'
+      - '105445'
+      - '2284'
+      - '4484'
+      - '8771'
       X-Ratelimit-Reset:
-      - '1587457560'
-      - '1587458460'
       - '1587460260'
-      - '1587543000'
+      - '1587461160'
+      - '1587462960'
+      - '1587545700'
       Cf-Cache-Status:
       - DYNAMIC
       Expect-Ct:
@@ -65,26 +65,25 @@ http_interactions:
       Server:
       - cloudflare
       Cf-Ray:
-      - 5875a312ad316936-CDG
+      - 5875e3cdbd77ee4c-CDG
       Cf-Request-Id:
-      - 023d643fa400006936bc80d200000001
+      - 023d8cb4900000ee4c98a34200000001
     body:
       encoding: ASCII-8BIT
-      string: !binary |-
-        eyJBZGRyZXNzIjp7IkFkZHJlc3NMaW5lMSI6bnVsbCwiQWRkcmVzc0xpbmUyIjpudWxsLCJDaXR5IjpudWxsLCJSZWdpb24iOm51bGwsIlBvc3RhbENvZGUiOm51bGwsIkNvdW50cnkiOm51bGx9LCJGaXJzdE5hbWUiOiJBbmHDr3MiLCJMYXN0TmFtZSI6IkJsYW5jaGFyZCIsIkJpcnRoZGF5Ijo4ODI3NDUyMDAsIk5hdGlvbmFsaXR5IjoiRlIiLCJDb3VudHJ5T2ZSZXNpZGVuY2UiOiJGUiIsIk9jY3VwYXRpb24iOm51bGwsIkluY29tZVJhbmdlIjpudWxsLCJQcm9vZk9mSWRlbnRpdHkiOm51bGwsIlByb29mT2ZBZGRyZXNzIjpudWxsLCJDYXBhY2l0eSI6Ik5PUk1BTCIsIlBlcnNvblR5cGUiOiJOQVRVUkFMIiwiRW1haWwiOiJoYXJsZXlAbHVib3dpdHpkaWNraS5uYW1lIiwiS1lDTGV2ZWwiOiJMSUdIVCIsIklkIjoiNzkwOTEwNjciLCJUYWciOm51bGwsIkNyZWF0aW9uRGF0ZSI6MTU4NzQ1NjcxNH0=
+      string: '{"Address":{"AddressLine1":null,"AddressLine2":null,"City":null,"Region":null,"PostalCode":null,"Country":null},"FirstName":"Mathis","LastName":"Moreau","Birthday":-782355600,"Nationality":"FR","CountryOfResidence":"FR","Occupation":null,"IncomeRange":null,"ProofOfIdentity":null,"ProofOfAddress":null,"Capacity":"NORMAL","PersonType":"NATURAL","Email":"bette@cummings.com","KYCLevel":"LIGHT","Id":"79093685","Tag":null,"CreationDate":1587459366}'
     http_version: null
-  recorded_at: Tue, 21 Apr 2020 08:11:54 GMT
+  recorded_at: Tue, 21 Apr 2020 08:56:06 GMT
 - request:
     method: post
     uri: https://api.sandbox.mangopay.com/v2.01/5943/wallets
     body:
       encoding: UTF-8
-      string: '{"Currency":"EUR","Description":"Hubert SARL","Owners":["79091067"]}'
+      string: '{"Currency":"EUR","Description":"Perrot et Prévost","Owners":["79093685"]}'
     headers:
       User-Agent:
       - MANGOPAY V2 RubyBindings/3.0.33
       Authorization:
-      - bearer 54fcee3a8aee4172b625fb59e3daa42e
+      - bearer d335fec7316d4efb99902d8a38fb4c0a
       Content-Type:
       - application/json
       X-Mangopay-Client-User-Agent:
@@ -101,7 +100,7 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Tue, 21 Apr 2020 08:11:55 GMT
+      - Tue, 21 Apr 2020 08:56:07 GMT
       Content-Type:
       - application/json; charset=utf-8
       Transfer-Encoding:
@@ -109,8 +108,8 @@ http_interactions:
       Connection:
       - keep-alive
       Set-Cookie:
-      - __cfduid=d62947c905760ec303644d967262861e01587456714; expires=Thu, 21-May-20
-        08:11:54 GMT; path=/; domain=.mangopay.com; HttpOnly; SameSite=Lax
+      - __cfduid=defad5f81c3f2ff358fd49bff9ec13b261587459366; expires=Thu, 21-May-20
+        08:56:06 GMT; path=/; domain=.mangopay.com; HttpOnly; SameSite=Lax
       Cache-Control:
       - no-cache
       Pragma:
@@ -118,20 +117,20 @@ http_interactions:
       Expires:
       - "-1"
       X-Ratelimit:
-      - '13'
-      - '142'
-      - '15'
-      - '15'
+      - '156'
+      - '17'
+      - '17'
+      - '30'
       X-Ratelimit-Remaining:
-      - '105458'
-      - '2287'
-      - '4485'
-      - '8785'
+      - '105444'
+      - '2283'
+      - '4483'
+      - '8770'
       X-Ratelimit-Reset:
-      - '1587457560'
-      - '1587458460'
       - '1587460260'
-      - '1587543000'
+      - '1587461160'
+      - '1587462960'
+      - '1587545700'
       Cf-Cache-Status:
       - DYNAMIC
       Expect-Ct:
@@ -139,12 +138,13 @@ http_interactions:
       Server:
       - cloudflare
       Cf-Ray:
-      - 5875a3143ac369bc-CDG
+      - 5875e3d329fa6966-CDG
       Cf-Request-Id:
-      - 023d6440a3000069bcd017e200000001
+      - 023d8cb7fd000069669b29b200000001
     body:
       encoding: ASCII-8BIT
-      string: '{"Description":"Hubert SARL","Owners":["79091067"],"Balance":{"Currency":"EUR","Amount":0},"Currency":"EUR","FundsType":"DEFAULT","Id":"79091068","Tag":null,"CreationDate":1587456714}'
+      string: !binary |-
+        eyJEZXNjcmlwdGlvbiI6IlBlcnJvdCBldCBQcsOpdm9zdCIsIk93bmVycyI6WyI3OTA5MzY4NSJdLCJCYWxhbmNlIjp7IkN1cnJlbmN5IjoiRVVSIiwiQW1vdW50IjowfSwiQ3VycmVuY3kiOiJFVVIiLCJGdW5kc1R5cGUiOiJERUZBVUxUIiwiSWQiOiI3OTA5MzY4NiIsIlRhZyI6bnVsbCwiQ3JlYXRpb25EYXRlIjoxNTg3NDU5MzY2fQ==
     http_version: null
-  recorded_at: Tue, 21 Apr 2020 08:11:55 GMT
+  recorded_at: Tue, 21 Apr 2020 08:56:07 GMT
 recorded_with: VCR 5.1.0

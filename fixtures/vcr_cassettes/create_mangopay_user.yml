@@ -23,7 +23,7 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Tue, 21 Apr 2020 08:11:44 GMT
+      - Tue, 21 Apr 2020 08:55:49 GMT
       Content-Type:
       - application/json;charset=UTF-8
       Transfer-Encoding:
@@ -31,8 +31,8 @@ http_interactions:
       Connection:
       - keep-alive
       Set-Cookie:
-      - __cfduid=db40e5898e90dd7e62ef98cea76b37e231587456704; expires=Thu, 21-May-20
-        08:11:44 GMT; path=/; domain=.mangopay.com; HttpOnly; SameSite=Lax
+      - __cfduid=dd92b46f216a43f561223aa2f3a7773941587459349; expires=Thu, 21-May-20
+        08:55:49 GMT; path=/; domain=.mangopay.com; HttpOnly; SameSite=Lax
       Cache-Control:
       - no-cache
       Pragma:
@@ -46,25 +46,25 @@ http_interactions:
       Server:
       - cloudflare
       Cf-Ray:
-      - 5875a2d3ff50cd7b-CDG
+      - 5875e364fefab7ab-CDG
       Cf-Request-Id:
-      - 023d64187f0000cd7bdb80f200000001
+      - 023d8c731a0000b7abecb5e200000001
     body:
       encoding: ASCII-8BIT
-      string: '{"access_token":"54fcee3a8aee4172b625fb59e3daa42e","token_type":"bearer","expires_in":1199}'
+      string: '{"access_token":"d335fec7316d4efb99902d8a38fb4c0a","token_type":"bearer","expires_in":1199}'
     http_version: null
-  recorded_at: Tue, 21 Apr 2020 08:11:44 GMT
+  recorded_at: Tue, 21 Apr 2020 08:55:50 GMT
 - request:
     method: post
     uri: https://api.sandbox.mangopay.com/v2.01/5943/users/natural
     body:
       encoding: UTF-8
-      string: '{"Email":"carol@hegmannstamm.info","FirstName":"Noah","LastName":"Dubois","Nationality":"FR","CountryOfResidence":"FR","Birthday":879807600}'
+      string: '{"Email":"felicia@stoltenberg.biz","FirstName":"Mattéo","LastName":"Richard","Nationality":"FR","CountryOfResidence":"FR","Birthday":736725600}'
     headers:
       User-Agent:
       - MANGOPAY V2 RubyBindings/3.0.33
       Authorization:
-      - bearer 54fcee3a8aee4172b625fb59e3daa42e
+      - bearer d335fec7316d4efb99902d8a38fb4c0a
       Content-Type:
       - application/json
       X-Mangopay-Client-User-Agent:
@@ -81,7 +81,7 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Tue, 21 Apr 2020 08:11:45 GMT
+      - Tue, 21 Apr 2020 08:55:50 GMT
       Content-Type:
       - application/json; charset=utf-8
       Transfer-Encoding:
@@ -89,8 +89,8 @@ http_interactions:
       Connection:
       - keep-alive
       Set-Cookie:
-      - __cfduid=d0e3e10d34c382d2d643bb859a2265b091587456705; expires=Thu, 21-May-20
-        08:11:45 GMT; path=/; domain=.mangopay.com; HttpOnly; SameSite=Lax
+      - __cfduid=d16a532cbc20b2be84fab8901a5a965621587459350; expires=Thu, 21-May-20
+        08:55:50 GMT; path=/; domain=.mangopay.com; HttpOnly; SameSite=Lax
       Cache-Control:
       - no-cache
       Pragma:
@@ -98,20 +98,20 @@ http_interactions:
       Expires:
       - "-1"
       X-Ratelimit:
-      - '131'
-      - '2'
-      - '4'
-      - '4'
+      - '1'
+      - '1'
+      - '14'
+      - '140'
       X-Ratelimit-Remaining:
-      - '105469'
-      - '2298'
-      - '4496'
-      - '8796'
+      - '105460'
+      - '2299'
+      - '4499'
+      - '8786'
       X-Ratelimit-Reset:
-      - '1587457560'
-      - '1587458460'
-      - '1587460260'
-      - '1587543000'
+      - '1587460200'
+      - '1587461100'
+      - '1587462900'
+      - '1587545640'
       Cf-Cache-Status:
       - DYNAMIC
       Expect-Ct:
@@ -119,25 +119,26 @@ http_interactions:
       Server:
       - cloudflare
       Cf-Ray:
-      - 5875a2d7be70b7ab-CDG
+      - 5875e36c2e40cdb7-CDG
       Cf-Request-Id:
-      - 023d641ad10000b7abe7887200000001
+      - 023d8c77950000cdb755134200000001
     body:
       encoding: ASCII-8BIT
-      string: '{"Address":{"AddressLine1":null,"AddressLine2":null,"City":null,"Region":null,"PostalCode":null,"Country":null},"FirstName":"Noah","LastName":"Dubois","Birthday":879807600,"Nationality":"FR","CountryOfResidence":"FR","Occupation":null,"IncomeRange":null,"ProofOfIdentity":null,"ProofOfAddress":null,"Capacity":"NORMAL","PersonType":"NATURAL","Email":"carol@hegmannstamm.info","KYCLevel":"LIGHT","Id":"79091055","Tag":null,"CreationDate":1587456705}'
+      string: !binary |-
+        eyJBZGRyZXNzIjp7IkFkZHJlc3NMaW5lMSI6bnVsbCwiQWRkcmVzc0xpbmUyIjpudWxsLCJDaXR5IjpudWxsLCJSZWdpb24iOm51bGwsIlBvc3RhbENvZGUiOm51bGwsIkNvdW50cnkiOm51bGx9LCJGaXJzdE5hbWUiOiJNYXR0w6lvIiwiTGFzdE5hbWUiOiJSaWNoYXJkIiwiQmlydGhkYXkiOjczNjcyNTYwMCwiTmF0aW9uYWxpdHkiOiJGUiIsIkNvdW50cnlPZlJlc2lkZW5jZSI6IkZSIiwiT2NjdXBhdGlvbiI6bnVsbCwiSW5jb21lUmFuZ2UiOm51bGwsIlByb29mT2ZJZGVudGl0eSI6bnVsbCwiUHJvb2ZPZkFkZHJlc3MiOm51bGwsIkNhcGFjaXR5IjoiTk9STUFMIiwiUGVyc29uVHlwZSI6Ik5BVFVSQUwiLCJFbWFpbCI6ImZlbGljaWFAc3RvbHRlbmJlcmcuYml6IiwiS1lDTGV2ZWwiOiJMSUdIVCIsIklkIjoiNzkwOTM2NjMiLCJUYWciOm51bGwsIkNyZWF0aW9uRGF0ZSI6MTU4NzQ1OTM1MH0=
     http_version: null
-  recorded_at: Tue, 21 Apr 2020 08:11:45 GMT
+  recorded_at: Tue, 21 Apr 2020 08:55:50 GMT
 - request:
     method: post
     uri: https://api.sandbox.mangopay.com/v2.01/5943/wallets
     body:
       encoding: UTF-8
-      string: '{"Currency":"EUR","Description":"Hubert et Dumont","Owners":["79091055"]}'
+      string: '{"Currency":"EUR","Description":"Bernard et Guillot","Owners":["79093663"]}'
     headers:
       User-Agent:
       - MANGOPAY V2 RubyBindings/3.0.33
       Authorization:
-      - bearer 54fcee3a8aee4172b625fb59e3daa42e
+      - bearer d335fec7316d4efb99902d8a38fb4c0a
       Content-Type:
       - application/json
       X-Mangopay-Client-User-Agent:
@@ -154,7 +155,7 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Tue, 21 Apr 2020 08:11:45 GMT
+      - Tue, 21 Apr 2020 08:55:51 GMT
       Content-Type:
       - application/json; charset=utf-8
       Transfer-Encoding:
@@ -162,8 +163,8 @@ http_interactions:
       Connection:
       - keep-alive
       Set-Cookie:
-      - __cfduid=d020de16f44b9f81f1aa0f4f6ab822ede1587456705; expires=Thu, 21-May-20
-        08:11:45 GMT; path=/; domain=.mangopay.com; HttpOnly; SameSite=Lax
+      - __cfduid=da638a0d2200a50d3637b764a6645ce611587459351; expires=Thu, 21-May-20
+        08:55:51 GMT; path=/; domain=.mangopay.com; HttpOnly; SameSite=Lax
       Cache-Control:
       - no-cache
       Pragma:
@@ -171,20 +172,20 @@ http_interactions:
       Expires:
       - "-1"
       X-Ratelimit:
-      - '132'
-      - '3'
-      - '5'
-      - '5'
+      - '141'
+      - '15'
+      - '2'
+      - '2'
       X-Ratelimit-Remaining:
-      - '105468'
-      - '2297'
-      - '4495'
-      - '8795'
+      - '105459'
+      - '2298'
+      - '4498'
+      - '8785'
       X-Ratelimit-Reset:
-      - '1587457560'
-      - '1587458460'
-      - '1587460260'
-      - '1587543000'
+      - '1587460200'
+      - '1587461100'
+      - '1587462900'
+      - '1587545640'
       Cf-Cache-Status:
       - DYNAMIC
       Expect-Ct:
@@ -192,12 +193,12 @@ http_interactions:
       Server:
       - cloudflare
       Cf-Ray:
-      - 5875a2d99ba8cddb-CDG
+      - 5875e36fdb7304a7-CDG
       Cf-Request-Id:
-      - 023d641c030000cddb928da200000001
+      - 023d8c79eb000004a7d63f5200000001
     body:
       encoding: ASCII-8BIT
-      string: '{"Description":"Hubert et Dumont","Owners":["79091055"],"Balance":{"Currency":"EUR","Amount":0},"Currency":"EUR","FundsType":"DEFAULT","Id":"79091056","Tag":null,"CreationDate":1587456705}'
+      string: '{"Description":"Bernard et Guillot","Owners":["79093663"],"Balance":{"Currency":"EUR","Amount":0},"Currency":"EUR","FundsType":"DEFAULT","Id":"79093664","Tag":null,"CreationDate":1587459351}'
     http_version: null
-  recorded_at: Tue, 21 Apr 2020 08:11:45 GMT
+  recorded_at: Tue, 21 Apr 2020 08:55:51 GMT
 recorded_with: VCR 5.1.0
