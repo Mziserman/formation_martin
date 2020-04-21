@@ -5,7 +5,7 @@ http_interactions:
     uri: https://api.sandbox.mangopay.com/v2.01/5943/users/natural
     body:
       encoding: UTF-8
-      string: '{"Email":"jamel@schimmel.name","FirstName":"Juliette","LastName":"Marty","Nationality":"FR","CountryOfResidence":"FR","Birthday":-958266000}'
+      string: '{"Email":"samatha@quitzon.net","FirstName":"Alice","LastName":"Roux","Nationality":"FR","CountryOfResidence":"FR","Birthday":902613600}'
     headers:
       User-Agent:
       - MANGOPAY V2 RubyBindings/3.0.33
@@ -27,7 +27,7 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Tue, 21 Apr 2020 08:11:49 GMT
+      - Tue, 21 Apr 2020 08:11:51 GMT
       Content-Type:
       - application/json; charset=utf-8
       Transfer-Encoding:
@@ -35,8 +35,8 @@ http_interactions:
       Connection:
       - keep-alive
       Set-Cookie:
-      - __cfduid=dcf67d043092fc800d4f42da46819cca01587456709; expires=Thu, 21-May-20
-        08:11:49 GMT; path=/; domain=.mangopay.com; HttpOnly; SameSite=Lax
+      - __cfduid=d25ef355300077307e86d2cdc71d55cab1587456711; expires=Thu, 21-May-20
+        08:11:51 GMT; path=/; domain=.mangopay.com; HttpOnly; SameSite=Lax
       Cache-Control:
       - no-cache
       Pragma:
@@ -44,15 +44,15 @@ http_interactions:
       Expires:
       - "-1"
       X-Ratelimit:
-      - '133'
-      - '4'
-      - '6'
-      - '6'
+      - '10'
+      - '10'
+      - '137'
+      - '8'
       X-Ratelimit-Remaining:
-      - '105467'
-      - '2296'
-      - '4494'
-      - '8794'
+      - '105463'
+      - '2292'
+      - '4490'
+      - '8790'
       X-Ratelimit-Reset:
       - '1587457560'
       - '1587458460'
@@ -65,20 +65,20 @@ http_interactions:
       Server:
       - cloudflare
       Cf-Ray:
-      - 5875a2f39e8f0487-CDG
+      - 5875a2febca6ee54-CDG
       Cf-Request-Id:
-      - 023d642c3b00000487132f2200000001
+      - 023d6433360000ee542524b200000001
     body:
       encoding: ASCII-8BIT
-      string: '{"Address":{"AddressLine1":null,"AddressLine2":null,"City":null,"Region":null,"PostalCode":null,"Country":null},"FirstName":"Juliette","LastName":"Marty","Birthday":-958266000,"Nationality":"FR","CountryOfResidence":"FR","Occupation":null,"IncomeRange":null,"ProofOfIdentity":null,"ProofOfAddress":null,"Capacity":"NORMAL","PersonType":"NATURAL","Email":"jamel@schimmel.name","KYCLevel":"LIGHT","Id":"79091059","Tag":null,"CreationDate":1587456709}'
+      string: '{"Address":{"AddressLine1":null,"AddressLine2":null,"City":null,"Region":null,"PostalCode":null,"Country":null},"FirstName":"Alice","LastName":"Roux","Birthday":902613600,"Nationality":"FR","CountryOfResidence":"FR","Occupation":null,"IncomeRange":null,"ProofOfIdentity":null,"ProofOfAddress":null,"Capacity":"NORMAL","PersonType":"NATURAL","Email":"samatha@quitzon.net","KYCLevel":"LIGHT","Id":"79091063","Tag":null,"CreationDate":1587456711}'
     http_version: null
-  recorded_at: Tue, 21 Apr 2020 08:11:49 GMT
+  recorded_at: Tue, 21 Apr 2020 08:11:51 GMT
 - request:
     method: post
     uri: https://api.sandbox.mangopay.com/v2.01/5943/users/natural
     body:
       encoding: UTF-8
-      string: '{"Email":"rosendo@stehrcole.name","FirstName":"Arthur","LastName":"Renault","Nationality":"FR","CountryOfResidence":"FR","Birthday":-19270800}'
+      string: '{"Email":"cletus@grantshanahan.info","FirstName":"Marie","LastName":"Julien","Nationality":"FR","CountryOfResidence":"FR","Birthday":953334000}'
     headers:
       User-Agent:
       - MANGOPAY V2 RubyBindings/3.0.33
@@ -100,7 +100,7 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Tue, 21 Apr 2020 08:11:50 GMT
+      - Tue, 21 Apr 2020 08:11:51 GMT
       Content-Type:
       - application/json; charset=utf-8
       Transfer-Encoding:
@@ -108,8 +108,8 @@ http_interactions:
       Connection:
       - keep-alive
       Set-Cookie:
-      - __cfduid=d2329cdc4f7fb47926a72be041c4c12d81587456709; expires=Thu, 21-May-20
-        08:11:49 GMT; path=/; domain=.mangopay.com; HttpOnly; SameSite=Lax
+      - __cfduid=d7fd70f10eb154393420ef2eb12fc3be01587456711; expires=Thu, 21-May-20
+        08:11:51 GMT; path=/; domain=.mangopay.com; HttpOnly; SameSite=Lax
       Cache-Control:
       - no-cache
       Pragma:
@@ -117,15 +117,15 @@ http_interactions:
       Expires:
       - "-1"
       X-Ratelimit:
-      - '134'
-      - '5'
-      - '7'
-      - '7'
+      - '11'
+      - '11'
+      - '138'
+      - '9'
       X-Ratelimit-Remaining:
-      - '105466'
-      - '2295'
-      - '4493'
-      - '8793'
+      - '105462'
+      - '2291'
+      - '4489'
+      - '8789'
       X-Ratelimit-Reset:
       - '1587457560'
       - '1587458460'
@@ -138,20 +138,20 @@ http_interactions:
       Server:
       - cloudflare
       Cf-Ray:
-      - 5875a2f559d2edf3-CDG
+      - 5875a3009876ee0f-CDG
       Cf-Request-Id:
-      - 023d642d530000edf364928200000001
+      - 023d6434630000ee0f8c332200000001
     body:
       encoding: ASCII-8BIT
-      string: '{"Address":{"AddressLine1":null,"AddressLine2":null,"City":null,"Region":null,"PostalCode":null,"Country":null},"FirstName":"Arthur","LastName":"Renault","Birthday":-19270800,"Nationality":"FR","CountryOfResidence":"FR","Occupation":null,"IncomeRange":null,"ProofOfIdentity":null,"ProofOfAddress":null,"Capacity":"NORMAL","PersonType":"NATURAL","Email":"rosendo@stehrcole.name","KYCLevel":"LIGHT","Id":"79091060","Tag":null,"CreationDate":1587456709}'
+      string: '{"Address":{"AddressLine1":null,"AddressLine2":null,"City":null,"Region":null,"PostalCode":null,"Country":null},"FirstName":"Marie","LastName":"Julien","Birthday":953334000,"Nationality":"FR","CountryOfResidence":"FR","Occupation":null,"IncomeRange":null,"ProofOfIdentity":null,"ProofOfAddress":null,"Capacity":"NORMAL","PersonType":"NATURAL","Email":"cletus@grantshanahan.info","KYCLevel":"LIGHT","Id":"79091064","Tag":null,"CreationDate":1587456711}'
     http_version: null
-  recorded_at: Tue, 21 Apr 2020 08:11:50 GMT
+  recorded_at: Tue, 21 Apr 2020 08:11:51 GMT
 - request:
     method: post
     uri: https://api.sandbox.mangopay.com/v2.01/5943/wallets
     body:
       encoding: UTF-8
-      string: '{"Currency":"EUR","Description":"Chevalier et Petit","Owners":["79091060"]}'
+      string: '{"Currency":"EUR","Description":"Colin SEM","Owners":["79091064"]}'
     headers:
       User-Agent:
       - MANGOPAY V2 RubyBindings/3.0.33
@@ -173,7 +173,7 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Tue, 21 Apr 2020 08:11:50 GMT
+      - Tue, 21 Apr 2020 08:11:52 GMT
       Content-Type:
       - application/json; charset=utf-8
       Transfer-Encoding:
@@ -181,8 +181,8 @@ http_interactions:
       Connection:
       - keep-alive
       Set-Cookie:
-      - __cfduid=d8d6aa706fdc75ded01bebfd86dece9b91587456710; expires=Thu, 21-May-20
-        08:11:50 GMT; path=/; domain=.mangopay.com; HttpOnly; SameSite=Lax
+      - __cfduid=d452b37e08815b91026ce31c1a6f9b38b1587456712; expires=Thu, 21-May-20
+        08:11:52 GMT; path=/; domain=.mangopay.com; HttpOnly; SameSite=Lax
       Cache-Control:
       - no-cache
       Pragma:
@@ -190,15 +190,15 @@ http_interactions:
       Expires:
       - "-1"
       X-Ratelimit:
-      - '135'
-      - '6'
-      - '8'
-      - '8'
+      - '10'
+      - '12'
+      - '12'
+      - '139'
       X-Ratelimit-Remaining:
-      - '105465'
-      - '2294'
-      - '4492'
-      - '8792'
+      - '105461'
+      - '2290'
+      - '4488'
+      - '8788'
       X-Ratelimit-Reset:
       - '1587457560'
       - '1587458460'
@@ -211,20 +211,20 @@ http_interactions:
       Server:
       - cloudflare
       Cf-Ray:
-      - 5875a2f6f890cd93-CDG
+      - 5875a3022a21b7b1-CDG
       Cf-Request-Id:
-      - 023d642e570000cd93239e4200000001
+      - 023d64355d0000b7b1e7146200000001
     body:
       encoding: ASCII-8BIT
-      string: '{"Description":"Chevalier et Petit","Owners":["79091060"],"Balance":{"Currency":"EUR","Amount":0},"Currency":"EUR","FundsType":"DEFAULT","Id":"79091061","Tag":null,"CreationDate":1587456710}'
+      string: '{"Description":"Colin SEM","Owners":["79091064"],"Balance":{"Currency":"EUR","Amount":0},"Currency":"EUR","FundsType":"DEFAULT","Id":"79091065","Tag":null,"CreationDate":1587456712}'
     http_version: null
-  recorded_at: Tue, 21 Apr 2020 08:11:50 GMT
+  recorded_at: Tue, 21 Apr 2020 08:11:52 GMT
 - request:
     method: post
     uri: https://api.sandbox.mangopay.com/v2.01/5943/payins/card/web
     body:
       encoding: UTF-8
-      string: '{"AuthorId":"79091059","CreditedWalletId":"79091061","CardType":"CB_VISA_MASTERCARD","Culture":"FR","DebitedFunds":{"Currency":"EUR","Amount":1972410500},"Fees":{"Currency":"EUR","Amount":0},"ReturnURL":"http://localhost:3000/projects/719/contributions/630/validate"}'
+      string: '{"AuthorId":"79091063","CreditedWalletId":"79091065","CardType":"CB_VISA_MASTERCARD","Culture":"FR","DebitedFunds":{"Currency":"EUR","Amount":65006287},"Fees":{"Currency":"EUR","Amount":0},"ReturnURL":"http://localhost:3000/projects/736/contributions/635/validate"}'
     headers:
       User-Agent:
       - MANGOPAY V2 RubyBindings/3.0.33
@@ -246,7 +246,7 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Tue, 21 Apr 2020 08:11:50 GMT
+      - Tue, 21 Apr 2020 08:11:52 GMT
       Content-Type:
       - application/json; charset=utf-8
       Transfer-Encoding:
@@ -254,8 +254,8 @@ http_interactions:
       Connection:
       - keep-alive
       Set-Cookie:
-      - __cfduid=d26e649b67f3f49bb70fd665f96905f7f1587456710; expires=Thu, 21-May-20
-        08:11:50 GMT; path=/; domain=.mangopay.com; HttpOnly; SameSite=Lax
+      - __cfduid=d8b9b618d86c41fa6198e2fca0bc2e5d31587456712; expires=Thu, 21-May-20
+        08:11:52 GMT; path=/; domain=.mangopay.com; HttpOnly; SameSite=Lax
       Cache-Control:
       - no-cache
       Pragma:
@@ -263,15 +263,15 @@ http_interactions:
       Expires:
       - "-1"
       X-Ratelimit:
-      - '136'
-      - '7'
-      - '9'
-      - '9'
+      - '11'
+      - '13'
+      - '13'
+      - '140'
       X-Ratelimit-Remaining:
-      - '105464'
-      - '2293'
-      - '4491'
-      - '8791'
+      - '105460'
+      - '2289'
+      - '4487'
+      - '8787'
       X-Ratelimit-Reset:
       - '1587457560'
       - '1587458460'
@@ -284,13 +284,13 @@ http_interactions:
       Server:
       - cloudflare
       Cf-Ray:
-      - 5875a2f87cfbee07-CDG
+      - 5875a303dcb2ee27-CDG
       Cf-Request-Id:
-      - 023d642f490000ee0720242200000001
+      - 023d6436640000ee2709ba1200000001
     body:
       encoding: ASCII-8BIT
-      string: '{"Id":"79091062","Tag":null,"CreationDate":1587456710,"AuthorId":"79091059","CreditedUserId":"79091060","DebitedFunds":{"Currency":"EUR","Amount":1972410500},"CreditedFunds":{"Currency":"EUR","Amount":1972410500},"Fees":{"Currency":"EUR","Amount":0},"Status":"FAILED","ResultCode":"001011","ResultMessage":"Transaction
-        amount is higher than maximum permitted amount","ExecutionDate":null,"Type":"PAYIN","Nature":"REGULAR","CreditedWalletId":"79091061","DebitedWalletId":null,"PaymentType":"CARD","ExecutionType":"WEB","RedirectURL":null,"ReturnURL":"http://localhost:3000/projects/719/contributions/630/validate?transactionId=79091062","TemplateURL":"https://api.sandbox.mangopay.com/Content/PaylineTemplateWidget?rp=b336e09fb2ce468187e1afd7d155405b&transactionId=79091062","CardType":"CB_VISA_MASTERCARD","Culture":"FR","SecureMode":"DEFAULT","StatementDescriptor":null}'
+      string: '{"Id":"79091066","Tag":null,"CreationDate":1587456712,"AuthorId":"79091063","CreditedUserId":"79091064","DebitedFunds":{"Currency":"EUR","Amount":65006287},"CreditedFunds":{"Currency":"EUR","Amount":65006287},"Fees":{"Currency":"EUR","Amount":0},"Status":"FAILED","ResultCode":"001011","ResultMessage":"Transaction
+        amount is higher than maximum permitted amount","ExecutionDate":null,"Type":"PAYIN","Nature":"REGULAR","CreditedWalletId":"79091065","DebitedWalletId":null,"PaymentType":"CARD","ExecutionType":"WEB","RedirectURL":null,"ReturnURL":"http://localhost:3000/projects/736/contributions/635/validate?transactionId=79091066","TemplateURL":"https://api.sandbox.mangopay.com/Content/PaylineTemplateWidget?rp=c3487948edf54a30abd12ba29e596eb7&transactionId=79091066","CardType":"CB_VISA_MASTERCARD","Culture":"FR","SecureMode":"DEFAULT","StatementDescriptor":null}'
     http_version: null
-  recorded_at: Tue, 21 Apr 2020 08:11:50 GMT
+  recorded_at: Tue, 21 Apr 2020 08:11:52 GMT
 recorded_with: VCR 5.1.0

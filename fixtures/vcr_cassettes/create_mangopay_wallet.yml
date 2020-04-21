@@ -1,0 +1,150 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://api.sandbox.mangopay.com/v2.01/5943/users/natural
+    body:
+      encoding: UTF-8
+      string: '{"Email":"harley@lubowitzdicki.name","FirstName":"Anaïs","LastName":"Blanchard","Nationality":"FR","CountryOfResidence":"FR","Birthday":882745200}'
+    headers:
+      User-Agent:
+      - MANGOPAY V2 RubyBindings/3.0.33
+      Authorization:
+      - bearer 54fcee3a8aee4172b625fb59e3daa42e
+      Content-Type:
+      - application/json
+      X-Mangopay-Client-User-Agent:
+      - '{"bindings_version":"3.0.33","lang":"ruby","lang_version":"2.6.2 p47 (2019-03-13)","platform":"x86_64-darwin19","uname":"Darwin
+        pc64.home 19.0.0 Darwin Kernel Version 19.0.0: Wed Sep 25 20:18:50 PDT 2019;
+        root:xnu-6153.11.26~2/RELEASE_X86_64 x86_64"}'
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Tue, 21 Apr 2020 08:11:54 GMT
+      Content-Type:
+      - application/json; charset=utf-8
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      Set-Cookie:
+      - __cfduid=d74067a18dab5a1a026009660a46b1d361587456714; expires=Thu, 21-May-20
+        08:11:54 GMT; path=/; domain=.mangopay.com; HttpOnly; SameSite=Lax
+      Cache-Control:
+      - no-cache
+      Pragma:
+      - no-cache
+      Expires:
+      - "-1"
+      X-Ratelimit:
+      - '12'
+      - '14'
+      - '14'
+      - '141'
+      X-Ratelimit-Remaining:
+      - '105459'
+      - '2288'
+      - '4486'
+      - '8786'
+      X-Ratelimit-Reset:
+      - '1587457560'
+      - '1587458460'
+      - '1587460260'
+      - '1587543000'
+      Cf-Cache-Status:
+      - DYNAMIC
+      Expect-Ct:
+      - max-age=604800, report-uri="https://report-uri.cloudflare.com/cdn-cgi/beacon/expect-ct"
+      Server:
+      - cloudflare
+      Cf-Ray:
+      - 5875a312ad316936-CDG
+      Cf-Request-Id:
+      - 023d643fa400006936bc80d200000001
+    body:
+      encoding: ASCII-8BIT
+      string: !binary |-
+        eyJBZGRyZXNzIjp7IkFkZHJlc3NMaW5lMSI6bnVsbCwiQWRkcmVzc0xpbmUyIjpudWxsLCJDaXR5IjpudWxsLCJSZWdpb24iOm51bGwsIlBvc3RhbENvZGUiOm51bGwsIkNvdW50cnkiOm51bGx9LCJGaXJzdE5hbWUiOiJBbmHDr3MiLCJMYXN0TmFtZSI6IkJsYW5jaGFyZCIsIkJpcnRoZGF5Ijo4ODI3NDUyMDAsIk5hdGlvbmFsaXR5IjoiRlIiLCJDb3VudHJ5T2ZSZXNpZGVuY2UiOiJGUiIsIk9jY3VwYXRpb24iOm51bGwsIkluY29tZVJhbmdlIjpudWxsLCJQcm9vZk9mSWRlbnRpdHkiOm51bGwsIlByb29mT2ZBZGRyZXNzIjpudWxsLCJDYXBhY2l0eSI6Ik5PUk1BTCIsIlBlcnNvblR5cGUiOiJOQVRVUkFMIiwiRW1haWwiOiJoYXJsZXlAbHVib3dpdHpkaWNraS5uYW1lIiwiS1lDTGV2ZWwiOiJMSUdIVCIsIklkIjoiNzkwOTEwNjciLCJUYWciOm51bGwsIkNyZWF0aW9uRGF0ZSI6MTU4NzQ1NjcxNH0=
+    http_version: null
+  recorded_at: Tue, 21 Apr 2020 08:11:54 GMT
+- request:
+    method: post
+    uri: https://api.sandbox.mangopay.com/v2.01/5943/wallets
+    body:
+      encoding: UTF-8
+      string: '{"Currency":"EUR","Description":"Hubert SARL","Owners":["79091067"]}'
+    headers:
+      User-Agent:
+      - MANGOPAY V2 RubyBindings/3.0.33
+      Authorization:
+      - bearer 54fcee3a8aee4172b625fb59e3daa42e
+      Content-Type:
+      - application/json
+      X-Mangopay-Client-User-Agent:
+      - '{"bindings_version":"3.0.33","lang":"ruby","lang_version":"2.6.2 p47 (2019-03-13)","platform":"x86_64-darwin19","uname":"Darwin
+        pc64.home 19.0.0 Darwin Kernel Version 19.0.0: Wed Sep 25 20:18:50 PDT 2019;
+        root:xnu-6153.11.26~2/RELEASE_X86_64 x86_64"}'
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Tue, 21 Apr 2020 08:11:55 GMT
+      Content-Type:
+      - application/json; charset=utf-8
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      Set-Cookie:
+      - __cfduid=d62947c905760ec303644d967262861e01587456714; expires=Thu, 21-May-20
+        08:11:54 GMT; path=/; domain=.mangopay.com; HttpOnly; SameSite=Lax
+      Cache-Control:
+      - no-cache
+      Pragma:
+      - no-cache
+      Expires:
+      - "-1"
+      X-Ratelimit:
+      - '13'
+      - '142'
+      - '15'
+      - '15'
+      X-Ratelimit-Remaining:
+      - '105458'
+      - '2287'
+      - '4485'
+      - '8785'
+      X-Ratelimit-Reset:
+      - '1587457560'
+      - '1587458460'
+      - '1587460260'
+      - '1587543000'
+      Cf-Cache-Status:
+      - DYNAMIC
+      Expect-Ct:
+      - max-age=604800, report-uri="https://report-uri.cloudflare.com/cdn-cgi/beacon/expect-ct"
+      Server:
+      - cloudflare
+      Cf-Ray:
+      - 5875a3143ac369bc-CDG
+      Cf-Request-Id:
+      - 023d6440a3000069bcd017e200000001
+    body:
+      encoding: ASCII-8BIT
+      string: '{"Description":"Hubert SARL","Owners":["79091067"],"Balance":{"Currency":"EUR","Amount":0},"Currency":"EUR","FundsType":"DEFAULT","Id":"79091068","Tag":null,"CreationDate":1587456714}'
+    http_version: null
+  recorded_at: Tue, 21 Apr 2020 08:11:55 GMT
+recorded_with: VCR 5.1.0
