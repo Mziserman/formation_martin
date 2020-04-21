@@ -18,7 +18,7 @@ class User < ApplicationRecord
   end
 
   def amount_contributed_to(project)
-    contributions.where(project_id: project.id).sum(:amount)
+    contributions.not_denied.where(project_id: project.id).sum(:amount)
   end
 
   def mangopay
