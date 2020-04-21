@@ -24,4 +24,19 @@ RSpec.describe Contribution, type: :model do
       expect { subject }.to raise_error ActiveRecord::RecordInvalid
     end
   end
+
+  context 'basic' do
+    let(:contribution) { create :contribution }
+
+    it "doesn't have mangopay_payin_id" do
+      expect(contribution.mangopay_payin_id).to eq nil
+    end
+
+    it 'initializes mangopay_payin' do
+      VCR.use_cassette('create_mangopay_payin') do
+        contribution.mangopay_payin
+      end
+      expect(contribution.mangopay_payin_id).to_not eq nil
+    end
+  end
 end

@@ -15,4 +15,19 @@ RSpec.describe User, type: :model do
   it { should validate_presence_of(:birthdate) }
 
   it { should validate_uniqueness_of(:email).ignoring_case_sensitivity }
+
+  context 'basic' do
+    let(:user) { create :user }
+
+    it "doesn't have mangopay_id" do
+      expect(user.mangopay_id).to eq nil
+    end
+
+    it 'initializes mangopay' do
+      VCR.use_cassette('create_mangopay_user') do
+        user.mangopay
+      end
+      expect(user.mangopay_id).to_not eq nil
+    end
+  end
 end

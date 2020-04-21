@@ -39,7 +39,7 @@ class User < ApplicationRecord
       Birthday: birthdate.to_time.to_i
     )
 
-    update(mangopay_id: mangopay_user['id'])
+    update(mangopay_id: mangopay_user['Id'])
     mangopay_user
   end
 

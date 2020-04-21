@@ -15,7 +15,6 @@ if Rails.env.development?
   1.upto(3).map do |_index|
     create(
       :project,
-      :with_owners,
       :with_categories,
       :with_rewards,
       owners: owners.sample(rand(1..3)),

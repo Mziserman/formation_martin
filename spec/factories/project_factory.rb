@@ -7,28 +7,18 @@ FactoryBot.define do
     small_blurb { Faker::Lorem.sentence }
     long_blurb  { Faker::Lorem.paragraph }
 
+    after(:create) do |project|
+      if project.project_ownerships.blank?
+        project.project_ownerships.create admin_user: create(:admin_user)
+      end
+    end
+
     trait :with_thumbnail do
       thumbnail { File.new("#{Rails.root}/spec/support/files/image.png") }
     end
 
     trait :with_landscape do
       landscape { File.new("#{Rails.root}/spec/support/files/image.png") }
-    end
-
-    trait :with_owners do
-      transient do
-        owners do
-          1.upto(3).map do |_|
-            create :admin_user
-          end
-        end
-      end
-
-      after(:create) do |project, evaluator|
-        evaluator.owners.each do |owner|
-          project.project_ownerships.create admin_user: owner
-        end
-      end
     end
 
     trait :with_rewards do

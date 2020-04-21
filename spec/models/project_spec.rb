@@ -309,4 +309,19 @@ RSpec.describe Project, type: :model do
       expect(subject.amount_contributed_from(small_donor)).to eq 600
     end
   end
+
+  context 'basic' do
+    let(:project) { create :project }
+
+    it "doesn't have mangopay_wallet_id" do
+      expect(project.mangopay_wallet_id).to eq nil
+    end
+
+    it 'initializes mangopay_wallet' do
+      VCR.use_cassette('create_mangopay_wallet') do
+        project.mangopay_wallet
+      end
+      expect(project.mangopay_wallet_id).to_not eq nil
+    end
+  end
 end
