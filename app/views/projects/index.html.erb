@@ -10,6 +10,8 @@
       </label>
     <% end %>
 
+    <%= select("q", "aasm_state_eq", aasm_state_choice, { include_blank: true }) %>
+
     <%= f.submit %>
   <% end %>
 </div>
