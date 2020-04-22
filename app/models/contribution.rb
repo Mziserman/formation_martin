@@ -22,7 +22,7 @@ class Contribution < ApplicationRecord
   validate :reward_must_be_available
   validate :amount_must_be_above_threshold
 
-  enum state: { processing: 0, accepted: 1, denied: 2 }
+  enum state: %i[processing accepted denied]
 
   scope :not_denied, -> { where.not(state: 2) }
 
