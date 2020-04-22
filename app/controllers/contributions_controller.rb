@@ -14,7 +14,7 @@ class ContributionsController < ApplicationController
     resource = Contribution.new(permitted_params)
     resource.user = current_user
     resource.project = @project
-    resource.amount = params[:amount].to_f * 100
+    resource.amount = permitted_params[:amount].to_f * 100
 
     create_transaction = Contributions::CreateTransaction.new
     create_transaction.call(

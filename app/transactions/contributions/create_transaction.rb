@@ -5,6 +5,7 @@ class Contributions::CreateTransaction
 
   step :validate, with: 'contributions.validate'
   step :create_mangopay_payin
+  step :set_mangopay_payin_id
   step :save, with: 'contributions.save'
 
   private
@@ -29,13 +30,13 @@ class Contributions::CreateTransaction
     Success(input)
   end
 
-  def set_mangopay_wallet_id(input)
+  def set_mangopay_payin_id(input)
     input[:resource].mangopay_payin_id = input[:mangopay_payin]['Id']
 
     Success(input)
   end
 
   def return_url(resource)
-    "#{ENV['ROOT_URL']}/projects/#{resource.project.id}/contributions/#{resource.id}/validate"
+    "#{ENV['ROOT_URL']}/projects/#{resource.project.id}/contributions/validate"
   end
 end
