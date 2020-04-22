@@ -1,3 +1,10 @@
+.float-left {
+  float: left;
+}
+.float-right {
+  float: right;
+}
+
 .main {
   &.container {
     padding-top: 20px;
@@ -11,12 +18,12 @@ img {
 
 form {
   input[type=date] {
-    &.form-control {
+    &.form-control.user_form {
       width: calc(80% - 22px);
     }
   }
   select{
-    &.form-control {
+    &.form-control.user_form {
       width: calc(80% - 22px);
     }
   }

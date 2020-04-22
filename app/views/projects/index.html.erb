@@ -1,19 +1,27 @@
 <div class='row'>
-  <%= search_form_for @q do |f| %>
-    <%= f.label :name_or_small_blurb_or_long_blurb_or_owners_first_name_or_owners_last_name_cont, 'Chercher un projet : ' %>
-    <%= f.search_field :name_or_small_blurb_or_long_blurb_or_owners_first_name_or_owners_last_name_cont %>
+  <div class='form-group container my-2 my-lg-'>
+    <%= search_form_for @q do |f| %>
 
-    <% ActsAsTaggableOn::Tag.find_each do |tag| %>
-      <br />
-      <label>
-        <%= check_box_tag('q[categories][]', tag.name, params.dig(:q, :categories)&.include?(tag.name)) %> <%= tag.name %>
-      </label>
+      <%= f.label :name_or_small_blurb_or_long_blurb_or_owners_first_name_or_owners_last_name_cont, 'Chercher un projet : ' %>
+      <%= f.search_field :name_or_small_blurb_or_long_blurb_or_owners_first_name_or_owners_last_name_cont, class: 'form-control' %>
+
+      <br/>
+
+      <label class='pr-2'>Filtrer l'état du projet :</label>
+      <%= select("q", "aasm_state_eq", aasm_state_choice, { include_blank: true }, class: 'form-control') %>
+
+      <br/>
+
+      Filtrer par catégories :
+      <% ActsAsTaggableOn::Tag.find_each do |tag| %>
+        <label class='pl-2'>
+          <%= check_box_tag('q[categories][]', tag.name, params.dig(:q, :categories)&.include?(tag.name)) %> <%= tag.name %>
+        </label>
+      <% end %>
+
+      <%= f.submit class: 'float-right form-control btn btn-primary mb-2' %>
     <% end %>
-
-    <%= select("q", "aasm_state_eq", aasm_state_choice, { include_blank: true }) %>
-
-    <%= f.submit %>
-  <% end %>
+  </div>
 </div>
 <div class='row'>
   <% @projects.each do |project| %>

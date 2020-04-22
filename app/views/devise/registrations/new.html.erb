@@ -6,28 +6,28 @@
     <%= f.email_field :email,
       autofocus: true,
       autocomplete: 'email',
-      class: classes_for_field(resource, :email),
+      class: classes_for_field(resource, :email, ['user_form']),
       placeholder: 'email@mail.ail' %>
     <%= errors_for_field(resource, :email) %>
 
     <%= f.label :first_name, 'Prénom', class: 'col-sm-3 col-form-label'%><br />
     <%= f.text_field :first_name,
       autocomplete: 'given-name',
-      class: classes_for_field(resource, :first_name),
+      class: classes_for_field(resource, :first_name, ['user_form']),
       placeholder: 'Martin' %>
     <%= errors_for_field(resource, :first_name) %>
 
     <%= f.label :last_name, 'Nom de famille', class: 'col-sm-3 col-form-label'%><br />
     <%= f.text_field :last_name,
       autocomplete: 'family-name',
-      class: classes_for_field(resource, :last_name),
+      class: classes_for_field(resource, :last_name, ['user_form']),
       placeholder: 'Ziserman' %>
     <%= errors_for_field(resource, :last_name) %>
 
     <%= f.label :birthdate, 'Date de naissance', class: 'col-sm-3 col-form-label'%><br />
     <%= f.date_field :birthdate,
       autocomplete: 'bday',
-      class: classes_for_field(resource, :birthdate) %>
+      class: classes_for_field(resource, :birthdate, ['user_form'])%>
     <%= errors_for_field(resource, :birthdate) %>
 
     <%= f.label :password, 'Mot de passe',  class: 'col-sm-3 col-form-label'%>
@@ -36,14 +36,14 @@
     <% end %><br />
     <%= f.password_field :password,
       autocomplete: 'new-password',
-      class: classes_for_field(resource, :password),
+      class: classes_for_field(resource, :password, ['user_form']),
       placeholder: '********' %>
     <%= errors_for_field(resource, :password) %>
 
     <%= f.label :password_confirmation, 'Confirmation du mot de passe', class: 'col-sm-3 col-form-label'%><br />
     <%= f.password_field :password_confirmation,
       autocomplete: 'new-password',
-      class: classes_for_field(resource, :password_confirmation),
+      class: classes_for_field(resource, :password_confirmation, ['user_form']),
       placeholder: '********' %>
     <%= errors_for_field(resource, :password_confirmation) %>
 
