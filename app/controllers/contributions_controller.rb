@@ -62,6 +62,6 @@ class ContributionsController < ApplicationController
   end
 
   def authorize_contribution_user!
-    redirect_to root unless current_user == @contribution.user
+    redirect_to root_path unless current_user == @contribution.user
   end
 end
