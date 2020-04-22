@@ -8,6 +8,10 @@ class Projects::Container
       Save.new
     end
 
+    register 'validate' do
+      Validate.new
+    end
+
     register 'handle_aasm_event' do
       ActiveAdmin::HandleAasmEvent.new
     end

@@ -7,5 +7,9 @@ class Contributions::Container
     register 'save' do
       Save.new
     end
+
+    register 'validate' do
+      Validate.new
+    end
   end
 end

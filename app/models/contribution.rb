@@ -44,39 +44,6 @@ class Contribution < ApplicationRecord
     end
   end
 
-  def mangopay_payin
-    if mangopay_payin_id.nil?
-      create_mangopay_payin
-    else
-      fetch_mangopay_payin
-    end
-  end
-
-  def create_mangopay_payin
-    mangopay_payin = MangoPay::PayIn::Card::Web.create(
-      AuthorId: user.mangopay_id || user.mangopay['Id'],
-      CreditedWalletId: project.mangopay_wallet_id || project.mangopay_wallet['Id'],
-      CardType: 'CB_VISA_MASTERCARD',
-      Culture: 'FR',
-      DebitedFunds: {
-        Currency: 'EUR',
-        Amount: amount
-      },
-      Fees: {
-        Currency: 'EUR',
-        Amount: 0
-      },
-      ReturnURL: "#{ENV['ROOT_URL']}/projects/#{project.id}/contributions/#{id}/validate"
-    )
-
-    update(mangopay_payin_id: mangopay_payin['Id'])
-    mangopay_payin
-  end
-
-  def fetch_mangopay_payin
-    MangoPay::PayIn.fetch(mangopay_payin_id)
-  end
-
   def fetch_and_update_state
     update(state: mangopay_payin['Status'] == 'SUCCEEDED' ? 1 : 2)
   end

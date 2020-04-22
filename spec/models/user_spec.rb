@@ -19,13 +19,10 @@ RSpec.describe User, type: :model do
   context 'basic' do
     let(:user) { create :user }
 
-    it "doesn't have mangopay_id" do
-      expect(user.mangopay_id).to eq nil
-    end
-
-    it 'initializes mangopay' do
+    it 'initializes mangopay when needed' do
+      expect(user.attributes['mangopay_id']).to eq nil
       VCR.use_cassette('create_mangopay_user') do
-        user.mangopay
+        user.mangopay_id
       end
       expect(user.mangopay_id).to_not eq nil
     end

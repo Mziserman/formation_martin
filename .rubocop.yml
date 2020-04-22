@@ -6,3 +6,6 @@ Style/Documentation:
 
 Style/NegatedIf:
   Enabled: false
+
+Naming/AccessorMethodName:
+  Enabled: false

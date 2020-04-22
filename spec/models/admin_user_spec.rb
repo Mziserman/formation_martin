@@ -14,13 +14,10 @@ RSpec.describe AdminUser, type: :model do
   context 'basic' do
     let(:admin_user) { create :admin_user }
 
-    it "doesn't have mangopay_id" do
-      expect(admin_user.mangopay_id).to eq nil
-    end
-
-    it 'initializes mangopay' do
+    it 'initializes mangopay when needed' do
+      expect(admin_user.attributes['mangopay_id']).to eq nil
       VCR.use_cassette('create_mangopay_user') do
-        admin_user.mangopay
+        admin_user.mangopay_id
       end
       expect(admin_user.mangopay_id).to_not eq nil
     end

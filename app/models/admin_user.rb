@@ -8,29 +8,10 @@ class AdminUser < ApplicationRecord
   has_many :project_ownerships, dependent: :destroy
   has_many :projects, through: :project_ownerships
 
-  def mangopay
-    if mangopay_id.nil?
-      create_mangopay
-    else
-      fetch_mangopay
-    end
-  end
+  def mangopay_id
+    return super unless super.nil?
 
-  def create_mangopay
-    mangopay_user = MangoPay::NaturalUser.create(
-      Email: email,
-      FirstName: first_name,
-      LastName: last_name,
-      Nationality: 'FR',
-      CountryOfResidence: 'FR',
-      Birthday: birthdate.to_time.to_i
-    )
-
-    update(mangopay_id: mangopay_user['Id'])
-    mangopay_user
-  end
-
-  def fetch_mangopay
-    MangoPay::NaturalUser.fetch(mangopay_id)
+    Users::CreateMangopayTransaction.new.call(resource: self)
+    super
   end
 end
