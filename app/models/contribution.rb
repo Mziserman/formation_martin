@@ -24,8 +24,6 @@ class Contribution < ApplicationRecord
 
   enum state: %i[processing accepted denied]
 
-  scope :not_denied, -> { where.not(state: 2) }
-
   def reward_must_be_available
     if reward.present? && reward.limited?
       errors.add(:reward, "n'est pas disponible") if reward.stock <= 0
