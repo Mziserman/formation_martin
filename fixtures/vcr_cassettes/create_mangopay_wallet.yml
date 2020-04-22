@@ -5,12 +5,12 @@ http_interactions:
     uri: https://api.sandbox.mangopay.com/v2.01/5943/wallets
     body:
       encoding: UTF-8
-      string: '{"Currency":"EUR","Description":"Roussel et Masson","Owners":["79172994"]}'
+      string: '{"Currency":"EUR","Description":"Lecomte et Mercier","Owners":["79183862"]}'
     headers:
       User-Agent:
       - MANGOPAY V2 RubyBindings/3.0.33
       Authorization:
-      - bearer a48bc41695994cafaef5a8a501be2167
+      - bearer fe74e487f1c74f7694d9e79f848d3326
       Content-Type:
       - application/json
       X-Mangopay-Client-User-Agent:
@@ -27,7 +27,7 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Wed, 22 Apr 2020 14:55:14 GMT
+      - Wed, 22 Apr 2020 19:44:55 GMT
       Content-Type:
       - application/json; charset=utf-8
       Transfer-Encoding:
@@ -35,8 +35,8 @@ http_interactions:
       Connection:
       - keep-alive
       Set-Cookie:
-      - __cfduid=dec849f0cebb391aa27744f785123a2a41587567314; expires=Fri, 22-May-20
-        14:55:14 GMT; path=/; domain=.mangopay.com; HttpOnly; SameSite=Lax
+      - __cfduid=d84c5623402e7e478d56b6a60b001ab041587584695; expires=Fri, 22-May-20
+        19:44:55 GMT; path=/; domain=.mangopay.com; HttpOnly; SameSite=Lax
       Cache-Control:
       - no-cache
       Pragma:
@@ -44,20 +44,20 @@ http_interactions:
       Expires:
       - "-1"
       X-Ratelimit:
-      - '16'
-      - '25'
-      - '55'
-      - '59'
+      - '7'
+      - '7'
+      - '7'
+      - '85'
       X-Ratelimit-Remaining:
-      - '105541'
-      - '2284'
-      - '4475'
-      - '8745'
+      - '105515'
+      - '2293'
+      - '4493'
+      - '8793'
       X-Ratelimit-Reset:
-      - '1587568200'
-      - '1587569100'
-      - '1587570900'
-      - '1587653640'
+      - '1587585540'
+      - '1587586440'
+      - '1587588240'
+      - '1587670980'
       Cf-Cache-Status:
       - DYNAMIC
       Expect-Ct:
@@ -65,12 +65,12 @@ http_interactions:
       Server:
       - cloudflare
       Cf-Ray:
-      - 58802f41abf5a849-CDG
+      - 5881d79bff63ee64-CDG
       Cf-Request-Id:
-      - 0243fbdd060000a84925381200000001
+      - 024505157f0000ee6402b58200000001
     body:
       encoding: ASCII-8BIT
-      string: '{"Description":"Roussel et Masson","Owners":["79172994"],"Balance":{"Currency":"EUR","Amount":0},"Currency":"EUR","FundsType":"DEFAULT","Id":"79172998","Tag":null,"CreationDate":1587567314}'
+      string: '{"Description":"Lecomte et Mercier","Owners":["79183862"],"Balance":{"Currency":"EUR","Amount":0},"Currency":"EUR","FundsType":"DEFAULT","Id":"79183864","Tag":null,"CreationDate":1587584695}'
     http_version: null
-  recorded_at: Wed, 22 Apr 2020 14:55:14 GMT
+  recorded_at: Wed, 22 Apr 2020 19:44:55 GMT
 recorded_with: VCR 5.1.0

@@ -2,12 +2,7 @@
 
 RSpec.describe Contributions::CreateTransaction do
   subject do
-    contribution.project = project
-    contribution.user = user
-
-    Contributions::CreateTransaction.new.call(
-      resource: contribution
-    )
+    Contributions::ValidateTransaction.new.call(resource: contribution)
   end
 
   context 'with valid attributes' do
@@ -28,27 +23,31 @@ RSpec.describe Contributions::CreateTransaction do
     end
 
     let(:project) do
-      VCR.use_cassette('create_mangopay_wallet') do
-        resource = build(:project)
-        resource.owners << owner
+      resource = build(:project)
+      resource.owners << owner
 
-        Projects::CreateTransaction.new.call(resource: resource).success[:resource]
+      VCR.use_cassette('create_mangopay_wallet') do
+        Projects::CreateTransaction.new.call(
+          resource: resource
+        ).success[:resource]
       end
     end
 
-    let(:contribution) { build(:contribution) }
+    let(:contribution) do
+      resource = build(:contribution)
+      resource.project = project
+      resource.user = user
 
-    it 'gets mangopay payin id' do
       VCR.use_cassette('create_mangopay_payin_card_web') do
-        subject
+        Contributions::CreateTransaction.new.call(
+          resource: resource
+        ).success[:resource]
       end
-
-      expect(Contribution.last.mangopay_payin_id).to_not eq nil
     end
 
     it 'creates a contribution' do
-      VCR.use_cassette('create_mangopay_payin_card_web') do
-        expect { subject }.to change { Contribution.count }.by(1)
+      VCR.use_cassette('validate_mangopay_transaction') do
+        expect { subject }.to(change { contribution.state })
       end
     end
   end
