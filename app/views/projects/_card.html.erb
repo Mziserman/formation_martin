@@ -1,6 +1,7 @@
 
   <div class="card border">
     <div class='card-header flex-row d-flex justify-content-between align-items-center'>
+      <%= image_tag(project.landscape&.url, height: 200) if project.landscape %>
       <div>
         <%= link_to project.name, project_path(project) %>
       </div>
