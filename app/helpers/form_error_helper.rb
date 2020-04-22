@@ -11,7 +11,7 @@ module FormErrorHelper
     end
   end
 
-  def classes_for_field(resource, field, added_classes)
+  def classes_for_field(resource, field, added_classes = [])
     (
       ['form-control', error_class_if_needed(resource, field)] + added_classes
     ).reject(&:blank?).join(' ')
