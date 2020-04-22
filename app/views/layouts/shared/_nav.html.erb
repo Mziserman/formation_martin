@@ -8,7 +8,7 @@
 
     <div class="collapse navbar-collapse" id="navbarColor01">
       <ul class="navbar-nav mr-auto">
-        <li class="nav-item <%= current_page?(controller: 'projects') ? 'active' : '' %>">
+        <li class="nav-item <%= current_page?(projects_path) ? 'active' : '' %>">
           <%= link_to 'Projets', projects_path, { class: "nav-link" } %>
         </li>
       </ul>
