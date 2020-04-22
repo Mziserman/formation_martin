@@ -3,7 +3,7 @@
 class Projects::CreateTransaction
   include Dry::Transaction(container: Projects::Container)
 
-  step :create, with: 'projects.create'
+  step :save, with: 'projects.save'
   step :create_wallet
 
   private

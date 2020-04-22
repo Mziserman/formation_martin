@@ -3,7 +3,7 @@
 class Users::CreateTransaction
   include Dry::Transaction(container: Users::Container)
 
-  step :create, with: 'users.create'
+  step :save, with: 'users.save'
   tee :send_welcome_email
 
   private

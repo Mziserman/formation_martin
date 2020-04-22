@@ -3,7 +3,7 @@
 class Contributions::CreateTransaction
   include Dry::Transaction(container: Contributions::Container)
 
-  step :create, with: 'contributions.create'
+  step :save, with: 'contributions.save'
   tee :create_mangopay_payin
 
   private

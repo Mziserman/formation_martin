@@ -11,15 +11,14 @@ class ContributionsController < ApplicationController
   end
 
   def create
-    params = permitted_params.tap do |params|
-      params[:user_id] = current_user.id
-      params[:project_id] = @project.id
-      params[:amount] = params[:amount].to_f * 100
-    end
+    resource = Contribution.new(permitted_params)
+    resource.user = current_user
+    resource.project = @project
+    resource.amount = params[:amount].to_f * 100
+
     create_transaction = Contributions::CreateTransaction.new
     create_transaction.call(
-      params: params,
-      model: Contribution
+      resource: resource
     ) do |result|
       result.success do |output|
         redirect_to output[:mangopay_payin]['TemplateURL']
