@@ -2,7 +2,7 @@
 
 RSpec.describe Users::CreateTransaction do
   subject do
-    Users::CreateTransaction.new.call(resource: User.new(attributes), model: User)
+    Users::CreateTransaction.new.call(resource: User.new(attributes))
   end
   context 'with valid attributes' do
     let(:attributes) { attributes_for(:user) }
