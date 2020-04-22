@@ -10,6 +10,8 @@
     </div>
     <div class="card-body">
       <%= render 'completion', project: project %>
-      <%= project.categories.pluck(:name).join(', ') %>
+      <% project.categories.pluck(:name).map do |category| %>
+        <%= render 'category', category: category %>
+      <% end %>
     </div>
   </div>
