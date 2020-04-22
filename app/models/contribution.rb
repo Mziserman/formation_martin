@@ -43,8 +43,4 @@ class Contribution < ApplicationRecord
       end
     end
   end
-
-  def fetch_and_update_state
-    update(state: mangopay_payin['Status'] == 'SUCCEEDED' ? 1 : 2)
-  end
 end

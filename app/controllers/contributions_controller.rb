@@ -4,7 +4,7 @@ class ContributionsController < ApplicationController
   before_action :set_project
   before_action :set_contribution, only: :validate
   before_action :authorize_user!, only: %i[new create]
-  before_action :authorize_contribution_user, only: :validate
+  before_action :authorize_contribution_user!, only: :validate
 
   def new
     @contribution = Contribution.new
@@ -31,8 +31,9 @@ class ContributionsController < ApplicationController
   end
 
   def validate
-    @contribution.fetch_and_update_state
-    flash = case @contribution.state
+    Contributions::ValidateTransaction.new.call(resource: @contribution)
+
+    flash = case @contribution.reload.state
             when 'accepted'
               { success: 'Merci pour votre donation !' }
             when 'denied'
@@ -58,7 +59,9 @@ class ContributionsController < ApplicationController
   end
 
   def set_contribution
-    @contribution = Contribution.find(params[:contribution_id])
+    @contribution = @project.contributions.find_by(
+      mangopay_payin_id: params[:transactionId]
+    )
   end
 
   def authorize_contribution_user!
