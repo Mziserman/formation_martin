@@ -6,7 +6,7 @@
   <%= f.number_field :amount,
     autofocus: true,
     autocomplete: 'amount',
-    class: classes_for_field(@contribution, :amount),
+    class: classes_for_field(@contribution, :amount, ['full-width']),
     placeholder: '999999',
     step: "0.01",
     value: @contribution.amount ? @contribution.amount.to_f / 100 : nil %>
