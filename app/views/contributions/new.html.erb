@@ -7,7 +7,7 @@
     autofocus: true,
     autocomplete: 'amount',
     class: classes_for_field(@contribution, :amount),
-    placeholder: '999999',
+    placeholder: '19,99 €',
     step: "0.01",
     value: @contribution.amount ? @contribution.amount.to_f / 100 : nil %>
   <%= errors_for_field(@contribution, :amount) %>
