@@ -5,8 +5,8 @@
   float: right;
 }
 
-.main {
-  &.container {
+.container {
+  &.main {
     padding-top: 20px;
   }
 }
@@ -29,6 +29,21 @@ img {
 
 a {
   color: #1859bc
+}
+
+.profile-container {
+  background: white;
+  padding: 1px;
+  max-width: 25%;
+  position: absolute;
+  bottom: 10px;
+  left: 25px;
+}
+
+.category-list {
+  position: absolute;
+  bottom: 20px;
+  left: 20px;
 }
 
 .card-img-overlay {

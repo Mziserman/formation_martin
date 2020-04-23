@@ -4,15 +4,16 @@
     <% if @project.landscape.present? %>
       <%= render 'layouts/shared/image', url: @project.landscape.url %>
     <% end %>
+
+    <% if @project.thumbnail.present? %>
+      <div class='profile-container'>
+        <%= render 'layouts/shared/image', url: @project.thumbnail.url %>
+      </div>
+    <% end %>
   </div>
 </div>
 <div class='row'>
-  <div class='col-sm-3'>
-    <% if @project.thumbnail.present? %>
-      <%= render 'layouts/shared/image', url: @project.thumbnail.url %>
-    <% end %>
-  </div>
-  <div class='col-sm-9'>
+  <div class='col-sm-12'>
     <div class='flex-row d-flex justify-content-between align-items-center'>
       <div class='p-2'>
         <h1><%= @project.name %></h1>
