@@ -33,7 +33,7 @@ class ContributionsController < ApplicationController
   def validate
     Contributions::ValidateTransaction.new.call(resource: @contribution)
 
-    flash = case @contribution.reload.state
+    flash = case @contribution.state
             when 'accepted'
               { success: 'Merci pour votre donation !' }
             when 'denied'
