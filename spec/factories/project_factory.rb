@@ -32,7 +32,7 @@ FactoryBot.define do
         end
       end
 
-      after(:create) do |project, evaluator|
+      after(:build) do |project, evaluator|
         thresholds = [0.01, 0.05, 0.1, 0.15, 0.2, 0.3, 0.5]
         evaluator.rewards.each_with_index do |reward, index|
           r = reward.tap do |reward_hsh|
@@ -42,7 +42,7 @@ FactoryBot.define do
             end
           end
 
-          project.rewards.create r
+          project.rewards.new r
         end
       end
     end

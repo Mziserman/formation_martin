@@ -9,7 +9,7 @@ FactoryBot.define do
     limited { [true, false].sample }
     total_stock { nil }
 
-    after(:create) do |reward|
+    after(:build) do |reward|
       reward.total_stock = rand(1..100) if reward.limited
     end
 
