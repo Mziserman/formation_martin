@@ -29,7 +29,19 @@
 </div>
 <br />
 
-<p><%= @project.small_blurb %></p>
-<p><%= @project.long_blurb %></p>
+<div class='row'>
+  <div class='col-sm-8'>
+    <div class="pl-2">
+      <h3>Description :</h3>
+      <p><%= @project.long_blurb %></p>
+    </div>
+  </div>
 
+  <div class='col-sm-4'>
+    <h3>Contreparties :</h3>
+    <% @project.rewards.each do |reward| %>
+      <%= render 'reward', reward: reward %>
+    <% end %>
+  </div>
+</div>
 

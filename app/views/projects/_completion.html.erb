@@ -1,9 +1,9 @@
 <div class='flex-row d-flex justify-content-between align-items-center'>
   <span class='pb-2 pt-2'>Completion : <%= percent_print(project.completion) %></span>
   <span class='pb-2 pt-2'><%= currency_print(project.total_collected)%> / <%= currency_print(project.amount_wanted) %></span>
-  <span class='pb-2 pt-2'><%= link_to 'Donner', new_project_contribution_path(project) %></span>
+  <span class='pb-2 pt-2'><%= link_to 'Donner', new_project_contribution_path(project), class: 'btn btn-success' %></span>
 </div>
-<div class="progress">
+<div class="progress mt-2">
   <div class="progress-bar progress-bar-striped progress-bar-animated"
     role="progressbar"
     aria-valuenow="<%= project.completion * 100 %>"

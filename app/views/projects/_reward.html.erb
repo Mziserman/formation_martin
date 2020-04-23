@@ -1,0 +1,9 @@
+<div class='reward-card px-3 pt-3 pb-2 mb-3'>
+  <h4><%= reward.name %></h4>
+  <% if reward.limited %>
+    <p>Stock: <%= reward.total_stock - reward.contributions_count %> / <%= reward.total_stock %>
+  <% else %>
+    <p>Illimité</p>
+  <% end %>
+  <p><%= reward.blurb %></p>
+</div>
