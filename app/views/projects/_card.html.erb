@@ -6,17 +6,18 @@
         <%= link_to project.name, project_path(project) %>
       </span>
       <span class='float-right'>
-        <%= render 'badge', state: project.aasm_state %>
+        <%= render 'projects/badge', state: project.aasm_state %>
       </span>
       <div class='category-list'>
         <% project.categories.pluck(:name).map do |category| %>
-          <%= render 'category', category: category %>
+          <%= render 'projects/category', category: category %>
         <% end %>
       </div>
     </div>
   </div>
   <div class="card-body">
-    <%= render 'completion', project: project %>
+    <%= render 'projects/completion', project: project %>
+    <%= yield %>
     <p><%= project.small_blurb %></p>
   </div>
 </div>

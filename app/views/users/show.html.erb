@@ -1,5 +1,35 @@
-<% if user_signed_in? %>
-  <%= render 'layouts/shared/greet_current_user' %>
-<% else %>
-  <%= render 'layouts/shared/greet_anonymous' %>
-<% end %>
+<h2>Les projets auquel j'ai participé :</h2>
+
+<br/>
+
+<div class='row'>
+
+</div>
+
+<div class='row'>
+  <% current_user.contributor_projects.includes(:contributions).each do |project| %>
+    <div class='col-sm-6'>
+      <%= render 'projects/card', project: project do %>
+        <%
+          amount = current_user.amount_contributed_to(project)
+          amount_print = currency_print(current_user.amount_contributed_to(project))
+          percent = percent_print(amount / project.total_collected)
+        %>
+        <p><b>Dont <%= amount_print %> venant de vous. Ça représente <%= percent %> du total ! Merci !</b></p>
+
+        <% rewards = current_user.rewards_for_project(project) %>
+        <% if rewards.present? %>
+          <p><b>Ces contributions vous ont permis d'obtenir : </b></p>
+          <% rewards.each do |reward| %>
+            - <%= reward.name %><br/>
+          <% end %>
+          <br/>
+        <% end %>
+      <% end %>
+    </div>
+  <% end %>
+</div>
+
+<br/>
+
+<%= link_to 'Éditer mon profil', edit_user_registration_path, class: 'btn btn-warning' %>

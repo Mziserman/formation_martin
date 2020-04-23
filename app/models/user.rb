@@ -11,14 +11,20 @@ class User < ApplicationRecord
 
   has_many :contributions, dependent: :nullify
   has_many :rewards, through: :contributions
-  has_many :contributor_projects, through: :contributions, source: :project
+  has_many :contributor_projects, -> { distinct },
+           through: :contributions, source: :project
 
   def name
     "#{first_name} #{last_name}"
   end
 
   def amount_contributed_to(project)
-    contributions.not_denied.where(project_id: project.id).sum(:amount)
+    contributions.accepted.where(project_id: project.id).sum(:amount)
+  end
+
+  def rewards_for_project(project)
+    contributions.includes(:reward).accepted.where(project_id: project.id)
+                 .map(&:reward).compact
   end
 
   def mangopay_id
