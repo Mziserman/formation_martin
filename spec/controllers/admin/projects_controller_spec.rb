@@ -80,7 +80,7 @@ RSpec.describe Admin::ProjectsController, type: :controller do
   describe 'POST create' do
     let(:params) { { project: valid_attributes } }
     subject do
-      VCR.use_cassette('create_mangopay_user') do
+      VCR.use_cassette('create_mangopay_wallet') do
         post :create, params: params
       end
     end
