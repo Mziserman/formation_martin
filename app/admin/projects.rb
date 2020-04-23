@@ -38,16 +38,10 @@ ActiveAdmin.register Project do
     end
 
     def create(_options = {})
-      params = permitted_params[:project].tap do |params|
-        params[:project_ownerships_attributes] = [
-          {
-            admin_user_id: current_admin_user.id
-          }
-        ]
-      end
+      resource = Project.new(permitted_params[:project])
+      resource.owners << current_admin_user
       Projects::CreateTransaction.new.call(
-        params: params,
-        model: Project
+        resource: resource
       ) do |transaction|
         transaction.success do |output|
           redirect_to admin_project_path(output[:resource])

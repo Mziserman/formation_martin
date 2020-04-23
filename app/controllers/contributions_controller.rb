@@ -4,22 +4,21 @@ class ContributionsController < ApplicationController
   before_action :set_project
   before_action :set_contribution, only: :validate
   before_action :authorize_user!, only: %i[new create]
-  before_action :authorize_contribution_user, only: :validate
+  before_action :authorize_contribution_user!, only: :validate
 
   def new
     @contribution = Contribution.new
   end
 
   def create
-    params = permitted_params.tap do |params|
-      params[:user_id] = current_user.id
-      params[:project_id] = @project.id
-      params[:amount] = params[:amount].to_f * 100
-    end
+    resource = Contribution.new(permitted_params)
+    resource.user = current_user
+    resource.project = @project
+    resource.amount = permitted_params[:amount].to_f * 100
+
     create_transaction = Contributions::CreateTransaction.new
     create_transaction.call(
-      params: params,
-      model: Contribution
+      resource: resource
     ) do |result|
       result.success do |output|
         redirect_to output[:mangopay_payin]['TemplateURL']
@@ -32,8 +31,9 @@ class ContributionsController < ApplicationController
   end
 
   def validate
-    @contribution.fetch_and_update_state
-    flash = case @contribution.state
+    Contributions::ValidateTransaction.new.call(resource: @contribution)
+
+    flash = case @contribution.reload.state
             when 'accepted'
               { success: 'Merci pour votre donation !' }
             when 'denied'
@@ -59,10 +59,12 @@ class ContributionsController < ApplicationController
   end
 
   def set_contribution
-    @contribution = Contribution.find(params[:contribution_id])
+    @contribution = @project.contributions.find_by(
+      mangopay_payin_id: params[:transactionId]
+    )
   end
 
   def authorize_contribution_user!
-    redirect_to root unless current_user == @contribution.user
+    redirect_to root_path unless current_user == @contribution.user
   end
 end

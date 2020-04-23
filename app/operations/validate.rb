@@ -2,12 +2,11 @@
 
 require 'dry/transaction/operation'
 
-class Create
+class Validate
   include Dry::Transaction::Operation
 
   def call(input)
-    input[:resource] = input[:model].new(input[:params])
-    if input[:resource].save
+    if input[:resource].valid?
       Success(input)
     else
       Failure(input)

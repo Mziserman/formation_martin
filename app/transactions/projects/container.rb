@@ -4,12 +4,12 @@ class Projects::Container
   extend Dry::Container::Mixin
 
   namespace 'projects' do
-    register 'create' do
-      Create.new
-    end
-
     register 'save' do
       Save.new
+    end
+
+    register 'validate' do
+      Validate.new
     end
 
     register 'handle_aasm_event' do

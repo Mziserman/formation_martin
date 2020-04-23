@@ -19,7 +19,22 @@ describe ContributionsController, '#new', type: :controller do
 end
 
 describe ContributionsController, '#create', type: :controller do
-  let(:project) { create :project }
+  let(:owner) do
+    admin_user = create(:admin_user)
+    VCR.use_cassette('create_mangopay_user') do
+      admin_user.mangopay_id
+    end
+    admin_user
+  end
+  let(:project) do
+    VCR.use_cassette('create_mangopay_wallet') do
+      resource = build(:project)
+      resource.owners << owner
+
+      Projects::CreateTransaction.new.call(resource: resource).success[:resource]
+    end
+  end
+
   let(:attributes) { attributes_for(:contribution, amount: rand(100..100_000_000)) }
 
   subject do

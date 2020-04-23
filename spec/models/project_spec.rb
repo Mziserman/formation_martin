@@ -310,19 +310,6 @@ RSpec.describe Project, type: :model do
     end
   end
 
-  context 'basic' do
-    it "doesn't have mangopay_wallet_id" do
-      expect(subject.mangopay_wallet_id).to eq nil
-    end
-
-    it 'initializes mangopay_wallet' do
-      VCR.use_cassette('create_mangopay_wallet') do
-        subject.mangopay_wallet
-      end
-      expect(subject.mangopay_wallet_id).to_not eq nil
-    end
-  end
-
   context 'with one denied and one processing contribution' do
     let(:traits) { [:with_contributions] }
     let(:big_donor) { create :user }

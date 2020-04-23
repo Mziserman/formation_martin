@@ -4,7 +4,7 @@ FactoryBot.define do
   factory :contribution do
     project
     user
-    reward
+    amount { rand(100..10_000) }
 
     before(:create) do |contribution|
       contribution.project = create :project unless contribution.project.nil?

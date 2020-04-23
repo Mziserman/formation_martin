@@ -4,8 +4,8 @@ class Users::Container
   extend Dry::Container::Mixin
 
   namespace 'users' do
-    register 'create' do
-      Create.new
+    register 'save' do
+      Save.new
     end
   end
 end

@@ -3,16 +3,11 @@
 if Rails.env.development?
   include FactoryBot::Syntax::Methods
 
-  users = 1.upto(3).map do |_index|
-    create :user
-  end
-
-  owners = 1.upto(3).map do |_index|
-    create :admin_user
-  end
+  create_list :user, 3
+  owners = create_list(:admin_user, 3)
   categories = %w[it finance green startup gadget]
 
-  1.upto(3).map do |_index|
+  3.times do
     create(
       :project,
       :with_categories,

@@ -3,13 +3,40 @@
 class Contributions::CreateTransaction
   include Dry::Transaction(container: Contributions::Container)
 
-  step :create, with: 'contributions.create'
-  tee :create_mangopay_payin
+  step :validate, with: 'contributions.validate'
+  step :create_mangopay_payin
+  step :set_mangopay_payin_id
+  step :save, with: 'contributions.save'
 
   private
 
   def create_mangopay_payin(input)
-    input[:mangopay_payin] = input[:resource].create_mangopay_payin
+    input[:mangopay_payin] = MangoPay::PayIn::Card::Web.create(
+      AuthorId: input[:resource].user.mangopay_id,
+      CreditedWalletId: input[:resource].project.mangopay_wallet_id,
+      CardType: 'CB_VISA_MASTERCARD',
+      Culture: 'FR',
+      DebitedFunds: {
+        Currency: 'EUR',
+        Amount: input[:resource].amount
+      },
+      Fees: {
+        Currency: 'EUR',
+        Amount: 0
+      },
+      ReturnURL: return_url(input[:resource])
+    )
+
     Success(input)
+  end
+
+  def set_mangopay_payin_id(input)
+    input[:resource].mangopay_payin_id = input[:mangopay_payin]['Id']
+
+    Success(input)
+  end
+
+  def return_url(resource)
+    "#{ENV['ROOT_URL']}/projects/#{resource.project.id}/contributions/validate"
   end
 end

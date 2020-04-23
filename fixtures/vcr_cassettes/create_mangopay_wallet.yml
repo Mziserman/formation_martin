@@ -2,88 +2,15 @@
 http_interactions:
 - request:
     method: post
-    uri: https://api.sandbox.mangopay.com/v2.01/5943/users/natural
-    body:
-      encoding: UTF-8
-      string: '{"Email":"bette@cummings.com","FirstName":"Mathis","LastName":"Moreau","Nationality":"FR","CountryOfResidence":"FR","Birthday":-782355600}'
-    headers:
-      User-Agent:
-      - MANGOPAY V2 RubyBindings/3.0.33
-      Authorization:
-      - bearer d335fec7316d4efb99902d8a38fb4c0a
-      Content-Type:
-      - application/json
-      X-Mangopay-Client-User-Agent:
-      - '{"bindings_version":"3.0.33","lang":"ruby","lang_version":"2.6.2 p47 (2019-03-13)","platform":"x86_64-darwin19","uname":"Darwin
-        pc64.home 19.0.0 Darwin Kernel Version 19.0.0: Wed Sep 25 20:18:50 PDT 2019;
-        root:xnu-6153.11.26~2/RELEASE_X86_64 x86_64"}'
-      Accept-Encoding:
-      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
-      Accept:
-      - "*/*"
-  response:
-    status:
-      code: 200
-      message: OK
-    headers:
-      Date:
-      - Tue, 21 Apr 2020 08:56:06 GMT
-      Content-Type:
-      - application/json; charset=utf-8
-      Transfer-Encoding:
-      - chunked
-      Connection:
-      - keep-alive
-      Set-Cookie:
-      - __cfduid=d5cc1c60348470958e2f0340b351ad2d11587459366; expires=Thu, 21-May-20
-        08:56:06 GMT; path=/; domain=.mangopay.com; HttpOnly; SameSite=Lax
-      Cache-Control:
-      - no-cache
-      Pragma:
-      - no-cache
-      Expires:
-      - "-1"
-      X-Ratelimit:
-      - '155'
-      - '16'
-      - '16'
-      - '29'
-      X-Ratelimit-Remaining:
-      - '105445'
-      - '2284'
-      - '4484'
-      - '8771'
-      X-Ratelimit-Reset:
-      - '1587460260'
-      - '1587461160'
-      - '1587462960'
-      - '1587545700'
-      Cf-Cache-Status:
-      - DYNAMIC
-      Expect-Ct:
-      - max-age=604800, report-uri="https://report-uri.cloudflare.com/cdn-cgi/beacon/expect-ct"
-      Server:
-      - cloudflare
-      Cf-Ray:
-      - 5875e3cdbd77ee4c-CDG
-      Cf-Request-Id:
-      - 023d8cb4900000ee4c98a34200000001
-    body:
-      encoding: ASCII-8BIT
-      string: '{"Address":{"AddressLine1":null,"AddressLine2":null,"City":null,"Region":null,"PostalCode":null,"Country":null},"FirstName":"Mathis","LastName":"Moreau","Birthday":-782355600,"Nationality":"FR","CountryOfResidence":"FR","Occupation":null,"IncomeRange":null,"ProofOfIdentity":null,"ProofOfAddress":null,"Capacity":"NORMAL","PersonType":"NATURAL","Email":"bette@cummings.com","KYCLevel":"LIGHT","Id":"79093685","Tag":null,"CreationDate":1587459366}'
-    http_version: null
-  recorded_at: Tue, 21 Apr 2020 08:56:06 GMT
-- request:
-    method: post
     uri: https://api.sandbox.mangopay.com/v2.01/5943/wallets
     body:
       encoding: UTF-8
-      string: '{"Currency":"EUR","Description":"Perrot et Prévost","Owners":["79093685"]}'
+      string: '{"Currency":"EUR","Description":"Lecomte et Mercier","Owners":["79183862"]}'
     headers:
       User-Agent:
       - MANGOPAY V2 RubyBindings/3.0.33
       Authorization:
-      - bearer d335fec7316d4efb99902d8a38fb4c0a
+      - bearer fe74e487f1c74f7694d9e79f848d3326
       Content-Type:
       - application/json
       X-Mangopay-Client-User-Agent:
@@ -100,7 +27,7 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Tue, 21 Apr 2020 08:56:07 GMT
+      - Wed, 22 Apr 2020 19:44:55 GMT
       Content-Type:
       - application/json; charset=utf-8
       Transfer-Encoding:
@@ -108,8 +35,8 @@ http_interactions:
       Connection:
       - keep-alive
       Set-Cookie:
-      - __cfduid=defad5f81c3f2ff358fd49bff9ec13b261587459366; expires=Thu, 21-May-20
-        08:56:06 GMT; path=/; domain=.mangopay.com; HttpOnly; SameSite=Lax
+      - __cfduid=d84c5623402e7e478d56b6a60b001ab041587584695; expires=Fri, 22-May-20
+        19:44:55 GMT; path=/; domain=.mangopay.com; HttpOnly; SameSite=Lax
       Cache-Control:
       - no-cache
       Pragma:
@@ -117,20 +44,20 @@ http_interactions:
       Expires:
       - "-1"
       X-Ratelimit:
-      - '156'
-      - '17'
-      - '17'
-      - '30'
+      - '7'
+      - '7'
+      - '7'
+      - '85'
       X-Ratelimit-Remaining:
-      - '105444'
-      - '2283'
-      - '4483'
-      - '8770'
+      - '105515'
+      - '2293'
+      - '4493'
+      - '8793'
       X-Ratelimit-Reset:
-      - '1587460260'
-      - '1587461160'
-      - '1587462960'
-      - '1587545700'
+      - '1587585540'
+      - '1587586440'
+      - '1587588240'
+      - '1587670980'
       Cf-Cache-Status:
       - DYNAMIC
       Expect-Ct:
@@ -138,13 +65,12 @@ http_interactions:
       Server:
       - cloudflare
       Cf-Ray:
-      - 5875e3d329fa6966-CDG
+      - 5881d79bff63ee64-CDG
       Cf-Request-Id:
-      - 023d8cb7fd000069669b29b200000001
+      - 024505157f0000ee6402b58200000001
     body:
       encoding: ASCII-8BIT
-      string: !binary |-
-        eyJEZXNjcmlwdGlvbiI6IlBlcnJvdCBldCBQcsOpdm9zdCIsIk93bmVycyI6WyI3OTA5MzY4NSJdLCJCYWxhbmNlIjp7IkN1cnJlbmN5IjoiRVVSIiwiQW1vdW50IjowfSwiQ3VycmVuY3kiOiJFVVIiLCJGdW5kc1R5cGUiOiJERUZBVUxUIiwiSWQiOiI3OTA5MzY4NiIsIlRhZyI6bnVsbCwiQ3JlYXRpb25EYXRlIjoxNTg3NDU5MzY2fQ==
+      string: '{"Description":"Lecomte et Mercier","Owners":["79183862"],"Balance":{"Currency":"EUR","Amount":0},"Currency":"EUR","FundsType":"DEFAULT","Id":"79183864","Tag":null,"CreationDate":1587584695}'
     http_version: null
-  recorded_at: Tue, 21 Apr 2020 08:56:07 GMT
+  recorded_at: Wed, 22 Apr 2020 19:44:55 GMT
 recorded_with: VCR 5.1.0
