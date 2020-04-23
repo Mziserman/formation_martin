@@ -6,7 +6,7 @@ FactoryBot.define do
     user
     amount { rand(100..10_000) }
 
-    before(:create) do |contribution|
+    after(:build) do |contribution|
       contribution.project = create :project unless contribution.project.nil?
       contribution.user = create :user unless contribution.user.nil?
 
