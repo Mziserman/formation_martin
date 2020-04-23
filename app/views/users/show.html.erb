@@ -1,0 +1,5 @@
+<% if user_signed_in? %>
+  <%= render 'layouts/shared/greet_current_user' %>
+<% else %>
+  <%= render 'layouts/shared/greet_anonymous' %>
+<% end %>

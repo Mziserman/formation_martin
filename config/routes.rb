@@ -19,6 +19,8 @@ Rails.application.routes.draw do
     sessions: 'users/sessions'
   }
 
+  get 'me', to: 'users#show'
+
   mount LetterOpenerWeb::Engine, at: '/letter_opener' if Rails.env.development?
 
   root to: 'home#index'
