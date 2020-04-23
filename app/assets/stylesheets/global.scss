@@ -20,3 +20,21 @@ img {
     text-decoration-line: none;
   }
 }
+
+.card-header {
+  overflow: hidden;
+  height: 200px;
+}
+
+a {
+  color: #1859bc
+}
+
+.card-img-overlay {
+  background: rgb(255,255,255);
+  background: linear-gradient(180deg,
+  rgba(255,255,255,0.8) 0%,
+  rgba(255,255,255,0.6) 10%,
+  rgba(255,255,255,0) 28%,
+  rgba(255,255,255,0) 100%);
+}
