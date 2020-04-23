@@ -37,6 +37,6 @@ class Contributions::CreateTransaction
   end
 
   def return_url(resource)
-    "#{ENV['ROOT_URL']}/projects/#{resource.project.id}/contributions/validate"
+    Rails.application.routes.url_helpers.project_contributions_validate_url(resource.project)
   end
 end

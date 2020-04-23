@@ -2,15 +2,69 @@
 http_interactions:
 - request:
     method: post
-    uri: https://api.sandbox.mangopay.com/v2.01/5943/wallets
+    uri: https://api.sandbox.mangopay.com/v2.01/oauth/token
     body:
       encoding: UTF-8
-      string: '{"Currency":"EUR","Description":"Lecomte et Mercier","Owners":["79183862"]}'
+      string: grant_type=client_credentials
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+      Authorization:
+      - Basic NTk0MzpzRTJ3VnFrb2lHa0hBOEVYYkw5OTFKS0x6eENRTTMyTnNjRVFoWmFYc1hvY2Q1eGJPZA==
+      Content-Type:
+      - application/x-www-form-urlencoded
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Thu, 23 Apr 2020 17:20:15 GMT
+      Content-Type:
+      - application/json;charset=UTF-8
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      Set-Cookie:
+      - __cfduid=ddc3ba0dc1693ce98d20b76597c6922b81587662415; expires=Sat, 23-May-20
+        17:20:15 GMT; path=/; domain=.mangopay.com; HttpOnly; SameSite=Lax
+      Cache-Control:
+      - no-cache
+      Pragma:
+      - no-cache
+      Expires:
+      - "-1"
+      Cf-Cache-Status:
+      - DYNAMIC
+      Expect-Ct:
+      - max-age=604800, report-uri="https://report-uri.cloudflare.com/cdn-cgi/beacon/expect-ct"
+      Server:
+      - cloudflare
+      Cf-Ray:
+      - 588941132c2aee2f-CDG
+      Cf-Request-Id:
+      - '0249a6fffa0000ee2f0fa96200000001'
+    body:
+      encoding: ASCII-8BIT
+      string: '{"access_token":"6eae21b9180a4c628f64839e9bd77934","token_type":"bearer","expires_in":1199}'
+    http_version: null
+  recorded_at: Thu, 23 Apr 2020 17:20:16 GMT
+- request:
+    method: post
+    uri: https://api.sandbox.mangopay.com/v2.01/5943/users/natural
+    body:
+      encoding: UTF-8
+      string: '{"Email":"michale@leannondurgan.info","FirstName":"Alicia","LastName":"Simon","Nationality":"FR","CountryOfResidence":"FR","Birthday":720831600}'
     headers:
       User-Agent:
       - MANGOPAY V2 RubyBindings/3.0.33
       Authorization:
-      - bearer fe74e487f1c74f7694d9e79f848d3326
+      - bearer 6eae21b9180a4c628f64839e9bd77934
       Content-Type:
       - application/json
       X-Mangopay-Client-User-Agent:
@@ -27,7 +81,7 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Wed, 22 Apr 2020 19:44:55 GMT
+      - Thu, 23 Apr 2020 17:20:16 GMT
       Content-Type:
       - application/json; charset=utf-8
       Transfer-Encoding:
@@ -35,8 +89,8 @@ http_interactions:
       Connection:
       - keep-alive
       Set-Cookie:
-      - __cfduid=d84c5623402e7e478d56b6a60b001ab041587584695; expires=Fri, 22-May-20
-        19:44:55 GMT; path=/; domain=.mangopay.com; HttpOnly; SameSite=Lax
+      - __cfduid=dac4457282d7ee50788305a341c785f531587662416; expires=Sat, 23-May-20
+        17:20:16 GMT; path=/; domain=.mangopay.com; HttpOnly; SameSite=Lax
       Cache-Control:
       - no-cache
       Pragma:
@@ -44,20 +98,20 @@ http_interactions:
       Expires:
       - "-1"
       X-Ratelimit:
-      - '7'
-      - '7'
-      - '7'
-      - '85'
+      - '104'
+      - '158'
+      - '76'
+      - '92'
       X-Ratelimit-Remaining:
-      - '105515'
-      - '2293'
-      - '4493'
-      - '8793'
+      - '105442'
+      - '2224'
+      - '4408'
+      - '8696'
       X-Ratelimit-Reset:
-      - '1587585540'
-      - '1587586440'
-      - '1587588240'
-      - '1587670980'
+      - '1587663300'
+      - '1587664200'
+      - '1587666000'
+      - '1587748740'
       Cf-Cache-Status:
       - DYNAMIC
       Expect-Ct:
@@ -65,12 +119,85 @@ http_interactions:
       Server:
       - cloudflare
       Cf-Ray:
-      - 5881d79bff63ee64-CDG
+      - 588941150f20edff-CDG
       Cf-Request-Id:
-      - 024505157f0000ee6402b58200000001
+      - '0249a701250000edff78143200000001'
     body:
       encoding: ASCII-8BIT
-      string: '{"Description":"Lecomte et Mercier","Owners":["79183862"],"Balance":{"Currency":"EUR","Amount":0},"Currency":"EUR","FundsType":"DEFAULT","Id":"79183864","Tag":null,"CreationDate":1587584695}'
+      string: '{"Address":{"AddressLine1":null,"AddressLine2":null,"City":null,"Region":null,"PostalCode":null,"Country":null},"FirstName":"Alicia","LastName":"Simon","Birthday":720831600,"Nationality":"FR","CountryOfResidence":"FR","Occupation":null,"IncomeRange":null,"ProofOfIdentity":null,"ProofOfAddress":null,"Capacity":"NORMAL","PersonType":"NATURAL","Email":"michale@leannondurgan.info","KYCLevel":"LIGHT","Id":"79239314","Tag":null,"CreationDate":1587662416}'
     http_version: null
-  recorded_at: Wed, 22 Apr 2020 19:44:55 GMT
+  recorded_at: Thu, 23 Apr 2020 17:20:16 GMT
+- request:
+    method: post
+    uri: https://api.sandbox.mangopay.com/v2.01/5943/wallets
+    body:
+      encoding: UTF-8
+      string: '{"Currency":"EUR","Description":"Mercier SA","Owners":["79239314"]}'
+    headers:
+      User-Agent:
+      - MANGOPAY V2 RubyBindings/3.0.33
+      Authorization:
+      - bearer 6eae21b9180a4c628f64839e9bd77934
+      Content-Type:
+      - application/json
+      X-Mangopay-Client-User-Agent:
+      - '{"bindings_version":"3.0.33","lang":"ruby","lang_version":"2.6.2 p47 (2019-03-13)","platform":"x86_64-darwin19","uname":"Darwin
+        pc64.home 19.0.0 Darwin Kernel Version 19.0.0: Wed Sep 25 20:18:50 PDT 2019;
+        root:xnu-6153.11.26~2/RELEASE_X86_64 x86_64"}'
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Thu, 23 Apr 2020 17:20:16 GMT
+      Content-Type:
+      - application/json; charset=utf-8
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      Set-Cookie:
+      - __cfduid=d6b760b18a3ed8c427c4d15877b20f0d51587662416; expires=Sat, 23-May-20
+        17:20:16 GMT; path=/; domain=.mangopay.com; HttpOnly; SameSite=Lax
+      Cache-Control:
+      - no-cache
+      Pragma:
+      - no-cache
+      Expires:
+      - "-1"
+      X-Ratelimit:
+      - '105'
+      - '159'
+      - '77'
+      - '93'
+      X-Ratelimit-Remaining:
+      - '105441'
+      - '2223'
+      - '4407'
+      - '8695'
+      X-Ratelimit-Reset:
+      - '1587663300'
+      - '1587664200'
+      - '1587666000'
+      - '1587748740'
+      Cf-Cache-Status:
+      - DYNAMIC
+      Expect-Ct:
+      - max-age=604800, report-uri="https://report-uri.cloudflare.com/cdn-cgi/beacon/expect-ct"
+      Server:
+      - cloudflare
+      Cf-Ray:
+      - 58894116b83dee85-CDG
+      Cf-Request-Id:
+      - '0249a702320000ee856a0c9200000001'
+    body:
+      encoding: ASCII-8BIT
+      string: '{"Description":"Mercier SA","Owners":["79239314"],"Balance":{"Currency":"EUR","Amount":0},"Currency":"EUR","FundsType":"DEFAULT","Id":"79239315","Tag":null,"CreationDate":1587662416}'
+    http_version: null
+  recorded_at: Thu, 23 Apr 2020 17:20:16 GMT
 recorded_with: VCR 5.1.0
