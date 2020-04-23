@@ -8,13 +8,14 @@ if Rails.env.development?
   categories = %w[it finance green startup gadget]
 
   3.times do
-    create(
+    project = build(
       :project,
       :with_categories,
       :with_rewards,
       owners: owners.sample(rand(1..3)),
       categories: categories.sample(rand(1..3))
     )
+    Projects::CreateTransaction.new.call(resource: project)
   end
 
   AdminUser.create!(
