@@ -6,7 +6,7 @@
   <%= f.number_field :amount,
     autofocus: true,
     autocomplete: 'amount',
-    class: classes_for_field(@contribution, :amount, ['full-width']),
+    class: classes_for_field(@contribution, :amount),
     placeholder: '999999',
     step: "0.01",
     value: @contribution.amount ? @contribution.amount.to_f / 100 : nil %>
@@ -24,6 +24,8 @@
         { class: classes_for_field(@contribution, :reward) }
       ) %>
   <%= errors_for_field(@contribution, :reward) %>
+
+  <br />
 
   <span class="actions float-right">
     <%= f.submit "Donner", class: 'btn btn-primary' %>

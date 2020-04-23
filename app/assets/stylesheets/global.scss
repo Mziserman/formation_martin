@@ -15,23 +15,6 @@ img {
   width:100%;
 }
 
-form {
-  input[type=date] {
-    &.form-control.user_form {
-      width: calc(80% - 22px);
-    }
-  }
-  select{
-    &.form-control.user_form {
-      width: calc(80% - 22px);
-    }
-  }
-}
-
-.full-width {
-  width: 100% !important;
-}
-
 .navbar {
   a {
     text-decoration-line: none;
