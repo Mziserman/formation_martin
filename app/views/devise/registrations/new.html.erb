@@ -32,7 +32,7 @@
 
     <%= f.label :password, 'Mot de passe',  class: 'col-sm-3 col-form-label'%>
     <% if @minimum_password_length %>
-    <em>(<%= @minimum_password_length %> characters minimum)</em>
+      <em>(<%= @minimum_password_length %> characters minimum)</em>
     <% end %><br />
     <%= f.password_field :password,
       autocomplete: 'new-password',
