@@ -18,7 +18,8 @@
         options_for_select(
           @project.available_rewards.pluck(:name, :threshold, :id).map do |name, threshold, id|
             ["#{name}, contribution minimum : #{currency_print(threshold)}", id]
-          end
+          end,
+          params[:reward_id]
         ),
         { include_blank: true },
         { class: classes_for_field(@contribution, :reward) }

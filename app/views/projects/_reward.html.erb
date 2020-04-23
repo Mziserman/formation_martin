@@ -1,5 +1,9 @@
+
 <div class='reward-card px-3 pt-3 pb-2 mb-3'>
-  <h4><%= reward.name %></h4>
+  <%= link_to new_project_contribution_path(@project, reward_id: reward.id) do %>
+    <h4><%= reward.name %></h4>
+  <% end %>
+  <p>À partir de <%= currency_print(reward.threshold) %></p>
   <% if reward.limited %>
     <p>Stock: <%= reward.total_stock - reward.contributions_count %> / <%= reward.total_stock %>
   <% else %>
