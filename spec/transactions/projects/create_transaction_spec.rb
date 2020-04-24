@@ -3,19 +3,16 @@
 RSpec.describe Projects::CreateTransaction do
   subject do
     VCR.use_cassette('create_mangopay_wallet') do
-      project.owners << owner
       Projects::CreateTransaction.new.call(resource: project)
     end
   end
 
   context 'with valid attributes' do
     let(:owner) do
-      admin_user = create(:admin_user)
-      admin_user.mangopay_id
-      admin_user
+      create(:admin_user)
     end
 
-    let(:project) { build(:project) }
+    let(:project) { build(:project, :with_owner, owner: owner) }
 
     it 'gets mangopay payin id' do
       subject

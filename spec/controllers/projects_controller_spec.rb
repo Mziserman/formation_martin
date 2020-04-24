@@ -5,16 +5,11 @@ describe ProjectsController, '#index', type: :controller do
   let!(:project_small_blurb) { create(:project, small_blurb: 'small_blurb') }
   let!(:project_long_blurb) { create(:project, long_blurb: 'long_blurb') }
   let!(:project_owner) do
-    project = build :project
-    project.owners << create(:admin_user, first_name: 'owner')
-    project.save
-    project
+    create(:project, :with_owner,
+           owner: build(:admin_user).tap { |u| u.first_name = 'owner' })
   end
   let!(:project_category) do
-    project = build :project
-    project.category_list.add('category')
-    project.save
-    project
+    create :project, :with_categories, categories: ['category']
   end
   let!(:project_ongoing) do
     project = create :project,

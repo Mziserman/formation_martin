@@ -184,8 +184,8 @@ RSpec.describe Project, type: :model do
     end
 
     it 'completion is (sum of contributions / amount wanted)' do
-      expect(subject.completion).to eq(
-        (subject.contributions.sum(:amount) / subject.amount_wanted.to_f).round(4)
+      expect(subject.completion.to_s).to eq(
+        (subject.contributions.sum(:amount) / subject.amount_wanted.to_f).round(4).to_s
       )
     end
   end
