@@ -185,4 +185,17 @@ RSpec.describe Admin::ProjectsController, type: :controller do
       expect(response).to redirect_to(admin_projects_url)
     end
   end
+
+  describe 'GET #contributors.csv' do
+    let!(:project_with_contributions) { create :project, :with_contributions }
+    subject do
+      get :contributors, format: :csv, params: { id: project_with_contributions.id }
+    end
+
+    it 'gets the csv' do
+      subject
+      expect(response.header['Content-Type']).to include 'text/csv'
+      expect(response.body).to include project_with_contributions.contributors.first.first_name
+    end
+  end
 end
