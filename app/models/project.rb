@@ -18,7 +18,8 @@ class Project < ApplicationRecord
 
   has_many :rewards, dependent: :nullify
   has_many :contributions, dependent: :nullify
-  has_many :contributors, through: :contributions, source: :user
+  has_many :contributors, -> { distinct },
+           through: :contributions, source: :user
 
   has_many :project_ownerships, dependent: :destroy
   accepts_nested_attributes_for :project_ownerships

@@ -22,6 +22,27 @@ ActiveAdmin.register Project do
     link_to 'Exporter les donations en csv',
             admin_project_contributions_path(project, format: :csv)
   end
+  action_item :export_donators, only: :show do
+    link_to 'Exporter les donateurs en csv',
+            contributors_admin_project_path(project, format: :csv)
+  end
+
+  member_action :contributors, method: :get do
+    respond_to do |format|
+      format.csv do
+        Users::ContributorsCsvTransaction.new.call(
+          resource: resource
+        ) do |transaction|
+          transaction.success do |csv|
+            send_data csv, filename: "contributors-#{DateTime.now.to_i}.csv"
+          end
+          transaction.failure do
+            render 'show', resource: resource
+          end
+        end
+      end
+    end
+  end
 
   controller do
     def update(_options = {})
