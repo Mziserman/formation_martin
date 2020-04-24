@@ -3,7 +3,11 @@
 require 'rails_helper'
 
 RSpec.describe Project, type: :model do
-  subject { create :project, *traits, params }
+  subject do
+    VCR.use_cassette('create_mangopay_user') do
+      create :project, *traits, params
+    end
+  end
   let(:params) { {} }
   let(:traits) { [] }
 
@@ -76,11 +80,10 @@ RSpec.describe Project, type: :model do
     let(:params) do
       {
         contributions: [
-          {
-            amount: 999_999_999,
-            user: create(:user),
-            state: 1
-          }
+          build(:contribution,
+                :with_user,
+                amount: 999_999_999,
+                state: 1)
         ]
       }
     end
@@ -127,11 +130,10 @@ RSpec.describe Project, type: :model do
     let(:params) do
       {
         contributions: [
-          {
-            amount: 100_000,
-            user: create(:user),
-            state: 1
-          }
+          build(:contribution,
+                :with_user,
+                amount: 100_000,
+                state: 1)
         ]
       }
     end
@@ -148,21 +150,18 @@ RSpec.describe Project, type: :model do
     let(:params) do
       {
         contributions: [
-          {
-            amount: 100_000,
-            user: create(:user),
-            state: 1
-          },
-          {
-            amount: 200_000,
-            user: create(:user),
-            state: 1
-          },
-          {
-            amount: 300_000,
-            user: create(:user),
-            state: 1
-          }
+          build(:contribution,
+                :with_user,
+                amount: 100_000,
+                state: 1),
+          build(:contribution,
+                :with_user,
+                amount: 200_000,
+                state: 1),
+          build(:contribution,
+                :with_user,
+                amount: 300_000,
+                state: 1)
         ]
       }
     end
@@ -196,21 +195,21 @@ RSpec.describe Project, type: :model do
     let(:params) do
       {
         contributions: [
-          {
-            amount: 100_000,
-            user: user,
-            state: 1
-          },
-          {
-            amount: 200_000,
-            user: user,
-            state: 1
-          },
-          {
-            amount: 300_000,
-            user: user,
-            state: 1
-          }
+          build(:contribution,
+                :with_user,
+                amount: 100_000,
+                user: user,
+                state: 1),
+          build(:contribution,
+                :with_user,
+                amount: 200_000,
+                user: user,
+                state: 1),
+          build(:contribution,
+                :with_user,
+                amount: 300_000,
+                user: user,
+                state: 1)
         ]
       }
     end
@@ -243,36 +242,36 @@ RSpec.describe Project, type: :model do
     let(:params) do
       {
         contributions: [
-          {
-            amount: 100_000,
-            user: big_donor,
-            state: 1
-          },
-          {
-            amount: 200_000,
-            user: big_donor,
-            state: 1
-          },
-          {
-            amount: 300_000,
-            user: big_donor,
-            state: 1
-          },
-          {
-            amount: 100,
-            user: small_donor,
-            state: 1
-          },
-          {
-            amount: 200,
-            user: small_donor,
-            state: 1
-          },
-          {
-            amount: 300,
-            user: small_donor,
-            state: 1
-          }
+          build(:contribution,
+                :with_user,
+                amount: 100_000,
+                user: big_donor,
+                state: 1),
+          build(:contribution,
+                :with_user,
+                amount: 200_000,
+                user: big_donor,
+                state: 1),
+          build(:contribution,
+                :with_user,
+                amount: 300_000,
+                user: big_donor,
+                state: 1),
+          build(:contribution,
+                :with_user,
+                amount: 100,
+                user: small_donor,
+                state: 1),
+          build(:contribution,
+                :with_user,
+                amount: 200,
+                user: small_donor,
+                state: 1),
+          build(:contribution,
+                :with_user,
+                amount: 300,
+                user: small_donor,
+                state: 1)
         ]
       }
     end
@@ -316,21 +315,21 @@ RSpec.describe Project, type: :model do
     let(:params) do
       {
         contributions: [
-          {
-            amount: 100_000,
-            user: big_donor,
-            state: 1
-          },
-          {
-            amount: 200_000,
-            user: big_donor,
-            state: 2
-          },
-          {
-            amount: 300_000,
-            user: big_donor,
-            state: 0
-          }
+          build(:contribution,
+                :with_user,
+                amount: 100_000,
+                user: big_donor,
+                state: 1),
+          build(:contribution,
+                :with_user,
+                amount: 200_000,
+                user: big_donor,
+                state: 2),
+          build(:contribution,
+                :with_user,
+                amount: 300_000,
+                user: big_donor,
+                state: 0)
         ]
       }
     end

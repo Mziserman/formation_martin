@@ -51,14 +51,14 @@ FactoryBot.define do
       transient do
         contributions do
           1.upto(3).map do |_|
-            attributes_for(:contribution)
+            build(:contribution, :with_user)
           end
         end
       end
 
       after(:create) do |project, evaluator|
         evaluator.contributions.each do |contribution|
-          project.contributions.create contribution
+          project.contributions << contribution
         end
       end
     end
