@@ -5,9 +5,6 @@ RSpec.describe Contributions::CreateTransaction do
     VCR.use_cassette('create_mangopay_payin_card_web', allow_playback_repeats: true) do
       Projects::CreateTransaction.new.call(resource: project).success[:resource]
 
-      contribution.project = project
-      contribution.user = user
-
       Contributions::CreateTransaction.new.call(
         resource: contribution
       )
@@ -24,12 +21,13 @@ RSpec.describe Contributions::CreateTransaction do
     end
 
     let(:project) do
-      project = build(:project)
-      project.owners << owner
-      project
+      build(:project, :with_owner, owner: owner)
     end
 
-    let(:contribution) { build(:contribution) }
+    let(:contribution) do
+      build(:contribution, :with_project, :with_user,
+            project: project, user: user)
+    end
 
     it 'gets mangopay payin id' do
       subject

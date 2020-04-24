@@ -16,29 +16,25 @@ RSpec.describe Contributions::CreateTransaction do
   end
 
   context 'with valid attributes' do
-      let(:owner) do
-        create(:admin_user)
-      end
+    let(:owner) do
+      create(:admin_user)
+    end
 
-      let(:user) do
-        create(:user)
-      end
+    let(:user) do
+      create(:user)
+    end
 
-      let(:project) do
-        project = build(:project)
-        project.owners << owner
-        project
-      end
+    let(:project) do
+      build(:project, :with_owner)
+    end
 
-      let(:contribution) do
-        resource = build(:contribution)
-        resource.project = project
-        resource.user = user
-        resource
-      end
+    let(:contribution) do
+      build(:contribution, :with_project, :with_user,
+            project: project, user: user)
+    end
 
-      it 'validates a contribution' do
-        expect { subject }.to(change { contribution.state })
-      end
+    it 'validates a contribution' do
+      expect { subject }.to(change { contribution.state })
     end
   end
+end

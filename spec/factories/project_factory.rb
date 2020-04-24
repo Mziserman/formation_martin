@@ -63,6 +63,18 @@ FactoryBot.define do
       end
     end
 
+    trait :with_owner do
+      transient do
+        owner do
+          build(:admin_user)
+        end
+      end
+
+      after(:build) do |project, evaluator|
+        project.owners << evaluator.owner
+      end
+    end
+
     trait :with_categories do
       transient do
         categories { %w[it company tech] }
