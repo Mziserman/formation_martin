@@ -16,10 +16,11 @@
         <% rewards = current_user.rewards_for_project(project) %>
         <% if rewards.present? %>
           <p><b>Ces contributions vous ont permis d'obtenir : </b></p>
+          <ul>
           <% rewards.each do |reward| %>
-            - <%= reward.name %><br/>
+            <li><%= reward.name %></li>
           <% end %>
-          <br/>
+          </ul>
         <% end %>
       <% end %>
     </div>
