@@ -18,6 +18,11 @@ ActiveAdmin.register Project do
   filter :amount_wanted
   filter :created_at
 
+  action_item :export_donations, only: :show do
+    link_to 'Exporter les donations en csv',
+            admin_project_contributions_path(project, format: :csv)
+  end
+
   controller do
     def update(_options = {})
       resource.assign_attributes(permitted_params[:project])
@@ -58,7 +63,6 @@ ActiveAdmin.register Project do
 
   show do
     render 'show', project: project
-
     panel 'Donations' do
       table_for project.contributions do
         column 'Nom du donateur' do |contribution|
