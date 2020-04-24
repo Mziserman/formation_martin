@@ -18,10 +18,8 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
         set_flash_message(:notice, :success, kind: 'Facebook')
       end
     else
-      binding.pry
-
       session['devise.facebook_data'] = request.env['omniauth.auth']
-      redirect_to new_user_registration_url
+      render 'devise/registrations/new'
     end
   end
 
