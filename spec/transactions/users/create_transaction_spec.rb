@@ -112,9 +112,7 @@ RSpec.describe Users::CreateTransaction do
 
   context 'with different password confirmation' do
     let(:attributes) do
-      attributes_for(:user).tap do |user|
-        user[:password_confirmation] = user[:password] + 'en_fait_non'
-      end
+      attributes_for(:user, password_confirmation: 'non')
     end
 
     it 'fails' do
