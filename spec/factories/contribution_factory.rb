@@ -20,7 +20,15 @@ FactoryBot.define do
     end
 
     trait :with_user do
-      association :user
+      transient do
+        user do
+          build(:user)
+        end
+      end
+
+      after(:build) do |contribution, evaluator|
+        contribution.user = evaluator.user
+      end
     end
   end
 end
