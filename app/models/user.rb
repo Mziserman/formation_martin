@@ -23,8 +23,7 @@ class User < ApplicationRecord
   end
 
   def rewards_for_project(project)
-    contributions.includes(:reward).accepted.where(project_id: project.id)
-                 .map(&:reward).compact
+    Reward.includes(:contributions).where(contributions: { project_id: project.id })
   end
 
   def mangopay_id
