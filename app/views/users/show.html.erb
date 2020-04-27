@@ -6,12 +6,8 @@
   <% current_user.contributor_projects.includes(:contributions).each do |project| %>
     <div class='col-sm-6'>
       <%= render 'projects/card', project: project do %>
-        <%
-          amount = current_user.amount_contributed_to(project)
-          amount_print = currency_print(current_user.amount_contributed_to(project))
-          percent = percent_print(amount / project.total_collected)
-        %>
-        <p><b>Dont <%= amount_print %> venant de vous. Ça représente <%= percent %> du total ! Merci !</b></p>
+        <p><b>Dont <%= @user_decorator.print_amount_for_project(project) %> venant de vous.
+        Ça représente <%= @user_decorator.print_percent_contributed(project) %> du total ! Merci !</b></p>
 
         <% rewards = current_user.rewards_for_project(project) %>
         <% if rewards.present? %>
