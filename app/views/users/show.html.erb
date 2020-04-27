@@ -3,13 +3,13 @@
 <br/>
 
 <div class='row'>
-  <% current_user.contributor_projects.includes(:contributions).each do |project| %>
+  <% user.contributor_projects.includes(:contributions).each do |project| %>
     <div class='col-sm-6'>
       <%= render 'projects/card', project: project do %>
-        <p><b>Dont <%= @user_decorator.print_amount_for_project(project) %> venant de vous.
-        Ça représente <%= @user_decorator.print_percent_contributed(project) %> du total ! Merci !</b></p>
+        <p><b>Dont <%= user.print_amount_for_project(project) %> venant de vous.
+        Ça représente <%= user.print_percent_contributed(project) %> du total ! Merci !</b></p>
 
-        <% rewards = current_user.rewards_for_project(project) %>
+        <% rewards = user.rewards_for_project(project) %>
         <% if rewards.present? %>
           <p><b>Ces contributions vous ont permis d'obtenir : </b></p>
           <ul>

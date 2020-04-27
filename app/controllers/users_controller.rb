@@ -1,7 +1,11 @@
+# frozen_string_literal: true
+
 class UsersController < ApplicationController
   before_action :authorize_user!
 
+  decorates_assigned :user
+
   def show
-    @user_decorator = current_user.decorate
+    @user = current_user
   end
 end
