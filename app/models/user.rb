@@ -29,6 +29,10 @@ class User < ApplicationRecord
     Reward.includes(:contributions).where(contributions: { project_id: project.id })
   end
 
+  def contributions_for_project(project)
+    contributions.includes(:project).where(project_id: project.id)
+  end
+
   def mangopay_id
     return super unless super.nil?
 

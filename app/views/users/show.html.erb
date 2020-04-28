@@ -18,6 +18,11 @@
           <% end %>
           </ul>
         <% end %>
+
+        Contributions : <br/>
+        <% user.contributions_for_project(project).each do |contribution| %>
+          <%= link_to "Facture (#{currency_print(contribution.amount)})", project_contribution_path(project, contribution, format: :pdf) %> <br/>
+        <% end %>
       <% end %>
     </div>
   <% end %>

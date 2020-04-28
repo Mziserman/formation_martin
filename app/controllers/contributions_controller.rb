@@ -2,9 +2,9 @@
 
 class ContributionsController < ApplicationController
   before_action :set_project
-  before_action :set_contribution, only: :validate
-  before_action :authorize_user!, only: %i[new create]
-  before_action :authorize_contribution_user!, only: :validate
+  before_action :set_contribution, only: :show
+  before_action :authorize_user!, only: %i[new create show]
+  before_action :authorize_contribution_user!, only: %i[validate show]
 
   def new
     @contribution = Contribution.new
@@ -30,7 +30,22 @@ class ContributionsController < ApplicationController
     end
   end
 
+  def show
+    respond_to do |format|
+      format.html {}
+      format.pdf do
+        render pdf: "facture-#{@contribution.id}",
+               template: 'contributions/show.html.erb',
+               layout: 'pdf.html'
+      end
+    end
+  end
+
   def validate
+    @contribution = @project.contributions.find_by(
+      mangopay_payin_id: params[:transactionId]
+    )
+
     Contributions::ValidateTransaction.new.call(resource: @contribution)
 
     flash = case @contribution.state
@@ -59,9 +74,7 @@ class ContributionsController < ApplicationController
   end
 
   def set_contribution
-    @contribution = @project.contributions.find_by(
-      mangopay_payin_id: params[:transactionId]
-    )
+    @contribution = @project.contributions.find_by(id: params[:id])
   end
 
   def authorize_contribution_user!
