@@ -25,9 +25,7 @@ FactoryBot.define do
       transient do
         rewards do
           1.upto(3).map do |_|
-            attributes_for(:reward).tap do |reward|
-              reward[:threshold] = nil
-            end
+            attributes_for(:reward, threshold: nil)
           end
         end
       end

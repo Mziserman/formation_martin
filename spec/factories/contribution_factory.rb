@@ -16,21 +16,13 @@ FactoryBot.define do
     end
 
     trait :with_project do
-      transient do
-        project do
-          create(:project)
-        end
-      end
-
-      after(:build) do |contribution, evaluator|
-        contribution.project = evaluator.project
-      end
+      association :project
     end
 
     trait :with_user do
       transient do
         user do
-          create(:user)
+          build(:user)
         end
       end
 
