@@ -26,6 +26,20 @@
       ) %>
   <%= errors_for_field(@contribution, :reward) %>
 
+  <%= f.label :payment_method, class: 'col-sm-3 col-form-label' %>
+  <%= f.select(
+        :payment_method,
+        options_for_select(
+          Contribution.payment_methods.map do |payment_method, index|
+            [I18n.t(payment_method), payment_method]
+          end,
+          params[:payment_method]
+        ),
+        { include_blank: false },
+        { class: classes_for_field(@contribution, :payment_method) }
+      ) %>
+  <%= errors_for_field(@contribution, :payment_method) %>
+
   <br />
 
   <span class="actions float-right">

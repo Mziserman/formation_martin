@@ -3,6 +3,9 @@ fr:
   accepted: Acceptée
   denied: Refusée
   pending: En attente
+
+  card: Carte bleue
+  direct_debit: Débit direct
   activerecord:
     errors:
       messages:

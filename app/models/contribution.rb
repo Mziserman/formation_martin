@@ -23,6 +23,7 @@ class Contribution < ApplicationRecord
   validate :amount_must_be_above_threshold
 
   enum state: %i[processing accepted denied]
+  enum payment_method: %i[card direct_debit]
 
   def reward_must_be_available
     if reward.present? && reward.limited?

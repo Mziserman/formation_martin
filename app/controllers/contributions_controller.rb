@@ -2,7 +2,7 @@
 
 class ContributionsController < ApplicationController
   before_action :set_project
-  before_action :set_contribution, only: :show
+  before_action :set_contribution, only: %i[validate show]
   before_action :authorize_user!, only: %i[new create show]
   before_action :authorize_contribution_user!, only: %i[validate show]
 
@@ -21,7 +21,7 @@ class ContributionsController < ApplicationController
       resource: resource
     ) do |result|
       result.success do |output|
-        redirect_to output[:mangopay_payin]['TemplateURL']
+        redirect_to output[:mangopay_payin]['RedirectURL']
       end
       result.failure do |output|
         @contribution = output[:resource]
@@ -44,10 +44,6 @@ class ContributionsController < ApplicationController
   end
 
   def validate
-    @contribution = @project.contributions.find_by(
-      mangopay_payin_id: params[:transactionId]
-    )
-
     Contributions::ValidateTransaction.new.call(resource: @contribution)
 
     flash = case @contribution.state
@@ -67,7 +63,8 @@ class ContributionsController < ApplicationController
       :name,
       :amount,
       :reward_id,
-      :project_id
+      :project_id,
+      :payment_method
     )
   end
 
@@ -76,7 +73,13 @@ class ContributionsController < ApplicationController
   end
 
   def set_contribution
-    @contribution = @project.contributions.find_by(id: params[:id])
+    @contribution = if params[:transactionId]
+                      @project.contributions.find_by(
+                        mangopay_payin_id: params[:transactionId]
+                      )
+                    else
+                      @project.contributions.find_by(id: params[:id])
+                    end
   end
 
   def authorize_contribution_user!

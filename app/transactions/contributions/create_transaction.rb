@@ -11,6 +11,26 @@ class Contributions::CreateTransaction
   private
 
   def create_mangopay_payin(input)
+    input = if input[:resource][:payment_method] == 'card'
+              pay_by_card(input)
+            else
+              pay_by_direct_debit(input)
+            end
+
+    Success(input)
+  end
+
+  def set_mangopay_payin_id(input)
+    input[:resource].mangopay_payin_id = input[:mangopay_payin]['Id']
+
+    Success(input)
+  end
+
+  def return_url(resource)
+    Rails.application.routes.url_helpers.project_contributions_validate_url(resource.project)
+  end
+
+  def pay_by_card(input)
     input[:mangopay_payin] = MangoPay::PayIn::Card::Web.create(
       AuthorId: input[:resource].user.mangopay_id,
       CreditedWalletId: input[:resource].project.mangopay_wallet_id,
@@ -27,16 +47,46 @@ class Contributions::CreateTransaction
       ReturnURL: return_url(input[:resource])
     )
 
-    Success(input)
+    input
   end
 
-  def set_mangopay_payin_id(input)
-    input[:resource].mangopay_payin_id = input[:mangopay_payin]['Id']
+  def pay_by_direct_debit(input)
+    input[:mangopay_payin] = MangoPay::PayIn::DirectDebit::Web.create(
+      AuthorId: input[:resource].user.mangopay_id,
+      CreditedWalletId: input[:resource].project.mangopay_wallet_id,
+      Culture: 'FR',
+      DebitedFunds: {
+        Currency: 'EUR',
+        Amount: input[:resource].amount
+      },
+      Fees: {
+        Currency: 'EUR',
+        Amount: 0
+      },
+      ReturnURL: return_url(input[:resource]),
+      DirectDebitType: "SOFORT",
+      ExecutionType: 'DIRECT',
+      PaymentType: 'DIRECT_DEBIT'
+    )
 
-    Success(input)
+    input
   end
 
-  def return_url(resource)
-    Rails.application.routes.url_helpers.project_contributions_validate_url(resource.project)
-  end
+  # def mangopay_params(input, )
+  #   {
+  #     AuthorId: input[:resource].user.mangopay_id,
+  #     CreditedWalletId: input[:resource].project.mangopay_wallet_id,
+  #     PaymentType: 'BANK_WIRE',
+  #     Culture: 'FR',
+  #     DebitedFunds: {
+  #       Currency: 'EUR',
+  #       Amount: input[:resource].amount
+  #     },
+  #     Fees: {
+  #       Currency: 'EUR',
+  #       Amount: 0
+  #     },
+  #     ReturnURL: return_url(input[:resource])
+  #   }
+  # end
 end
