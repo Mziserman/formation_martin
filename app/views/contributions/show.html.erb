@@ -1,2 +1,52 @@
+<div class="contribution-box">
+  <table cellpadding="0" cellspacing="0">
+    <tr class="top">
+      <td colspan="4">
+        <table>
+          <tr>
+            <td class="title">
+              GIMO
+            </td>
 
-<%= @contribution.attributes %>
+            <td>
+              Contribution #: <b><%= @contribution.id %></b>
+              <br>
+              Créée : <b><%= @contribution.created_at.strftime('%d/%m/%Y') %></b>
+              <br>
+              Status: <span class="<%= @contribution.state_class %>"><%= I18n.t @contribution.state %></span>
+            </td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+
+
+    <tr class="heading">
+      <td>Méthode de paiement</td>
+      <td colspan="2"></td>
+      <td class="right">Carte bleue</td>
+    </tr>
+
+    <tr class="details">
+      <td>Projet supporté</td>
+      <td colspan="2"></td>
+      <td class="right"><%= @contribution.project.name %></td>
+    </tr>
+
+    <% if @contribution.reward.present? %>
+      <tr class="details">
+        <td>Contrepartie</td>
+        <td colspan="2"></td>
+        <td class="right"><%= @contribution.reward.name %></td>
+      </tr>
+    <% end %>
+
+    <tr class="heading">
+      <td>Total donné</td>
+      <td colspan="2"></td>
+      <td class="right"><%= currency_print(@contribution.amount) %></td>
+    </tr>
+
+
+  </table>
+</div>

@@ -1,5 +1,8 @@
 ---
 fr:
+  accepted: Acceptée
+  denied: Refusée
+  pending: En attente
   activerecord:
     errors:
       messages:

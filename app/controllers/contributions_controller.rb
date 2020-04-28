@@ -31,12 +31,14 @@ class ContributionsController < ApplicationController
   end
 
   def show
+    @contribution = @contribution.decorate
     respond_to do |format|
       format.html {}
       format.pdf do
         render pdf: "facture-#{@contribution.id}",
                template: 'contributions/show.html.erb',
-               layout: 'pdf.html'
+               layout: 'pdf.html',
+               encoding: 'utf-8'
       end
     end
   end
