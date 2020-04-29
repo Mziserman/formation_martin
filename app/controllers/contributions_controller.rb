@@ -21,7 +21,10 @@ class ContributionsController < ApplicationController
       resource: resource
     ) do |result|
       result.success do |output|
-        redirect_to output[:mangopay_payin]['RedirectURL']
+        url = output[:mangopay_payin]['RedirectURL'] ||
+              output[:mangopay_payin]['TemplateURL']
+
+        redirect_to url
       end
       result.failure do |output|
         @contribution = output[:resource]

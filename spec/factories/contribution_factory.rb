@@ -5,6 +5,7 @@ FactoryBot.define do
     project
     user
     amount { rand(100..10_000) }
+    payment_method { 'card' }
 
     after(:build) do |contribution|
       contribution.project = create :project unless contribution.project.nil?
@@ -16,7 +17,15 @@ FactoryBot.define do
     end
 
     trait :with_project do
-      association :project
+      transient do
+        project do
+          build(:project)
+        end
+      end
+
+      after(:build) do |contribution, evaluator|
+        contribution.project = evaluator.project
+      end
     end
 
     trait :with_user do
