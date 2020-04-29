@@ -51,42 +51,21 @@ class Contributions::CreateTransaction
   end
 
   def pay_by_direct_debit(input)
-    input[:mangopay_payin] = MangoPay::PayIn::DirectDebit::Web.create(
+    input[:mangopay_payin] = MangoPay::PayIn::BankWire::Direct.create(
       AuthorId: input[:resource].user.mangopay_id,
       CreditedWalletId: input[:resource].project.mangopay_wallet_id,
       Culture: 'FR',
-      DebitedFunds: {
+      DeclaredDebitedFunds: {
         Currency: 'EUR',
         Amount: input[:resource].amount
       },
-      Fees: {
+      DeclaredFees: {
         Currency: 'EUR',
         Amount: 0
       },
-      ReturnURL: return_url(input[:resource]),
-      DirectDebitType: "SOFORT",
-      ExecutionType: 'DIRECT',
-      PaymentType: 'DIRECT_DEBIT'
+      ReturnURL: return_url(input[:resource])
     )
 
     input
   end
-
-  # def mangopay_params(input, )
-  #   {
-  #     AuthorId: input[:resource].user.mangopay_id,
-  #     CreditedWalletId: input[:resource].project.mangopay_wallet_id,
-  #     PaymentType: 'BANK_WIRE',
-  #     Culture: 'FR',
-  #     DebitedFunds: {
-  #       Currency: 'EUR',
-  #       Amount: input[:resource].amount
-  #     },
-  #     Fees: {
-  #       Currency: 'EUR',
-  #       Amount: 0
-  #     },
-  #     ReturnURL: return_url(input[:resource])
-  #   }
-  # end
 end
