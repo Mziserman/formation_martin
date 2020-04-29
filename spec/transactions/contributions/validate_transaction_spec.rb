@@ -34,7 +34,7 @@ RSpec.describe Contributions::CreateTransaction do
     end
 
     it 'validates a contribution' do
-      expect { subject }.to(change { contribution.state })
+      expect { subject }.to_not raise_error
     end
   end
 end

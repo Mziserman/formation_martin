@@ -5,7 +5,7 @@ fr:
   pending: En attente
 
   card: Carte bleue
-  direct_debit: Débit direct
+  bank_wire: Virement
   activerecord:
     errors:
       messages:

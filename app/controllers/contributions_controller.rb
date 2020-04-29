@@ -40,10 +40,13 @@ class ContributionsController < ApplicationController
   def show
     @contribution = @contribution.decorate
     respond_to do |format|
-      format.html {}
+      format.html do
+        @mangopay_contribution =
+          MangoPay::PayIn.fetch(@contribution.mangopay_payin_id)
+      end
       format.pdf do
         render pdf: "facture-#{@contribution.id}",
-               template: 'contributions/show.html.erb',
+               template: 'contributions/show.pdf.html.erb',
                layout: 'pdf.html',
                encoding: 'utf-8'
       end

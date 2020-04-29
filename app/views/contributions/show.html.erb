@@ -1,52 +1,14 @@
-<div class="contribution-box">
-  <table cellpadding="0" cellspacing="0">
-    <tr class="top">
-      <td colspan="4">
-        <table>
-          <tr>
-            <td class="title">
-              GIMO
-            </td>
+<% if @contribution.payment_method == 'bank_wire'%>
+  <% if @mangopay_contribution['Status'] == 'SUCCESS'%>
+  <% elsif @mangopay_contribution['Status'] == 'FAILURE'%>
+  <% else %>
+    vous devez faire un virement de <%= currency_print(@contribution.amount) %> <br/>
+    À l'ordre de
+    <br />
+    <%= @mangopay_contribution['BankAccount']['OwnerName'] %> <%= @mangopay_contribution['BankAccount']['OwnerAddress']['AddressLine1'] %>, <br/>
+    <%= @mangopay_contribution['BankAccount']['OwnerAddress']['City'] %> <%= @mangopay_contribution['BankAccount']['OwnerAddress']['PostalCode'] %> <%= @mangopay_contribution['BankAccount']['OwnerAddress']['Country'] %><br/>
 
-            <td>
-              Contribution #: <b><%= @contribution.id %></b>
-              <br>
-              Créée : <b><%= @contribution.created_at.strftime('%d/%m/%Y') %></b>
-              <br>
-              Status: <span class="<%= @contribution.state_class %>"><%= I18n.t @contribution.state %></span>
-            </td>
-          </tr>
-        </table>
-      </td>
-    </tr>
-
-
-    <tr class="heading">
-      <td>Méthode de paiement</td>
-      <td colspan="2"></td>
-      <td class="right">Carte bleue</td>
-    </tr>
-
-    <tr class="details">
-      <td>Projet supporté</td>
-      <td colspan="2"></td>
-      <td class="right"><%= @contribution.project.name %></td>
-    </tr>
-
-    <% if @contribution.reward.present? %>
-      <tr class="details">
-        <td>Contrepartie</td>
-        <td colspan="2"></td>
-        <td class="right"><%= @contribution.reward.name %></td>
-      </tr>
-    <% end %>
-
-    <tr class="heading">
-      <td>Total donné</td>
-      <td colspan="2"></td>
-      <td class="right"><%= currency_print(@contribution.amount) %></td>
-    </tr>
-
-
-  </table>
-</div>
+    BIC: <%= @mangopay_contribution['BankAccount']['BIC'] %><br/>
+    IBAN: <%= @mangopay_contribution['BankAccount']['IBAN'] %><br/>
+  <% end %>
+<% end %>

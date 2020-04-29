@@ -14,7 +14,7 @@ class Contributions::CreateTransaction
     input = if input[:resource][:payment_method] == 'card'
               pay_by_card(input)
             else
-              pay_by_direct_debit(input)
+              pay_by_bank_wire(input)
             end
 
     Success(input)
@@ -50,7 +50,7 @@ class Contributions::CreateTransaction
     input
   end
 
-  def pay_by_direct_debit(input)
+  def pay_by_bank_wire(input)
     input[:mangopay_payin] = MangoPay::PayIn::BankWire::Direct.create(
       AuthorId: input[:resource].user.mangopay_id,
       CreditedWalletId: input[:resource].project.mangopay_wallet_id,
