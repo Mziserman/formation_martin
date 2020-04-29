@@ -48,8 +48,11 @@ class ContributionsController < ApplicationController
           transaction = Contributions::ValidateTransaction.new
           transaction.call(resource: @contribution) do |result|
             result.success do |output|
-              @mangopay_contribution = output[:mangopay_payin]
-              @contribution = output[:resource] # avoid @contribution.relaod
+              @mangopay_payin = output[:mangopay_payin]
+              if @contribution.state != 'processing'
+                redirect_to project_path(@project),
+                            flash: flash_from_state(@contribution.state)
+              end
             end
 
             result.failure do |_output|
@@ -70,19 +73,21 @@ class ContributionsController < ApplicationController
   def validate
     Contributions::ValidateTransaction.new.call(resource: @contribution)
 
-    flash = case @contribution.state
-            when 'accepted'
-              { success: 'Merci pour votre donation !' }
-            when 'denied'
-              { alert: 'Votre paiement n\'a pas fonctionné' }
-            when 'processing'
-              { warning: 'Votre paiement est en cours de traitement' }
-            end
-
-    redirect_to project_path(@project), flash: flash
+    redirect_to project_path(@project), flash: flash_from_state(@contribution.state)
   end
 
   private
+
+  def flash_from_state(state)
+    case state
+    when 'accepted'
+      { success: 'Merci pour votre donation !' }
+    when 'denied'
+      { alert: 'Votre paiement n\'a pas fonctionné' }
+    when 'processing'
+      { warning: 'Votre paiement est en cours de traitement' }
+    end
+  end
 
   def permitted_params
     params.require(:contribution).permit(
