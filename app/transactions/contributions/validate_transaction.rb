@@ -16,7 +16,14 @@ class Contributions::ValidateTransaction
   end
 
   def set_resource_state(input)
-    input[:resource].state = input[:mangopay_payin]['Status'] == 'SUCCEEDED' ? :accepted : :denied
+    input[:resource].state = case input[:mangopay_payin]['Status']
+                             when 'SUCCEEDED'
+                               :accepted
+                             when 'FAILED'
+                               :denied
+                             else
+                               :processing
+                             end
 
     Success(input)
   end

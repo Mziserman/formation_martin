@@ -58,6 +58,8 @@ class ContributionsController < ApplicationController
               { success: 'Merci pour votre donation !' }
             when 'denied'
               { alert: 'Votre paiement n\'a pas fonctionné' }
+            when 'processing'
+              { warning: 'Votre paiement est en cours de traitement' }
             end
 
     redirect_to project_path(@project), flash: flash
