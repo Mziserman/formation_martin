@@ -22,7 +22,11 @@ class ContributionsController < ApplicationController
     ) do |result|
       result.success do |output|
         url = output[:mangopay_payin]['RedirectURL'] ||
-              output[:mangopay_payin]['TemplateURL']
+              output[:mangopay_payin]['TemplateURL'] ||
+              project_contributions_validate_url(
+                resource.project,
+                transactionId: output[:mangopay_payin]['Id']
+              )
 
         redirect_to url
       end
