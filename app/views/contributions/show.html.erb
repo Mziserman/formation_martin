@@ -1,6 +1,6 @@
 <% if @contribution.payment_method == 'bank_wire'%>
-  <% if @mangopay_contribution['Status'] == 'SUCCESS'%>
-  <% elsif @mangopay_contribution['Status'] == 'FAILURE'%>
+  <% if @contribution.state == 'accepted'%>
+  <% elsif @contribution.state == 'denied'%>
   <% else %>
     vous devez faire un virement de <%= currency_print(@contribution.amount) %> <br/>
     À l'ordre de

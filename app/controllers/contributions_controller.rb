@@ -23,8 +23,9 @@ class ContributionsController < ApplicationController
       result.success do |output|
         url = output[:mangopay_payin]['RedirectURL'] ||
               output[:mangopay_payin]['TemplateURL'] ||
-              project_contributions_validate_url(
-                resource.project,
+              project_contribution_path(
+                output[:resource].project,
+                output[:resource],
                 transactionId: output[:mangopay_payin]['Id']
               )
 
@@ -41,8 +42,21 @@ class ContributionsController < ApplicationController
     @contribution = @contribution.decorate
     respond_to do |format|
       format.html do
-        @mangopay_contribution =
-          MangoPay::PayIn.fetch(@contribution.mangopay_payin_id)
+        if @contribution.state == 'processing'
+          # handle case where contribution was processing but is now succeeded
+          # or failed
+          transaction = Contributions::ValidateTransaction.new
+          transaction.call(resource: @contribution) do |result|
+            result.success do |output|
+              @mangopay_contribution = output[:mangopay_payin]
+              @contribution = output[:resource] # avoid @contribution.relaod
+            end
+
+            result.failure do |_output|
+              redirect_to project_path(@project)
+            end
+          end
+        end
       end
       format.pdf do
         render pdf: "facture-#{@contribution.id}",
