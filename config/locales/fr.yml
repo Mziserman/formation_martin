@@ -2,7 +2,7 @@
 fr:
   accepted: Acceptée
   denied: Refusée
-  pending: En attente
+  processing: En attente de validation
 
   card: Carte bleue
   bank_wire: Virement
