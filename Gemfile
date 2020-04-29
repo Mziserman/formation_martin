@@ -64,6 +64,8 @@ gem 'wkhtmltopdf-binary'
 
 gem 'draper'
 
+gem 'whenever', require: false
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'pry-byebug'
@@ -100,6 +102,7 @@ group :test do
   gem 'shoulda-matchers'
   gem 'webmock'
   gem 'vcr'
+  gem 'whenever-test'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem

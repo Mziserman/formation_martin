@@ -7,6 +7,8 @@ class Contributions::ValidateTransaction
   step :set_resource_state
   step :save, with: 'contributions.save'
 
+  # step :notify_user_if_changed
+
   private
 
   def fetch_mangopay_payin(input)
