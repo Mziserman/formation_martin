@@ -26,7 +26,10 @@ class User < ApplicationRecord
   end
 
   def rewards_for_project(project)
-    Reward.includes(:contributions).where(contributions: { project_id: project.id })
+    Reward.includes(:contributions).where(contributions: {
+                                            project_id: project.id,
+                                            state: 'accepted'
+                                          })
   end
 
   def contributions_for_project(project)
