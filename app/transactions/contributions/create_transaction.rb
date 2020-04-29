@@ -62,8 +62,7 @@ class Contributions::CreateTransaction
       DeclaredFees: {
         Currency: 'EUR',
         Amount: 0
-      },
-      ReturnURL: return_url(input[:resource])
+      }
     )
 
     input
