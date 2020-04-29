@@ -3,12 +3,14 @@
     <p>Pour valider votre donation, vous devez faire un virement de <%= currency_print(@contribution.amount) %> à l'ordre de : </p>
   </div>
   <div class='row'>
-    <p><%= @mangopay_payin['BankAccount']['OwnerName'] %>, <br/>
-    <%= @mangopay_payin['BankAccount']['OwnerAddress']['AddressLine1'] %>, <br/>
-    <%= @mangopay_payin['BankAccount']['OwnerAddress']['City'] %> <%= @mangopay_payin['BankAccount']['OwnerAddress']['PostalCode'] %> <%= @mangopay_payin['BankAccount']['OwnerAddress']['Country'] %><br/>
-    <br/>
-    <b>BIC</b>: <%= @mangopay_payin['BankAccount']['BIC'] %><br/>
-    <b>IBAN</b>: <%= @mangopay_payin['BankAccount']['IBAN'] %><br/>
-    <b>Référence</b>: <%= @mangopay_payin['WireReference'] %><br/></p>
+    <p>
+      <%= @mangopay_payin['BankAccount']['OwnerName'] %>, <br/>
+      <%= @mangopay_payin['BankAccount']['OwnerAddress']['AddressLine1'] %>, <br/>
+      <%= @mangopay_payin['BankAccount']['OwnerAddress']['City'] %> <%= @mangopay_payin['BankAccount']['OwnerAddress']['PostalCode'] %> <%= @mangopay_payin['BankAccount']['OwnerAddress']['Country'] %><br/>
+      <br/>
+      <b>BIC</b>: <%= @mangopay_payin['BankAccount']['BIC'] %><br/>
+      <b>IBAN</b>: <%= @mangopay_payin['BankAccount']['IBAN'] %><br/>
+      <b>Référence</b>: <%= @mangopay_payin['WireReference'] %><br/>
+    </p>
   </div>
 <% end %>
