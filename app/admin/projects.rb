@@ -47,6 +47,7 @@ ActiveAdmin.register Project do
   controller do
     def update(_options = {})
       resource.assign_attributes(permitted_params[:project])
+      resource.amount_wanted = permitted_params[:project][:amount_wanted].to_f * 100
       Projects::SaveTransaction.new.call(
         resource: resource,
         params: permitted_params[:project]
@@ -65,6 +66,7 @@ ActiveAdmin.register Project do
 
     def create(_options = {})
       resource = Project.new(permitted_params[:project])
+      resource.amount_wanted = permitted_params[:project][:amount_wanted].to_f * 100
       resource.owners << current_admin_user
       Projects::CreateTransaction.new.call(
         resource: resource
@@ -146,7 +148,9 @@ ActiveAdmin.register Project do
   form do |f|
     inputs do
       f.input :name
-      f.input :amount_wanted
+      f.input :amount_wanted, input_html: {
+        value: f.object.amount_wanted ? f.object.amount_wanted.to_f / 100 : nil
+      }
       f.input :small_blurb
       f.input :long_blurb
       f.input :category_list, input_html: { value: f.object.category_list.to_s }

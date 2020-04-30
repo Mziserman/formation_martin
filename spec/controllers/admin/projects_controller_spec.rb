@@ -103,7 +103,7 @@ RSpec.describe Admin::ProjectsController, type: :controller do
         project = Project.last
 
         expect(project.name).to eq(valid_attributes[:name])
-        expect(project.amount_wanted).to eq(valid_attributes[:amount_wanted])
+        expect(project.amount_wanted).to eq(valid_attributes[:amount_wanted] * 100)
       end
     end
 
